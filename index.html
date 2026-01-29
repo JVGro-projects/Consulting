@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Дерево решений - Выбор программы мотивации</title>
+  <meta name="description" content="Интерактивное дерево решений для выбора программы мотивации отдела продаж">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: 220 20% 97%;
+      --foreground: 220 30% 15%;
+      --card: 0 0% 100%;
+      --card-foreground: 220 30% 15%;
+      --primary: 210 85% 45%;
+      --primary-foreground: 0 0% 100%;
+      --secondary: 200 25% 94%;
+      --secondary-foreground: 220 30% 20%;
+      --muted: 220 15% 92%;
+      --muted-foreground: 220 15% 45%;
+      --accent: 175 60% 45%;
+      --accent-foreground: 0 0% 100%;
+      --destructive: 0 72% 55%;
+      --destructive-foreground: 0 0% 100%;
+      --success: 150 60% 40%;
+      --success-foreground: 0 0% 100%;
+      --warning: 35 90% 55%;
+      --warning-foreground: 0 0% 100%;
+      --border: 220 20% 88%;
+      --node-question: 210 85% 45%;
+      --node-question-foreground: 0 0% 100%;
+      --node-yes: 150 60% 40%;
+      --node-yes-foreground: 0 0% 100%;
+      --node-no: 15 85% 55%;
+      --node-no-foreground: 0 0% 100%;
+      --node-conclusion: 260 60% 55%;
+      --node-conclusion-foreground: 0 0% 100%;
+      --node-solution: 175 60% 45%;
+      --node-solution-foreground: 0 0% 100%;
+      --node-final: 45 90% 50%;
+      --node-final-foreground: 220 30% 15%;
+      --connector-line: 220 20% 75%;
+      --radius: 0.75rem;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: hsl(var(--background));
+      color: hsl(var(--foreground));
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container {
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+    .content {
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: hsl(var(--foreground));
+      margin-bottom: 0.75rem;
+    }
+    .header p {
+      font-size: 1.125rem;
+      color: hsl(var(--primary));
+      font-weight: 500;
+    }
+    @media (min-width: 768px) {
+      .header h1 {
+        font-size: 1.875rem;
+      }
+    }
+    /* Shadows */
+    .tree-node-shadow {
+      box-shadow: 0 4px 20px -4px hsl(var(--primary) / 0.15),
+                  0 2px 8px -2px hsl(var(--foreground) / 0.08);
+    }
+    .tree-node-shadow-hover {
+      box-shadow: 0 8px 30px -4px hsl(var(--primary) / 0.25),
+                  0 4px 12px -2px hsl(var(--foreground) / 0.12);
+    }
+    /* Question Node */
+    .question-node {
+      position: relative;
+      padding: 1.25rem;
+      border-radius: var(--radius);
+      transition: all 0.3s ease;
+    }
+    .question-node.active {
+      background: hsl(var(--node-question));
+      transform: scale(1.02);
+    }
+    .question-node.completed {
+      background: hsl(var(--node-question) / 0.8);
+    }
+    .question-node .inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .question-number {
+      flex-shrink: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.125rem;
+      transition: all 0.3s ease;
+    }
+    .question-node.active .question-number,
+    .question-node.completed .question-number {
+      background: hsl(var(--node-question-foreground) / 0.2);
+      color: hsl(var(--node-question-foreground));
+    }
+    .question-node:not(.active):not(.completed) .question-number {
+      background: hsl(var(--primary) / 0.1);
+      color: hsl(var(--primary));
+    }
+    .question-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .question-text {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 0.25rem;
+    }
+    .question-node.active .question-text,
+    .question-node.completed .question-text {
+      color: hsl(var(--node-question-foreground));
+    }
+    .question-description {
+      font-size: 0.875rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.375rem;
+    }
+    .question-node.active .question-description,
+    .question-node.completed .question-description {
+      color: hsl(var(--node-question-foreground) / 0.8);
+    }
+    .question-node:not(.active):not(.completed) .question-description {
+      color: hsl(var(--muted-foreground));
+    }
+    .question-description svg {
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+    }
+    /* Connector */
+    .connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.5rem 0;
+    }
+    .connector-line {
+      width: 2px;
+      height: 1.5rem;
+      border-radius: 9999px;
+    }
+    .connector-line.yes { background: hsl(var(--node-yes)); }
+    .connector-line.no { background: hsl(var(--node-no)); }
+    .connector-line.neutral { background: hsl(var(--connector-line)); }
+    .connector-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.125rem 0.5rem;
+      border-radius: 9999px;
+      margin: 0.25rem 0;
+    }
+    .connector-label.yes {
+      background: hsl(var(--success) / 0.1);
+      color: hsl(var(--success));
+    }
+    .connector-label.no {
+      background: hsl(var(--warning) / 0.1);
+      color: hsl(var(--warning));
+    }
+    /* Answer Buttons */
+    .answer-buttons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      justify-content: center;
+    }
+    .answer-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .answer-btn.yes {
+      background: hsl(var(--success) / 0.1);
+      color: hsl(var(--success));
+    }
+    .answer-btn.yes:hover {
+      background: hsl(var(--success) / 0.2);
+    }
+    .answer-btn.no {
+      background: hsl(var(--warning) / 0.1);
+      color: hsl(var(--warning));
+    }
+    .answer-btn.no:hover {
+      background: hsl(var(--warning) / 0.2);
+    }
+    .answer-btn:hover {
+      transform: translateX(2px);
+    }
+    .answer-btn span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .answer-btn .icon {
+      font-size: 1.125rem;
+    }
+    /* Result Card */
+    .result-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      animation: scaleIn 0.3s ease forwards;
+    }
+    .result-card.final {
+      background: linear-gradient(135deg, hsl(var(--node-final) / 0.9), hsl(var(--node-final)));
+    }
+    .result-card:not(.final) {
+      background: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+    }
+    .result-card .decoration {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      filter: blur(2rem);
+    }
+    .result-card.final .decoration {
+      background: hsl(var(--node-final-foreground) / 0.1);
+    }
+    .result-card:not(.final) .decoration {
+      background: hsl(var(--node-conclusion) / 0.1);
+    }
+    .result-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .result-icon {
+      flex-shrink: 0;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .result-card.final .result-icon {
+      background: hsl(var(--node-final-foreground) / 0.2);
+      color: hsl(var(--node-final-foreground));
+    }
+    .result-card:not(.final) .result-icon {
+      background: hsl(var(--node-conclusion) / 0.1);
+      color: hsl(var(--node-conclusion));
+    }
+    .result-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .result-card.final .result-label {
+      color: hsl(var(--node-final-foreground) / 0.7);
+    }
+    .result-card:not(.final) .result-label {
+      color: hsl(var(--muted-foreground));
+    }
+    .result-conclusion {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 0.25rem;
+      line-height: 1.4;
+    }
+    .result-card.final .result-conclusion {
+      color: hsl(var(--node-final-foreground));
+    }
+    .result-card:not(.final) .result-conclusion {
+      color: hsl(var(--foreground));
+    }
+    .result-solution {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      position: relative;
+    }
+    .result-card.final .result-solution {
+      border-top: 1px solid hsl(var(--node-final-foreground) / 0.2);
+    }
+    .result-card:not(.final) .result-solution {
+      border-top: 1px solid hsl(var(--border));
+    }
+    .solution-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+    .result-card.final .solution-label {
+      color: hsl(var(--node-final-foreground) / 0.7);
+    }
+    .result-card:not(.final) .solution-label {
+      color: hsl(var(--node-solution));
+    }
+    .solution-list {
+      margin-top: 0.5rem;
+      list-style: none;
+    }
+    .solution-list li {
+      font-size: 0.875rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .result-card.final .solution-list li {
+      color: hsl(var(--node-final-foreground) / 0.9);
+    }
+    .result-card:not(.final) .solution-list li {
+      color: hsl(var(--foreground));
+    }
+    .solution-list .arrow {
+      color: hsl(var(--node-solution));
+      margin-top: 0.125rem;
+    }
+    /* Reset Button */
+    .reset-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.25rem;
+      border-radius: 0.5rem;
+      background: hsl(var(--secondary));
+      color: hsl(var(--secondary-foreground));
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+      margin: 0 auto 3rem;
+    }
+    .reset-btn:hover {
+      background: hsl(var(--secondary) / 0.8);
+    }
+    /* Separator */
+    .separator {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent);
+      margin-bottom: 3rem;
+    }
+    /* Programs Section */
+    .programs-section {
+      margin-bottom: 3rem;
+    }
+    .programs-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .programs-subtitle {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: hsl(var(--muted-foreground));
+      margin-top: 0.25rem;
+    }
+    .programs-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .programs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .programs-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    /* Program Card */
+    .program-card {
+      position: relative;
+      background: hsl(var(--card));
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      transition: all 0.5s ease;
+      animation: fadeIn 0.4s ease forwards;
+    }
+    .program-card:hover {
+      transform: translateY(-4px);
+    }
+    .program-card.highlighted {
+      ring: 2px solid hsl(var(--primary));
+      ring-offset: 2px;
+      box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--primary));
+      transform: scale(1.02);
+    }
+    .program-card.dimmed {
+      opacity: 0.4;
+      filter: grayscale(1);
+    }
+    .program-badge {
+      position: absolute;
+      top: -0.5rem;
+      left: -0.5rem;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+      background: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      transition: all 0.5s ease;
+    }
+    .program-card.highlighted .program-badge {
+      transform: scale(1.1);
+    }
+    .program-card.dimmed .program-badge {
+      background: hsl(var(--muted));
+      color: hsl(var(--muted-foreground));
+    }
+    .highlight-badge {
+      position: absolute;
+      top: -0.75rem;
+      right: -0.75rem;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: scaleIn 0.3s ease forwards;
+    }
+    .program-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .program-emoji {
+      font-size: 1.5rem;
+      transition: all 0.5s ease;
+    }
+    .program-card.dimmed .program-emoji {
+      filter: grayscale(1);
+    }
+    .program-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .program-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      transition: color 0.5s ease;
+    }
+    .program-card.highlighted .program-title {
+      color: hsl(var(--primary));
+    }
+    .program-suitable {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 0.75rem;
+    }
+    .program-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .program-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.625rem;
+      border-radius: 0.375rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .program-tag.focus {
+      background: hsl(var(--accent) / 0.1);
+      color: hsl(var(--accent));
+    }
+    .program-card.highlighted .program-tag.focus {
+      background: hsl(var(--primary) / 0.2);
+      color: hsl(var(--primary));
+    }
+    .program-tag.risk {
+      background: hsl(var(--destructive) / 0.1);
+      color: hsl(var(--destructive));
+    }
+    /* Key Insight */
+    .key-insight {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8));
+      padding: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .key-insight {
+        padding: 2rem;
+      }
+    }
+    .key-insight .decoration-1,
+    .key-insight .decoration-2 {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(2rem);
+      background: hsl(var(--primary-foreground) / 0.05);
+    }
+    .key-insight .decoration-1 {
+      top: 0;
+      right: 0;
+      width: 10rem;
+      height: 10rem;
+    }
+    .key-insight .decoration-2 {
+      bottom: 0;
+      left: 0;
+      width: 8rem;
+      height: 8rem;
+    }
+    .key-insight .inner {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .key-insight .icon-box {
+      flex-shrink: 0;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0.75rem;
+      background: hsl(var(--primary-foreground) / 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: hsl(var(--primary-foreground));
+    }
+    .key-insight .label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: hsl(var(--primary-foreground) / 0.7);
+      margin-bottom: 0.5rem;
+    }
+    .key-insight .text {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: hsl(var(--primary-foreground));
+      line-height: 1.6;
+    }
+    @media (min-width: 768px) {
+      .key-insight .text {
+        font-size: 1.25rem;
+      }
+    }
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.4s ease forwards;
+    }
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <!-- Header -->
+      <header class="header">
+        <h1>Дерево решений</h1>
+        <p>Выбор программы мотивации для отдела продаж</p>
+      </header>
+      <!-- Decision Tree -->
+      <div id="tree-container" class="tree-container"></div>
+      <!-- Reset Button -->
+      <button id="reset-btn" class="reset-btn hidden">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+        Начать заново
+      </button>
+      <!-- Separator -->
+      <div class="separator"></div>
+      <!-- Programs Section -->
+      <section class="programs-section">
+        <h2 class="programs-title">
+          Типы программ мотивации
+          <span id="programs-subtitle" class="programs-subtitle hidden">Рекомендуемая модель выделена</span>
+        </h2>
+        <div id="programs-grid" class="programs-grid"></div>
+      </section>
+      <!-- Key Insight -->
+      <section class="key-insight tree-node-shadow-hover">
+        <div class="decoration-1"></div>
+        <div class="decoration-2"></div>
+        <div class="inner">
+          <div class="icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/>
+              <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="label">Ключевой управленческий вывод</span>
+            <p class="text">Нельзя выбрать эффективную мотивацию, не ответив на вопрос: за какое поведение бизнес готов платить деньги.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script>
+    // Data
+    const decisionTree = {
+      id: 'q1',
+      question: 'Есть ли рост выручки без роста маржинальности?',
+      description: 'Оборот растёт, валовая прибыль стагнирует или падает',
+      yesPath: {
+        id: 'q2',
+        question: 'Основана ли текущая мотивация на выручке / объёме?',
+        description: '% от оборота, KPI по сделкам или активности',
+        yesPath: {
+          id: 'r2-yes',
+          type: 'solution',
+          conclusion: 'Мотивация стимулирует продажи «любой ценой»',
+          solution: ['Переход на маржинально-ориентированную модель', 'Пороги маржи, веса, ограничения скидок'],
+          programId: '2'
+        },
+        noPath: {
+          id: 'r2-no',
+          type: 'solution',
+          conclusion: 'Проблема не только в формуле',
+          solution: ['Проверить влияние скидок, условий и исключений', 'Валидировать поведение, а не KPI'],
+          programId: '3'
+        }
+      },
+      noPath: {
+        id: 'q3',
+        question: 'Есть ли в системе минимальные пороги маржи для премирования?',
+        description: 'Сделки ниже порога не поощряются или ограничены',
+        noPath: {
+          id: 'r3-no',
+          type: 'solution',
+          conclusion: 'Бизнес платит за убыточные или пограничные сделки',
+          solution: ['Ввести защитную модель мотивации', 'Минимальная маржа, стопы, корректировки премии'],
+          programId: '3'
+        },
+        yesPath: {
+          id: 'q4',
+          question: 'Отличаются ли модели мотивации для разных типов продаж?',
+          description: 'Продукты, сегменты, длинные / короткие циклы',
+          noPath: {
+            id: 'r4-no',
+            type: 'solution',
+            conclusion: 'Единая схема создаёт перекосы',
+            solution: ['Дифференцированная мотивация', 'Разные веса, KPI, логика расчёта'],
+            programId: '4'
+          },
+          yesPath: {
+            id: 'q5',
+            question: 'Есть ли зависимость премии от скидок и условий сделки?',
+            description: 'Скидка уменьшает вознаграждение менеджера',
+            noPath: {
+              id: 'r5-no',
+              type: 'solution',
+              conclusion: 'Скидки для менеджера «бесплатны»',
+              solution: ['Мотивация с учётом чистой маржи сделки', 'Ограничение ручных исключений'],
+              programId: '2'
+            },
+            yesPath: {
+              id: 'q6',
+              question: 'Требует ли система постоянного ручного управления?',
+              description: 'Индивидуальные договорённости, «звёзды», исключения',
+              yesPath: {
+                id: 'r6-yes',
+                type: 'solution',
+                conclusion: 'Система не масштабируется',
+                solution: ['Стандартизированная и воспроизводимая модель', 'Понятные правила, потолки, прозрачные расчёты'],
+                programId: '5'
+              },
+              noPath: {
+                id: 'q7',
+                question: 'Поддерживает ли мотивация целевую стратегию бизнеса?',
+                description: 'Фокус на нужные продукты, клиентов, модель роста',
+                noPath: {
+                  id: 'r7-no',
+                  type: 'solution',
+                  conclusion: 'Мотивация живёт отдельно от стратегии',
+                  solution: ['Стратегическая пересборка мотивации', 'Привязка к приоритетам бизнеса'],
+                  programId: '5'
+                },
+                yesPath: {
+                  id: 'final',
+                  type: 'final',
+                  conclusion: 'Текущая программа мотивации поддерживает маржинальность и управляемость',
+                  solution: ['Возможны точечные корректировки, а не полная пересборка']
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+    const motivationPrograms = [
+      { id: '1', emoji: '📈', title: 'Оборотная модель', suitableFor: 'Только для быстрого захвата рынка', focus: 'Объём продаж', risk: 'Разрушение маржи' },
+      { id: '2', emoji: '💰', title: 'Маржинально-ориентированная модель', suitableFor: 'Для зрелых B2B и проектных продаж', focus: 'Прибыль, а не объём' },
+      { id: '3', emoji: '🛡️', title: 'Защитная модель', suitableFor: 'При высокой доле скидок и индивидуальных условий', focus: 'Защита P&L' },
+      { id: '4', emoji: '⚙️', title: 'Дифференцированная модель', suitableFor: 'При сложной продуктовой линейке', focus: 'Корректные стимулы под разные продажи' },
+      { id: '5', emoji: '🎯', title: 'Стратегическая модель', suitableFor: 'При трансформации бизнеса или масштабировании', focus: 'Поддержка приоритетов роста' }
+    ];
+    // State
+    let history = [];
+    let currentNode = decisionTree;
+    let result = null;
+    let questionNumber = 1;
+    // DOM Elements
+    const treeContainer = document.getElementById('tree-container');
+    const resetBtn = document.getElementById('reset-btn');
+    const programsGrid = document.getElementById('programs-grid');
+    const programsSubtitle = document.getElementById('programs-subtitle');
+    // Helpers
+    function isDecisionResult(node) {
+      return node && 'type' in node;
+    }
+    function createQuestionNode(number, question, description, isActive, isCompleted) {
+      const stateClass = isActive ? 'active' : isCompleted ? 'completed' : '';
+      const shadowClass = isActive ? 'tree-node-shadow-hover' : 'tree-node-shadow';
+      
+      return `
+        <div class="question-node ${stateClass} ${shadowClass}">
+          <div class="inner">
+            <div class="question-number">${number}</div>
+            <div class="question-content">
+              <h3 class="question-text">${question}</h3>
+              ${description ? `
+                <p class="question-description">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <path d="M12 17h.01"/>
+                  </svg>
+                  ${description}
+                </p>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    function createConnector(label, type) {
+      return `
+        <div class="connector">
+          <div class="connector-line ${type}"></div>
+          ${label ? `<span class="connector-label ${type}">${label}</span>` : ''}
+          <div class="connector-line ${type}"></div>
+        </div>
+      `;
+    }
+    function createAnswerButtons() {
+      return `
+        <div class="answer-buttons">
+          <button class="answer-btn yes" onclick="handleAnswer('yes')">
+            <span><span class="icon">✓</span> ДА</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m9 18 6-6-6-6"/>
+            </svg>
+          </button>
+          <button class="answer-btn no" onclick="handleAnswer('no')">
+            <span><span class="icon">✗</span> НЕТ</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m9 18 6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+      `;
+    }
+    function createResultCard(resultData) {
+      const isFinal = resultData.type === 'final';
+      
+      return `
+        <div class="result-card ${isFinal ? 'final' : ''} tree-node-shadow${isFinal ? '-hover' : ''}">
+          <div class="decoration"></div>
+          <div class="result-header">
+            <div class="result-icon">
+              ${isFinal ? `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                  <path d="M4 22h16"/>
+                  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                </svg>
+              ` : `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+                  <path d="M9 18h6"/>
+                  <path d="M10 22h4"/>
+                </svg>
+              `}
+            </div>
+            <div>
+              <span class="result-label">${isFinal ? 'Итоговый вывод' : 'Вывод'}</span>
+              <p class="result-conclusion">${resultData.conclusion}</p>
+            </div>
+          </div>
+          ${resultData.solution && resultData.solution.length > 0 ? `
+            <div class="result-solution">
+              <span class="solution-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <path d="m9 11 3 3L22 4"/>
+                </svg>
+                Решение
+              </span>
+              <ul class="solution-list">
+                ${resultData.solution.map(item => `
+                  <li><span class="arrow">→</span> ${item}</li>
+                `).join('')}
+              </ul>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+    function renderTree() {
+      let html = '';
+      // Render history
+      history.forEach(item => {
+        html += `<div class="animate-fade-in">`;
+        html += createQuestionNode(item.questionNumber, item.node.question, item.node.description, false, true);
+        html += createConnector(item.answer === 'yes' ? 'ДА' : 'НЕТ', item.answer);
+        html += `</div>`;
+      });
+      // Render current question or result
+      if (!result) {
+        html += `<div class="animate-fade-in">`;
+        html += createQuestionNode(questionNumber, currentNode.question, currentNode.description, true, false);
+        html += createAnswerButtons();
+        html += `</div>`;
+      } else {
+        html += `<div class="animate-fade-in">`;
+        html += createResultCard(result);
+        html += `</div>`;
+      }
+      treeContainer.innerHTML = html;
+      // Show/hide reset button
+      if (history.length > 0 || result) {
+        resetBtn.classList.remove('hidden');
+      } else {
+        resetBtn.classList.add('hidden');
+      }
+      // Update programs
+      renderPrograms();
+    }
+    function renderPrograms() {
+      const highlightedId = result?.programId;
+      
+      if (highlightedId) {
+        programsSubtitle.classList.remove('hidden');
+      } else {
+        programsSubtitle.classList.add('hidden');
+      }
+      programsGrid.innerHTML = motivationPrograms.map((program, index) => {
+        const isHighlighted = highlightedId === program.id;
+        const isDimmed = result !== null && highlightedId !== undefined && highlightedId !== program.id;
+        
+        let cardClass = 'program-card tree-node-shadow';
+        if (isHighlighted) cardClass = 'program-card highlighted tree-node-shadow-hover';
+        if (isDimmed) cardClass = 'program-card dimmed tree-node-shadow';
+        return `
+          <div class="${cardClass}" style="animation-delay: ${index * 100}ms">
+            ${isHighlighted ? `
+              <div class="highlight-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <path d="m9 11 3 3L22 4"/>
+                </svg>
+              </div>
+            ` : ''}
+            <div class="program-badge">${program.id}</div>
+            <div class="program-inner">
+              <span class="program-emoji">${program.emoji}</span>
+              <div class="program-content">
+                <h4 class="program-title">${program.title}</h4>
+                <p class="program-suitable">${program.suitableFor}</p>
+                <div class="program-tags">
+                  <span class="program-tag focus">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/>
+                      <circle cx="12" cy="12" r="6"/>
+                      <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                    ${program.focus}
+                  </span>
+                  ${program.risk ? `
+                    <span class="program-tag risk">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                        <path d="M12 9v4"/>
+                        <path d="M12 17h.01"/>
+                      </svg>
+                      ${program.risk}
+                    </span>
+                  ` : ''}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    // Event Handlers
+    window.handleAnswer = function(answer) {
+      const nextPath = answer === 'yes' ? currentNode.yesPath : currentNode.noPath;
+      history.push({ node: currentNode, answer, questionNumber });
+      if (isDecisionResult(nextPath)) {
+        result = nextPath;
+      } else if (nextPath) {
+        currentNode = nextPath;
+        questionNumber++;
+      }
+      renderTree();
+    };
+    resetBtn.addEventListener('click', function() {
+      history = [];
+      currentNode = decisionTree;
+      result = null;
+      questionNumber = 1;
+      renderTree();
+    });
+    // Initial render
+    renderTree();
+  </script>
+</body>
