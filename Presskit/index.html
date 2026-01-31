@@ -42,7 +42,6 @@
     h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
     .section-padding { padding: 5rem 1.5rem; }
-    
     @media (min-width: 768px) { .section-padding { padding: 5rem 3rem; } }
     @media (min-width: 1024px) { .section-padding { padding: 5rem 6rem; } }
 
@@ -103,7 +102,6 @@
     }
 
     .hero { position: relative; padding: 4rem 1.5rem; overflow: hidden; text-align: center; }
-    
     @media (min-width: 768px) { .hero { padding: 6rem 1.5rem; } }
 
     .hero-bg {
@@ -215,7 +213,6 @@
     .section-header { text-align: center; margin-bottom: 4rem; }
 
     .section-title { font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; }
-
     @media (min-width: 768px) { .section-title { font-size: 3rem; } }
 
     .section-divider {
@@ -273,60 +270,18 @@
 
     .credential-desc { color: var(--muted-foreground); }
 
-    .topics-grid {
-      display: grid;
-      gap: 1.5rem;
-      max-width: 72rem;
-      margin: 0 auto;
+    .topics-section { background: var(--background); }
+
+    .accordion-wrapper { max-width: 64rem; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+
+    .accordion-item {
+      border-radius: var(--radius);
+      overflow: hidden;
     }
-
-    @media (min-width: 768px) { .topics-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    .topic-card { padding: 1.5rem; }
-
-    .topic-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .topic-number {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      background: var(--primary);
-      color: var(--primary-foreground);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .topic-title { font-size: 1.25rem; font-weight: 600; font-family: 'Inter', sans-serif; }
-
-    .topic-desc { color: var(--muted-foreground); margin-bottom: 1rem; padding-left: 3.5rem; }
-
-    .topic-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; padding-left: 3.5rem; }
-
-    .tag {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      background: var(--secondary);
-      color: var(--secondary-foreground);
-    }
-
-    .publications-section { background: linear-gradient(to bottom, var(--background), hsla(218, 55%, 18%, 0.1)); }
-
-    .accordion { max-width: 48rem; margin: 0 auto; }
-
-    .accordion-item { border-bottom: 1px solid var(--border); }
 
     .accordion-trigger {
       width: 100%;
-      padding: 1rem 0;
+      padding: 1.25rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -337,19 +292,33 @@
       font-weight: 500;
       cursor: pointer;
       text-align: left;
-      transition: color 0.2s;
+      transition: background 0.2s;
     }
 
-    .accordion-trigger:hover { color: var(--primary); }
+    .accordion-trigger:hover { background: hsla(218, 55%, 18%, 0.3); }
 
-    .accordion-trigger svg {
+    .accordion-trigger-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .accordion-icon { font-size: 1.875rem; }
+
+    .accordion-title-wrap { text-align: left; }
+
+    .accordion-title { font-size: 1.25rem; font-weight: 600; }
+
+    .accordion-count { font-size: 0.875rem; color: var(--muted-foreground); margin-top: 0.25rem; }
+
+    .accordion-chevron {
       width: 1.25rem;
       height: 1.25rem;
       transition: transform 0.2s;
       flex-shrink: 0;
     }
 
-    .accordion-item.open .accordion-trigger svg { transform: rotate(180deg); }
+    .accordion-item.open .accordion-chevron { transform: rotate(180deg); }
 
     .accordion-content {
       max-height: 0;
@@ -357,9 +326,90 @@
       transition: max-height 0.3s ease-out;
     }
 
-    .accordion-item.open .accordion-content { max-height: 500px; }
+    .accordion-item.open .accordion-content { max-height: 2000px; }
 
-    .accordion-inner { padding-bottom: 1rem; color: var(--muted-foreground); font-size: 0.875rem; line-height: 1.7; }
+    .accordion-inner { padding: 0 1.5rem 1.5rem; }
+
+    .topics-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .topic-item { display: flex; align-items: flex-start; gap: 0.75rem; color: hsla(200, 100%, 97%, 0.9); }
+
+    .topic-bullet { color: var(--primary); margin-top: 0.375rem; font-size: 0.75rem; }
+
+    .topic-text { white-space: pre-line; }
+
+    .publications-section {
+      background: linear-gradient(to bottom, hsla(218, 55%, 18%, 0.2), var(--background));
+    }
+
+    .publications-grid {
+      display: grid;
+      gap: 1.5rem;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) { .publications-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .publications-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .publication-card {
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .publication-card:hover { border-color: hsla(215, 100%, 55%, 0.3); }
+
+    .publication-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      margin-bottom: 0.75rem;
+    }
+
+    .publication-meta svg { width: 1rem; height: 1rem; }
+
+    .publication-source { color: var(--primary); font-weight: 500; }
+
+    .publication-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      transition: color 0.2s;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .publication-card:hover .publication-title { color: var(--primary); }
+
+    .publication-desc {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .publication-link {
+      display: flex;
+      align-items: center;
+      color: var(--primary);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .publication-link svg { width: 1rem; height: 1rem; margin-left: 0.25rem; }
+
+    .publications-footer { text-align: center; margin-top: 3rem; }
 
     .contact-section { background: linear-gradient(to bottom, var(--background), hsla(215, 80%, 30%, 0.1)); }
 
@@ -455,6 +505,7 @@
 </head>
 <body>
   <main>
+    <!-- Hero Section -->
     <section class="hero">
       <div class="hero-bg"></div>
       <div class="hero-content">
@@ -495,6 +546,7 @@
       </div>
     </section>
 
+    <!-- Why Me Section -->
     <section id="why" class="section-padding why-section">
       <div class="section-header fade-in-up">
         <h2 class="section-title">Почему именно <span class="gradient-text">Юлия</span></h2>
@@ -547,101 +599,247 @@
       </div>
     </section>
 
-    <section id="topics" class="section-padding">
+    <!-- Topics Section -->
+    <section id="topics" class="section-padding topics-section">
       <div class="section-header fade-in-up">
-        <h2 class="section-title">Темы <span class="gradient-text">выступлений</span></h2>
+        <h2 class="section-title">Темы для <span class="gradient-text">выступлений</span></h2>
         <div class="section-divider"></div>
-        <p class="section-desc">Практические знания для конференций, корпоративных мероприятий и образовательных программ</p>
+        <p class="section-desc">Более 35 актуальных тем для конференций, бизнес-клубов, подкастов и корпоративных мероприятий</p>
       </div>
-      <div class="topics-grid">
-        <div class="topic-card card-glass fade-in-up">
-          <div class="topic-header">
-            <div class="topic-number">1</div>
-            <h3 class="topic-title">Финансовая стратегия для технологических компаний</h3>
-          </div>
-          <p class="topic-desc">Как выстроить финансовую функцию, которая поддерживает рост, а не тормозит его</p>
-          <div class="topic-tags">
-            <span class="tag">Стратегия</span>
-            <span class="tag">IT</span>
-            <span class="tag">Масштабирование</span>
-          </div>
-        </div>
-        <div class="topic-card card-glass fade-in-up">
-          <div class="topic-header">
-            <div class="topic-number">2</div>
-            <h3 class="topic-title">Международная экспансия: финансы и операции</h3>
-          </div>
-          <p class="topic-desc">Практический опыт выхода на рынки США, Европы, Азии — от структуры до налогов</p>
-          <div class="topic-tags">
-            <span class="tag">Международка</span>
-            <span class="tag">Экспансия</span>
-            <span class="tag">Compliance</span>
-          </div>
-        </div>
-        <div class="topic-card card-glass fade-in-up">
-          <div class="topic-header">
-            <div class="topic-number">3</div>
-            <h3 class="topic-title">Подготовка к M&amp;A и Due Diligence</h3>
-          </div>
-          <p class="topic-desc">Что нужно знать собственнику до, во время и после сделки</p>
-          <div class="topic-tags">
-            <span class="tag">M&amp;A</span>
-            <span class="tag">Due Diligence</span>
-            <span class="tag">Оценка</span>
+      <div class="accordion-wrapper">
+        <div class="accordion-item card-glass fade-in-up">
+          <button class="accordion-trigger" type="button">
+            <div class="accordion-trigger-content">
+              <span class="accordion-icon">💰</span>
+              <div class="accordion-title-wrap">
+                <div class="accordion-title">Финансовый и управленческий учет</div>
+                <div class="accordion-count">6 тем</div>
+              </div>
+            </div>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <ul class="topics-list">
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Разница в подходах для выстраивания системы управленческого учета и дашбордов в бизнесах разного размера</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Построение, автоматизация и реформация систем бюджетирования и управленческого учета с нуля</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Экономическая эффективность и повышение прибыльности</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Информационная безопасность для финансистов и руководителей</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Экономическая эффективность и повышение прибыльности для руководителей отраслевых (производственных, агро, строительных, ИТ, спортивных и т.д.) организаций</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Трансграничные платежи из РФ в условиях санкций</span></li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div class="topic-card card-glass fade-in-up">
-          <div class="topic-header">
-            <div class="topic-number">4</div>
-            <h3 class="topic-title">Операционная эффективность и создание ОЦО</h3>
+        <div class="accordion-item card-glass fade-in-up">
+          <button class="accordion-trigger" type="button">
+            <div class="accordion-trigger-content">
+              <span class="accordion-icon">⚡</span>
+              <div class="accordion-title-wrap">
+                <div class="accordion-title">Оптимизация процессов</div>
+                <div class="accordion-count">5 тем</div>
+              </div>
+            </div>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <ul class="topics-list">
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Практикум по оптимизации бизнес-процессов - как высвободить ресурсы и улучшить финансовые результаты через повышение эффективности и прозрачности процессов</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Сложности централизации бэкофисных процессов в компактных ОЦО</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">BI-метрики и дашборды как способ экономии ресурсов</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Эффект экономии ресурсов компании от выстраивания системы BI метрик и дашбордов, покрывающих все основные процессы и отчеты бизнеса, в режиме ограниченного бюджета</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Операционная масштабируемость бизнеса: от мотивации и налоговой структуры к улучшению финансовых показателей:
+• Как приоритезировать возможные рынки и построить финансово-операционную модель, которая помогает, а не тормозит
+• Ключевые метрики масштабируемости
+• Финансовый контроль и бэк-офисные процессы, когда компания растет в 2-3 раза за год
+• Как подготовить компанию к выходу на международные рынки: чеклист для CEO, COO и CFO</span></li>
+              </ul>
+            </div>
           </div>
-          <p class="topic-desc">Как сократить расходы на 30% и ускорить процессы в разы</p>
-          <div class="topic-tags">
-            <span class="tag">Операции</span>
-            <span class="tag">ОЦО</span>
-            <span class="tag">Эффективность</span>
+        </div>
+        <div class="accordion-item card-glass fade-in-up">
+          <button class="accordion-trigger" type="button">
+            <div class="accordion-trigger-content">
+              <span class="accordion-icon">👥</span>
+              <div class="accordion-title-wrap">
+                <div class="accordion-title">HR инструменты</div>
+                <div class="accordion-count">15 тем</div>
+              </div>
+            </div>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <ul class="topics-list">
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Менторинг как инструмент трансформации</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Долгосрочная мотивация, в т.ч. в малом бизнесе: опционные программы, что выбрать и как внедрить без ошибок</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Выстраивание системы внутреннего наставничества и обмена опытом как инструмент развития и удержания сотрудников</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Сотрудники как амбассадоры HR бренда: базовые принципы развития HR бренда не требующие дополнительного бюджета</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Тренд на создание Alumni сообществ для усиления HR бренда с минимальными затратами</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Как корпоративная культура влияет на операционную эффективность</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Работа с командой: выстраивание командного и бизнес-ориентированного клиентоцентричного подхода в бэкофисных функциях</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Устранение и предотвращение внутренних и кросс-функциональных конфликтов</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Практическое влияние системы мотивации на финансовое здоровье компании: материальные и нематериальные стимулы - что работает на рост, а что разрушает здоровый бизнес</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Практикум по оптимизации систем мотивации - как улучшить вовлеченность сотрудников с минимальными затратами</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Подводные камни внедрения долгосрочных программ мотивации и как их обойти</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">«Бизнес растёт там, где людям хорошо»:
+• какие простые и бюджетные инструменты реально работают в малом бизнесе
+• как повысить мотивацию без «денег и котиков»
+• как командная культура помогает бизнесу расти без трения</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">«Счастливые сотрудники - успешный бизнес»:
+• Как формировать культуру, в которой сотрудники чувствуют себя ценными
+• Какие практики помогают удерживать талантливых специалистов
+• Как командная культура влияет на финансовые показатели</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">«Секреты эффективных команд»:
+• как построить командную культуру, способствующую росту бизнеса
+• какие инструменты помогут поддерживать высокий уровень вовлеченности
+• как минимизировать издержки и предотвратить выгорание сотрудников</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">«Командная культура как драйвер роста»:
+• практические инструменты для формирования позитивной командной культуры
+• методы мотивации и вовлечения сотрудников
+• реальные кейсы из своего опыта работы с бизнесами разного масштаба</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">«Мотивация, которая не опустошит бюджет»:
+• как маленькие компании могут прокачивать мотивацию и вовлечённость команды без лишних трат
+• какие инструменты можно внедрить хоть завтра
+• бесплатно или почти бесплатно
+• как построить культуру, которая удерживает людей лучше, чем деньги</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item card-glass fade-in-up">
+          <button class="accordion-trigger" type="button">
+            <div class="accordion-trigger-content">
+              <span class="accordion-icon">🚀</span>
+              <div class="accordion-title-wrap">
+                <div class="accordion-title">Для стартапов и акселераторов</div>
+                <div class="accordion-count">9 тем</div>
+              </div>
+            </div>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <ul class="topics-list">
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">От хаоса к системе: как стартапу выстроить процессы без бюрократии</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Финансовая осознанность фаундера: управленческий учёт без скучных таблиц</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Операционная масштабируемость: как расти в 3 раза, не утратив управляемость</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Менторинг и внутренняя экспертиза: как использовать опыт команды вместо внешних консультантов</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Деньги без потерь: финансовые ошибки стартапов и как их избежать</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Команда как актив: культура и мотивация без бюджета</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">От идеи до прибыльности: стратегия выхода на безубыточность</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Как составить финансовую модель стартапа: простая логика, метрики и сценарии</span></li>
+                <li class="topic-item"><span class="topic-bullet">●</span><span class="topic-text">Как подготовить питчдек, который понимают инвесторы</span></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Publications Section -->
     <section class="section-padding publications-section">
       <div class="section-header fade-in-up">
-        <h2 class="section-title">Публикации и <span class="gradient-text">экспертиза</span></h2>
+        <h2 class="section-title">Публикации и <span class="gradient-text">выступления</span></h2>
         <div class="section-divider"></div>
-        <p class="section-desc">Статьи, интервью и материалы для профессионального сообщества</p>
+        <p class="section-desc">Авторские статьи, экспертные комментарии и участие в профессиональных дискуссиях</p>
       </div>
-      <div class="accordion fade-in-up">
-        <div class="accordion-item">
-          <button class="accordion-trigger" type="button">
-            РБК PRO: Статьи о финансовом управлении
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="accordion-content">
-            <div class="accordion-inner">Регулярные публикации на тему финансовой стратегии, управления рисками и операционной эффективности для руководителей и собственников бизнеса.</div>
+      <div class="publications-grid">
+        <a href="https://drive.google.com/file/d/138kcY86X0g32qaQayDWveuYSLMSYIUdy/view" target="_blank" rel="noopener noreferrer" class="publication-card card-glass fade-in-up">
+          <div class="publication-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>11.12.2025</span>
+            <span style="color: var(--primary)">•</span>
+            <span class="publication-source">HR-Tech Club</span>
           </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger" type="button">
-            Выступления на конференциях
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="accordion-content">
-            <div class="accordion-inner">Спикер профессиональных конференций по темам финансов, международной экспансии и корпоративного управления. Формат: от keynote до практических воркшопов.</div>
+          <h3 class="publication-title">Наставничество как инструмент роста, удержания и развития экспертизы внутри компании</h3>
+          <p class="publication-desc">Обсудили, как менторинг превращается в инструмент роста бизнеса: сокращает адаптацию, повышает мотивацию опытных сотрудников и делает знания внутри компании управляемыми.</p>
+          <div class="publication-link">
+            Читать
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger" type="button">
-            Менторинг и консультирование
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="accordion-content">
-            <div class="accordion-inner">Член Клуба Менторов Дмитрия Волошина. Индивидуальная работа с CEO и CFO по вопросам стратегии, операций и международного развития.</div>
+        </a>
+        <a href="https://agroexpert.press/innovation/ekspert-rasskazala-kak-selhozpredpriyatiyam-stat-uspeshnymi/" target="_blank" rel="noopener noreferrer" class="publication-card card-glass fade-in-up">
+          <div class="publication-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>17.10.2025</span>
+            <span style="color: var(--primary)">•</span>
+            <span class="publication-source">Агроэксперт</span>
           </div>
-        </div>
+          <h3 class="publication-title">Операционная эффективность в агросекторе</h3>
+          <p class="publication-desc">Поговорили про то, что обычно в агросекторе все думают про риски логистики, поставок или валютных курсов, но часто потеря эффективности идет через несогласованные процессы.</p>
+          <div class="publication-link">
+            Читать
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+        </a>
+        <a href="https://promentoring.mave.digital/ep-61" target="_blank" rel="noopener noreferrer" class="publication-card card-glass fade-in-up">
+          <div class="publication-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>24.03.2025</span>
+            <span style="color: var(--primary)">•</span>
+            <span class="publication-source">ProMentoring Podcast</span>
+          </div>
+          <h3 class="publication-title">Как создать корпоративную культуру в компании</h3>
+          <p class="publication-desc">Обсудили зачем предпринимателю развивать корпоративную культуру — и почему это мощный инструмент для ускорения бизнеса.</p>
+          <div class="publication-link">
+            Читать
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+        </a>
+        <a href="https://pro.rbc.ru/demo/67d801d69a79477e2627ea11" target="_blank" rel="noopener noreferrer" class="publication-card card-glass fade-in-up">
+          <div class="publication-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>20.03.2025</span>
+            <span style="color: var(--primary)">•</span>
+            <span class="publication-source">РБК PRO</span>
+          </div>
+          <h3 class="publication-title">Управленческий учет и дашборды: за какими метриками следить руководителю</h3>
+          <p class="publication-desc">Разобрали, какие дашборды помогают держать руку на пульсе, когда от скорости и точности принятия решений зависит судьба бизнеса.</p>
+          <div class="publication-link">
+            Читать
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+        </a>
+        <a href="https://pro.rbc.ru/demo/676409289a794784cea026d9" target="_blank" rel="noopener noreferrer" class="publication-card card-glass fade-in-up">
+          <div class="publication-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>25.12.2024</span>
+            <span style="color: var(--primary)">•</span>
+            <span class="publication-source">РБК PRO</span>
+          </div>
+          <h3 class="publication-title">Возьму в долю: как выбрать опционную программу для мотивации сотрудников</h3>
+          <p class="publication-desc">Рассмотрели 5 опционных моделей: их плюсы, минусы и риски — с примером внедрения оптимальной модели мотивации.</p>
+          <div class="publication-link">
+            Читать
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+        </a>
+        <a href="https://companies.rbc.ru/news/s51QBldFYf/mentoring-kak-instrument-transformatsii-chto-vdohnovlyaet-pomogat-drugim/" target="_blank" rel="noopener noreferrer" class="publication-card card-glass fade-in-up">
+          <div class="publication-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>11.11.2024</span>
+            <span style="color: var(--primary)">•</span>
+            <span class="publication-source">РБК</span>
+          </div>
+          <h3 class="publication-title">Менторинг как инструмент трансформации: что вдохновляет помогать другим</h3>
+          <p class="publication-desc">Чем бизнес-менторинг отличается от наставничества в корпоративной среде и как найти баланс между карьерой и помощью другим.</p>
+          <div class="publication-link">
+            Читать
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+        </a>
+      </div>
+      <div class="publications-footer fade-in-up">
+        <a href="https://julia-grosheva.ru/#_lp_block_354928709" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          Все публикации на сайте
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
       </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="section-padding contact-section">
       <div class="section-header fade-in-up">
         <h2 class="section-title">Связаться с <span class="gradient-text">Юлией</span></h2>
