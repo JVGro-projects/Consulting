@@ -4,16 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Юлия Грошева — Спикер и эксперт</title>
-  <meta name="description" content="Стратегический и операционный менторинг. IT, Телекоммуникации, Логистика, Услуги.">
+  <meta name="description" content="Финансы, Наставничество, HR, Операционная эффективность, Автоматизация, Масштабирование, Стартапы. 15+ лет опыта, 40+ юрисдикций.">
+  
+  <!-- Open Graph -->
   <meta property="og:title" content="Юлия Грошева — Спикер и эксперт">
-  <meta property="og:description" content="Стратегический и операционный менторинг">
+  <meta property="og:description" content="Финансы, Наставничество, HR, Операционная эффективность, Автоматизация, Масштабирование, Стартапы">
+  <meta property="og:image" content="./assets/julia-photo.jpg">
   <meta property="og:type" content="website">
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    
     :root {
       --background: hsl(222, 60%, 5%);
       --foreground: hsl(200, 100%, 97%);
@@ -25,40 +29,99 @@
       --secondary-foreground: hsl(200, 100%, 97%);
       --muted: hsl(218, 50%, 14%);
       --muted-foreground: hsl(210, 30%, 55%);
+      --accent: hsl(215, 100%, 55%);
       --border: hsl(218, 45%, 20%);
       --radius: 0.75rem;
+      --gradient-primary: linear-gradient(135deg, hsl(215, 100%, 55%) 0%, hsl(225, 100%, 65%) 100%);
+      --shadow-card: 0 25px 50px -12px hsla(222, 60%, 2%, 0.6);
+      --shadow-glow: 0 0 50px -10px hsla(215, 100%, 55%, 0.4);
     }
 
-    html { scroll-behavior: smooth; }
-    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--background);
+      background: var(--background);
       color: var(--foreground);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3 { font-family: 'Playfair Display', serif; }
-
-    .section-padding { padding: 5rem 1.5rem; }
-    
-    @media (min-width: 768px) { .section-padding { padding: 5rem 3rem; } }
-    @media (min-width: 1024px) { .section-padding { padding: 5rem 6rem; } }
-
-    .gradient-text {
-      background: linear-gradient(135deg, var(--primary) 0%, hsl(225, 100%, 65%) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
     }
 
-    .card-glass {
-      background: hsla(220, 55%, 10%, 0.8);
-      backdrop-filter: blur(8px);
-      border: 1px solid hsla(218, 45%, 20%, 0.5);
-      border-radius: var(--radius);
-      box-shadow: 0 25px 50px -12px hsla(222, 60%, 2%, 0.6);
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      transition: all 0.3s ease;
+      padding: 1.25rem 0;
+    }
+
+    .header.scrolled {
+      background: hsla(222, 60%, 5%, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid hsla(218, 45%, 20%, 0.5);
+      padding: 0.75rem 0;
+    }
+
+    .header-container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .nav-desktop {
+      display: none;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .nav-desktop {
+        display: flex;
+      }
+    }
+
+    .nav-link {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      transition: color 0.2s;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .nav-link:hover {
+      color: var(--foreground);
     }
 
     .btn {
@@ -66,69 +129,182 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
       font-weight: 500;
-      border-radius: 0.5rem;
+      border-radius: var(--radius);
       cursor: pointer;
       transition: all 0.2s;
-      text-decoration: none;
+      font-family: inherit;
       border: none;
     }
 
     .btn-primary {
-      background-color: var(--primary);
+      background: var(--primary);
       color: var(--primary-foreground);
     }
 
-    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:hover {
+      background: hsla(215, 100%, 55%, 0.9);
+    }
 
     .btn-outline {
       background: transparent;
-      border: 1px solid var(--border);
+      border: 1px solid hsla(200, 100%, 97%, 0.2);
       color: var(--foreground);
     }
 
-    .btn-outline:hover { background: var(--muted); }
-
-    .fade-in-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    .btn-outline:hover {
+      background: var(--muted);
     }
 
-    .fade-in-up.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .btn-lg {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
     }
 
-    .hero { position: relative; padding: 4rem 1.5rem; overflow: hidden; text-align: center; }
-    
-    @media (min-width: 768px) { .hero { padding: 6rem 1.5rem; } }
+    .mobile-menu-btn {
+      display: flex;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--foreground);
+    }
+
+    @media (min-width: 768px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      padding: 1rem 1.5rem;
+      gap: 1rem;
+      background: hsla(222, 60%, 5%, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid hsla(218, 45%, 20%, 0.5);
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
+    @media (min-width: 768px) {
+      .mobile-nav {
+        display: none !important;
+      }
+    }
+
+    .mobile-nav .nav-link {
+      padding: 0.5rem 0;
+      text-align: left;
+    }
+
+    /* Sections */
+    .section-padding {
+      padding: 5rem 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .section-padding {
+        padding: 5rem 3rem;
+      }
+    }
+
+    .gradient-text {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .divider-gold {
+      height: 1px;
+      width: 5rem;
+      margin: 0 auto;
+      background: var(--gradient-primary);
+    }
+
+    .card-glass {
+      background: hsla(220, 55%, 10%, 0.8);
+      backdrop-filter: blur(4px);
+      border: 1px solid hsla(218, 45%, 20%, 0.5);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+    }
+
+    .glow-gold {
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      padding-top: 7rem;
+      padding-bottom: 4rem;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        padding-top: 8rem;
+        padding-bottom: 6rem;
+      }
+    }
 
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, hsla(215, 100%, 55%, 0.05), transparent);
+      background: var(--background);
     }
 
-    .hero-content { position: relative; z-index: 10; max-width: 56rem; margin: 0 auto; }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, hsla(215, 100%, 55%, 0.05), transparent, transparent);
+    }
 
-    .photo-container {
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+
+    .hero-photo {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-photo-inner {
       width: 8rem;
       height: 8rem;
-      margin: 0 auto 1.5rem;
+      margin: 0 auto;
       border-radius: 50%;
       overflow: hidden;
       border: 2px solid hsla(215, 100%, 55%, 0.3);
-      box-shadow: 0 10px 30px -10px hsla(0, 0%, 0%, 0.3);
+      box-shadow: 0 10px 40px -10px hsla(0, 0%, 0%, 0.5);
     }
 
-    @media (min-width: 768px) { .photo-container { width: 10rem; height: 10rem; } }
+    @media (min-width: 768px) {
+      .hero-photo-inner {
+        width: 10rem;
+        height: 10rem;
+      }
+    }
 
-    .photo-container img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .hero-photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
 
-    .hero-label {
+    .hero-subtitle {
       color: var(--primary);
       font-weight: 500;
       letter-spacing: 0.05em;
@@ -137,19 +313,22 @@
     }
 
     .hero-title {
-      font-size: 1.875rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      margin-bottom: 1rem;
-      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
     }
 
-    @media (min-width: 768px) { .hero-title { font-size: 3rem; } }
-    @media (min-width: 1024px) { .hero-title { font-size: 3.75rem; } }
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 2.25rem;
+      }
+    }
 
-    .hero-subtitle {
-      font-size: 1.125rem;
-      color: var(--muted-foreground);
-      margin-bottom: 1.5rem;
+    @media (min-width: 1024px) {
+      .hero-title {
+        font-size: 2.75rem;
+      }
     }
 
     .hero-buttons {
@@ -161,9 +340,13 @@
       margin-bottom: 2.5rem;
     }
 
-    @media (min-width: 640px) { .hero-buttons { flex-direction: row; } }
+    @media (min-width: 640px) {
+      .hero-buttons {
+        flex-direction: row;
+      }
+    }
 
-    .stats-grid {
+    .hero-stats {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
@@ -171,7 +354,11 @@
       margin: 0 auto;
     }
 
-    @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (min-width: 768px) {
+      .hero-stats {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
 
     .stat-card {
       text-align: center;
@@ -186,7 +373,11 @@
       color: var(--primary);
     }
 
-    @media (min-width: 768px) { .stat-value { font-size: 1.875rem; } }
+    @media (min-width: 768px) {
+      .stat-value {
+        font-size: 1.875rem;
+      }
+    }
 
     .stat-label {
       font-size: 0.75rem;
@@ -194,46 +385,55 @@
       margin-top: 0.25rem;
     }
 
-    .scroll-arrow {
+    .scroll-indicator {
       margin-top: 2.5rem;
       color: var(--muted-foreground);
-      cursor: pointer;
       transition: color 0.2s;
       background: none;
       border: none;
+      cursor: pointer;
     }
 
-    .scroll-arrow:hover { color: var(--foreground); }
+    .scroll-indicator:hover {
+      color: var(--foreground);
+    }
 
-    .scroll-arrow svg { animation: bounce 1s infinite; }
+    .scroll-indicator svg {
+      animation: bounce 1s infinite;
+    }
 
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
     }
 
-    .section-header { text-align: center; margin-bottom: 4rem; }
-
-    .section-title { font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; }
-
-    @media (min-width: 768px) { .section-title { font-size: 3rem; } }
-
-    .section-divider {
-      height: 1px;
-      width: 5rem;
-      margin: 0 auto 1.5rem;
-      background: linear-gradient(135deg, var(--primary) 0%, hsl(225, 100%, 65%) 100%);
+    /* Why Me Section */
+    .why-me {
+      background: linear-gradient(to bottom, var(--background), hsla(218, 55%, 18%, 0.2));
     }
 
-    .section-desc {
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .section-title {
+        font-size: 3rem;
+      }
+    }
+
+    .section-description {
       font-size: 1.25rem;
       color: var(--muted-foreground);
       max-width: 48rem;
       margin: 0 auto;
-    }
-
-    .why-section {
-      background: linear-gradient(to bottom, var(--background), hsla(218, 55%, 18%, 0.2));
     }
 
     .credentials-grid {
@@ -243,15 +443,26 @@
       margin: 0 auto;
     }
 
-    @media (min-width: 768px) { .credentials-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .credentials-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 768px) {
+      .credentials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .credentials-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
     .credential-card {
       padding: 1.5rem;
       transition: border-color 0.2s;
     }
 
-    .credential-card:hover { border-color: hsla(215, 100%, 55%, 0.3); }
+    .credential-card:hover {
+      border-color: hsla(215, 100%, 55%, 0.3);
+    }
 
     .credential-icon {
       width: 3rem;
@@ -265,122 +476,275 @@
       transition: background 0.2s;
     }
 
-    .credential-card:hover .credential-icon { background: hsla(215, 100%, 55%, 0.2); }
+    .credential-card:hover .credential-icon {
+      background: hsla(215, 100%, 55%, 0.2);
+    }
 
-    .credential-icon svg { width: 1.5rem; height: 1.5rem; color: var(--primary); }
+    .credential-icon svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: var(--primary);
+    }
 
-    .credential-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+    .credential-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
 
-    .credential-desc { color: var(--muted-foreground); }
+    .credential-description {
+      color: var(--muted-foreground);
+    }
 
-    .topics-grid {
+    /* Topics Section */
+    .topics {
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .accordion-item {
+      overflow: hidden;
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s;
+    }
+
+    .accordion-trigger:hover {
+      background: hsla(218, 55%, 18%, 0.3);
+    }
+
+    .accordion-trigger-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .accordion-icon {
+      font-size: 1.875rem;
+    }
+
+    .accordion-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--foreground);
+    }
+
+    .accordion-count {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      margin-top: 0.25rem;
+    }
+
+    .accordion-chevron {
+      transition: transform 0.2s;
+      color: var(--muted-foreground);
+    }
+
+    .accordion-item.open .accordion-chevron {
+      transform: rotate(180deg);
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 0 1.5rem 1.5rem;
+    }
+
+    .accordion-item.open .accordion-content {
+      display: block;
+    }
+
+    .topics-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .topics-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: hsla(200, 100%, 97%, 0.9);
+    }
+
+    .topics-list li span.bullet {
+      color: var(--primary);
+      margin-top: 0.375rem;
+      font-size: 0.75rem;
+    }
+
+    .topics-list li span.text {
+      white-space: pre-line;
+    }
+
+    /* Publications Section */
+    .publications {
+      background: linear-gradient(to bottom, hsla(218, 55%, 18%, 0.2), var(--background));
+    }
+
+    .publications-grid {
       display: grid;
       gap: 1.5rem;
       max-width: 72rem;
       margin: 0 auto;
     }
 
-    @media (min-width: 768px) { .topics-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 768px) {
+      .publications-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
-    .topic-card { padding: 1.5rem; }
+    @media (min-width: 1024px) {
+      .publications-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
-    .topic-header {
+    .publication-card {
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+      display: block;
+    }
+
+    .publication-card:hover {
+      border-color: hsla(215, 100%, 55%, 0.3);
+    }
+
+    .publication-card:hover .publication-title {
+      color: var(--primary);
+    }
+
+    .publication-meta {
       display: flex;
-      align-items: flex-start;
-      gap: 1rem;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      margin-bottom: 0.75rem;
+    }
+
+    .publication-meta svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .publication-source {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .publication-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      transition: color 0.2s;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .publication-description {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
       margin-bottom: 1rem;
     }
 
-    .topic-number {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      background: var(--primary);
-      color: var(--primary-foreground);
+    .publication-link {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .topic-title { font-size: 1.25rem; font-weight: 600; font-family: 'Inter', sans-serif; }
-
-    .topic-desc { color: var(--muted-foreground); margin-bottom: 1rem; padding-left: 3.5rem; }
-
-    .topic-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; padding-left: 3.5rem; }
-
-    .tag {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      background: var(--secondary);
-      color: var(--secondary-foreground);
-    }
-
-    .publications-section { background: linear-gradient(to bottom, var(--background), hsla(218, 55%, 18%, 0.1)); }
-
-    .accordion { max-width: 48rem; margin: 0 auto; }
-
-    .accordion-item { border-bottom: 1px solid var(--border); }
-
-    .accordion-trigger {
-      width: 100%;
-      padding: 1rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: none;
-      border: none;
-      color: var(--foreground);
-      font-size: 1rem;
+      gap: 0.25rem;
+      color: var(--primary);
+      font-size: 0.875rem;
       font-weight: 500;
-      cursor: pointer;
-      text-align: left;
-      transition: color 0.2s;
     }
 
-    .accordion-trigger:hover { color: var(--primary); }
-
-    .accordion-trigger svg {
-      width: 1.25rem;
-      height: 1.25rem;
-      transition: transform 0.2s;
-      flex-shrink: 0;
+    .publication-link svg {
+      width: 1rem;
+      height: 1rem;
     }
 
-    .accordion-item.open .accordion-trigger svg { transform: rotate(180deg); }
-
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
+    .publications-footer {
+      text-align: center;
+      margin-top: 3rem;
     }
 
-    .accordion-item.open .accordion-content { max-height: 500px; }
+    /* Contact Section */
+    .contact-content {
+      max-width: 56rem;
+      margin: 0 auto;
+    }
 
-    .accordion-inner { padding-bottom: 1rem; color: var(--muted-foreground); font-size: 0.875rem; line-height: 1.7; }
+    .contact-card {
+      padding: 2rem;
+    }
 
-    .contact-section { background: linear-gradient(to bottom, var(--background), hsla(215, 80%, 30%, 0.1)); }
+    @media (min-width: 768px) {
+      .contact-card {
+        padding: 3rem;
+      }
+    }
 
     .contact-grid {
       display: grid;
       gap: 2rem;
-      max-width: 64rem;
-      margin: 0 auto;
     }
 
-    @media (min-width: 768px) { .contact-grid { grid-template-columns: repeat(3, 1fr); } }
-
-    .contact-card {
-      padding: 2rem;
-      text-align: center;
-      transition: border-color 0.2s;
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
-    .contact-card:hover { border-color: hsla(215, 100%, 55%, 0.3); }
+    .contact-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
 
-    .contact-icon {
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: var(--radius);
+      background: hsla(218, 55%, 18%, 0.3);
+      transition: background 0.2s;
+    }
+
+    .contact-link:hover {
+      background: hsla(218, 55%, 18%, 0.5);
+    }
+
+    .contact-link-icon {
       width: 3rem;
       height: 3rem;
       border-radius: 50%;
@@ -388,29 +752,73 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1rem;
+      transition: background 0.2s;
     }
 
-    .contact-icon svg { width: 1.5rem; height: 1.5rem; color: var(--primary); }
-
-    .contact-label { font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 0.5rem; }
-
-    .contact-value { font-weight: 600; font-size: 1.125rem; }
-
-    .contact-link {
-      color: var(--foreground);
-      text-decoration: none;
-      transition: color 0.2s;
+    .contact-link:hover .contact-link-icon {
+      background: hsla(215, 100%, 55%, 0.2);
     }
 
-    .contact-link:hover { color: var(--primary); }
+    .contact-link-icon svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: var(--primary);
+    }
 
-    footer {
+    .contact-link-label {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    .contact-link-value {
+      font-weight: 500;
+    }
+
+    .formats-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .formats-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      color: var(--muted-foreground);
+    }
+
+    .formats-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .formats-list li span.check {
+      color: var(--primary);
+    }
+
+    .contact-website {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .contact-footer {
+      text-align: center;
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+      margin-top: 2rem;
+    }
+
+    /* Footer */
+    .footer {
       border-top: 1px solid hsla(218, 45%, 20%, 0.5);
       padding: 2rem 1.5rem;
     }
 
-    .footer-content {
+    .footer-container {
       max-width: 72rem;
       margin: 0 auto;
       display: flex;
@@ -420,20 +828,40 @@
     }
 
     @media (min-width: 768px) {
-      .footer-content { flex-direction: row; justify-content: space-between; }
+      .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+      }
     }
 
-    .footer-brand { text-align: center; }
+    .footer-brand {
+      text-align: center;
+    }
 
-    @media (min-width: 768px) { .footer-brand { text-align: left; } }
+    @media (min-width: 768px) {
+      .footer-brand {
+        text-align: left;
+      }
+    }
 
-    .footer-name { font-family: 'Playfair Display', serif; font-size: 1.125rem; font-weight: 600; }
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
 
-    .footer-tagline { font-size: 0.875rem; color: var(--muted-foreground); }
+    .footer-tagline {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
 
-    .footer-social { display: flex; gap: 1rem; }
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
 
-    .social-link {
+    .footer-social {
       width: 2.5rem;
       height: 2.5rem;
       border-radius: 50%;
@@ -441,288 +869,812 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--foreground);
       transition: background 0.2s;
-      text-decoration: none;
     }
 
-    .social-link:hover { background: hsla(215, 100%, 55%, 0.2); }
+    .footer-social:hover {
+      background: hsla(215, 100%, 55%, 0.2);
+    }
 
-    .social-link svg { width: 1.25rem; height: 1.25rem; }
+    .footer-social svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
 
-    .footer-copyright { font-size: 0.875rem; color: var(--muted-foreground); }
+    .footer-copyright {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    /* Animations */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* SVG Icons inline */
+    .icon {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      vertical-align: middle;
+    }
   </style>
 </head>
 <body>
-  <main>
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-content">
-        <div class="photo-container">
-          <img src="assets/julia-photo.jpg" alt="Юлия Грошева">
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-container">
+      <a href="#" class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Юлия Грошева</a>
+      
+      <nav class="nav-desktop">
+        <button class="nav-link" onclick="scrollToSection('#why-me')">Почему я</button>
+        <button class="nav-link" onclick="scrollToSection('#topics')">Темы</button>
+        <button class="nav-link" onclick="scrollToSection('#publications')">Публикации</button>
+        <button class="btn btn-primary" onclick="scrollToSection('#contact')">Пригласить</button>
+      </nav>
+      
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Меню">
+        <svg id="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+        <svg id="close-icon" style="display:none;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav">
+      <button class="nav-link" onclick="scrollToSection('#why-me'); closeMobileMenu();">Почему я</button>
+      <button class="nav-link" onclick="scrollToSection('#topics'); closeMobileMenu();">Темы</button>
+      <button class="nav-link" onclick="scrollToSection('#publications'); closeMobileMenu();">Публикации</button>
+      <button class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;" onclick="scrollToSection('#contact'); closeMobileMenu();">Пригласить выступить</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero section-padding">
+    <div class="hero-bg"></div>
+    <div class="hero-gradient"></div>
+    
+    <div class="hero-content">
+      <div class="fade-in-up">
+        <div class="hero-photo">
+          <div class="hero-photo-inner">
+            <img src="./assets/julia-photo.jpg" alt="Юлия Грошева">
+          </div>
         </div>
-        <p class="hero-label">Юлия Грошева • Спикер и эксперт</p>
-        <h1 class="hero-title">Стратегический и операционный менторинг</h1>
-        <p class="hero-subtitle">IT / Телекоммуникации / Логистика / Услуги</p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            Пригласить выступить
-          </a>
-          <a href="#topics" class="btn btn-outline">Темы выступлений</a>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <p class="stat-value">15+</p>
-            <p class="stat-label">лет опыта</p>
-          </div>
-          <div class="stat-card">
-            <p class="stat-value">5+</p>
-            <p class="stat-label">лет менторинга</p>
-          </div>
-          <div class="stat-card">
-            <p class="stat-value">25</p>
-            <p class="stat-label">юрлиц в управлении</p>
-          </div>
-          <div class="stat-card">
-            <p class="stat-value">РБК</p>
-            <p class="stat-label">автор статей</p>
-          </div>
-        </div>
-        <button class="scroll-arrow" onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'})">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        
+        <p class="hero-subtitle">Юлия Грошева • Спикер и эксперт</p>
+        
+        <h1 class="hero-title">Финансы, Наставничество, HR, Операционная эффективность, Автоматизация, Масштабирование, Стартапы</h1>
+      </div>
+      
+      <div class="hero-buttons fade-in-up" style="transition-delay: 0.15s;">
+        <button class="btn btn-primary btn-lg" onclick="scrollToSection('#contact')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 2v4"></path>
+            <path d="M16 2v4"></path>
+            <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+            <path d="M3 10h18"></path>
+          </svg>
+          Пригласить выступить
+        </button>
+        <button class="btn btn-outline btn-lg" onclick="scrollToSection('#topics')">
+          Темы выступлений
         </button>
       </div>
-    </section>
+      
+      <div class="hero-stats fade-in-up" style="transition-delay: 0.3s;">
+        <div class="stat-card">
+          <p class="stat-value">15+</p>
+          <p class="stat-label">лет опыта</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-value">5+</p>
+          <p class="stat-label">лет менторинга</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-value">40+</p>
+          <p class="stat-label">юрисдикций</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-value">РБК</p>
+          <p class="stat-label">автор статей</p>
+        </div>
+      </div>
+      
+      <button class="scroll-indicator fade-in-up" style="transition-delay: 0.6s;" onclick="scrollToSection('#topics')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14"></path>
+          <path d="m19 12-7 7-7-7"></path>
+        </svg>
+      </button>
+    </div>
+  </section>
 
-    <section id="why" class="section-padding why-section">
+  <!-- Why Me Section -->
+  <section id="why-me" class="why-me section-padding">
+    <div style="max-width: 72rem; margin: 0 auto;">
       <div class="section-header fade-in-up">
         <h2 class="section-title">Почему именно <span class="gradient-text">Юлия</span></h2>
-        <div class="section-divider"></div>
-        <p class="section-desc">Эксперт с глобальным опытом, который трансформирует сложные бизнес-задачи в понятные стратегии роста</p>
+        <div class="divider-gold" style="margin-bottom: 1.5rem;"></div>
+        <p class="section-description">Эксперт с глобальным опытом, который трансформирует сложные бизнес-задачи в понятные стратегии роста</p>
       </div>
+      
       <div class="credentials-grid">
-        <div class="credential-card card-glass fade-in-up">
+        <div class="card-glass credential-card fade-in-up">
           <div class="credential-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path><path d="M10 6h4"></path><path d="M10 10h4"></path><path d="M10 14h4"></path><path d="M10 18h4"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
+              <path d="M9 22v-4h6v4"></path>
+              <path d="M8 6h.01"></path>
+              <path d="M16 6h.01"></path>
+              <path d="M12 6h.01"></path>
+              <path d="M12 10h.01"></path>
+              <path d="M12 14h.01"></path>
+              <path d="M16 10h.01"></path>
+              <path d="M16 14h.01"></path>
+              <path d="M8 10h.01"></path>
+              <path d="M8 14h.01"></path>
+            </svg>
           </div>
           <h3 class="credential-title">VP of Finance, CFO</h3>
-          <p class="credential-desc">Voximplant, ABBYY, БК Пари — руководящие позиции в международных компаниях</p>
+          <p class="credential-description">Voximplant, ABBYY, БК Пари — руководящие позиции в международных компаниях</p>
         </div>
-        <div class="credential-card card-glass fade-in-up">
+        
+        <div class="card-glass credential-card fade-in-up" style="transition-delay: 0.1s;">
           <div class="credential-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
           </div>
           <h3 class="credential-title">Международный опыт</h3>
-          <p class="credential-desc">Россия, СНГ, Северная Америка, Европа, Япония, Австралия — 25+ юрисдикций</p>
+          <p class="credential-description">Россия, СНГ, Северная Америка, Европа, Япония, Австралия — 40+ юрисдикций</p>
         </div>
-        <div class="credential-card card-glass fade-in-up">
+        
+        <div class="card-glass credential-card fade-in-up" style="transition-delay: 0.2s;">
           <div class="credential-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+              <polyline points="16 7 22 7 22 13"></polyline>
+            </svg>
           </div>
           <h3 class="credential-title">Измеримые результаты</h3>
-          <p class="credential-desc">Снижение расходов на бэкофис на 30%, сокращение аудита с 12 до 3 месяцев</p>
+          <p class="credential-description">Снижение расходов на бэкофис на 30%, сокращение аудита с 12 до 3 месяцев</p>
         </div>
-        <div class="credential-card card-glass fade-in-up">
+        
+        <div class="card-glass credential-card fade-in-up" style="transition-delay: 0.3s;">
           <div class="credential-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path>
+              <circle cx="12" cy="8" r="6"></circle>
+            </svg>
           </div>
           <h3 class="credential-title">Признанный эксперт</h3>
-          <p class="credential-desc">Член Клуба Менторов Дмитрия Волошина, автор статей РБК PRO</p>
+          <p class="credential-description">Член Клуба Менторов Дмитрия Волошина, автор статей РБК PRO</p>
         </div>
-        <div class="credential-card card-glass fade-in-up">
+        
+        <div class="card-glass credential-card fade-in-up" style="transition-delay: 0.4s;">
           <div class="credential-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
           </div>
           <h3 class="credential-title">Практик, а не теоретик</h3>
-          <p class="credential-desc">DD, M&amp;A, IPO подготовка, создание ОЦО — реальные проекты с реальными результатами</p>
+          <p class="credential-description">DD, M&A, IPO подготовка, создание ОЦО — реальные проекты с реальными результатами</p>
         </div>
-        <div class="credential-card card-glass fade-in-up">
+        
+        <div class="card-glass credential-card fade-in-up" style="transition-delay: 0.5s;">
           <div class="credential-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              <rect width="20" height="14" x="2" y="6" rx="2"></rect>
+            </svg>
           </div>
           <h3 class="credential-title">Широкий охват индустрий</h3>
-          <p class="credential-desc">IT, Telecom, Услуги, Логистика, Спорт, Производство, Креативные индустрии</p>
+          <p class="credential-description">IT, Telecom, Услуги, Логистика, Спорт, Производство, Креативные индустрии</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="topics" class="section-padding">
+  <!-- Topics Section -->
+  <section id="topics" class="section-padding">
+    <div class="topics">
       <div class="section-header fade-in-up">
-        <h2 class="section-title">Темы <span class="gradient-text">выступлений</span></h2>
-        <div class="section-divider"></div>
-        <p class="section-desc">Практические знания для конференций, корпоративных мероприятий и образовательных программ</p>
+        <h2 class="section-title">Темы для <span class="gradient-text">выступлений</span></h2>
+        <div class="divider-gold" style="margin-bottom: 1.5rem;"></div>
+        <p class="section-description">Более 35 актуальных тем для конференций, бизнес-клубов, подкастов и корпоративных мероприятий</p>
       </div>
-      <div class="topics-grid">
-        <div class="topic-card card-glass fade-in-up">
-          <div class="topic-header">
-            <div class="topic-number">1</div>
-            <h3 class="topic-title">Финансовая стратегия для технологических компаний</h3>
-          </div>
-          <p class="topic-desc">Как выстроить финансовую функцию, которая поддерживает рост, а не тормозит его</p>
-          <div class="topic-tags">
-            <span class="tag">Стратегия</span>
-            <span class="tag">IT</span>
-            <span class="tag">Масштабирование</span>
-          </div>
-        </div>
-        <div class="topic-card card-glass fade-in-up">
-          <div class="topic-header">
-            <div class="topic-number">2</div>
-            <h3 class="topic-title">Международная экспансия: финансы и операции</h3>
-          </div>
-          <p class="topic-desc">Практический опыт выхода на рынки США, Европы, Азии — от структуры до налогов</p>
-          <div class="topic-tags">
-            <span class="tag">Международка</span>
-            <span class="tag">Экспансия</span>
-            <span class="tag">Compliance</span>
-          </div>
-        </div>
-        <div class="topic-card card-glass fade-in-up">
-          <div class="topic-header">
-            <div class="topic-number">3</div>
-            <h3 class="topic-title">Подготовка к M&amp;A и Due Diligence</h3>
-          </div>
-          <p class="topic-desc">Что нужно знать собственнику до, во время и после сделки</p>
-          <div class="topic-tags">
-            <span class="tag">M&amp;A</span>
-            <span class="tag">Due Diligence</span>
-            <span class="tag">Оценка</span>
-          </div>
-        </div>
-        <div class="topic-card card-glass fade-in-up">
-          <div class="topic-header">
-            <div class="topic-number">4</div>
-            <h3 class="topic-title">Операционная эффективность и создание ОЦО</h3>
-          </div>
-          <p class="topic-desc">Как сократить расходы на 30% и ускорить процессы в разы</p>
-          <div class="topic-tags">
-            <span class="tag">Операции</span>
-            <span class="tag">ОЦО</span>
-            <span class="tag">Эффективность</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-padding publications-section">
-      <div class="section-header fade-in-up">
-        <h2 class="section-title">Публикации и <span class="gradient-text">экспертиза</span></h2>
-        <div class="section-divider"></div>
-        <p class="section-desc">Статьи, интервью и материалы для профессионального сообщества</p>
-      </div>
-      <div class="accordion fade-in-up">
-        <div class="accordion-item">
-          <button class="accordion-trigger" type="button">
-            РБК PRO: Статьи о финансовом управлении
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      
+      <div class="accordion">
+        <!-- Finance Category -->
+        <div class="card-glass accordion-item fade-in-up">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <div class="accordion-trigger-content">
+              <span class="accordion-icon">💰</span>
+              <div>
+                <h3 class="accordion-title">Финансовый и управленческий учет</h3>
+                <p class="accordion-count">6 тем</p>
+              </div>
+            </div>
+            <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
           </button>
           <div class="accordion-content">
-            <div class="accordion-inner">Регулярные публикации на тему финансовой стратегии, управления рисками и операционной эффективности для руководителей и собственников бизнеса.</div>
+            <ul class="topics-list">
+              <li><span class="bullet">●</span><span class="text">Разница в подходах для выстраивания системы управленческого учета и дашбордов в бизнесах разного размера</span></li>
+              <li><span class="bullet">●</span><span class="text">Построение, автоматизация и реформация систем бюджетирования и управленческого учета с нуля</span></li>
+              <li><span class="bullet">●</span><span class="text">Экономическая эффективность и повышение прибыльности</span></li>
+              <li><span class="bullet">●</span><span class="text">Информационная безопасность для финансистов и руководителей</span></li>
+              <li><span class="bullet">●</span><span class="text">Экономическая эффективность и повышение прибыльности для руководителей отраслевых (производственных, агро, строительных, ИТ, спортивных и т.д.) организаций</span></li>
+              <li><span class="bullet">●</span><span class="text">Трансграничные платежи из РФ в условиях санкций</span></li>
+            </ul>
           </div>
         </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger" type="button">
-            Выступления на конференциях
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        
+        <!-- Optimization Category -->
+        <div class="card-glass accordion-item fade-in-up" style="transition-delay: 0.1s;">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <div class="accordion-trigger-content">
+              <span class="accordion-icon">⚡</span>
+              <div>
+                <h3 class="accordion-title">Оптимизация процессов</h3>
+                <p class="accordion-count">5 тем</p>
+              </div>
+            </div>
+            <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
           </button>
           <div class="accordion-content">
-            <div class="accordion-inner">Спикер профессиональных конференций по темам финансов, международной экспансии и корпоративного управления. Формат: от keynote до практических воркшопов.</div>
+            <ul class="topics-list">
+              <li><span class="bullet">●</span><span class="text">Практикум по оптимизации бизнес-процессов - как высвободить ресурсы и улучшить финансовые результаты через повышение эффективности и прозрачности процессов</span></li>
+              <li><span class="bullet">●</span><span class="text">Сложности централизации бэкофисных процессов в компактных ОЦО</span></li>
+              <li><span class="bullet">●</span><span class="text">BI-метрики и дашборды как способ экономии ресурсов</span></li>
+              <li><span class="bullet">●</span><span class="text">Эффект экономии ресурсов компании от выстраивания системы BI метрик и дашбордов, покрывающих все основные процессы и отчеты бизнеса, в режиме ограниченного бюджета</span></li>
+              <li><span class="bullet">●</span><span class="text">Операционная масштабируемость бизнеса: от мотивации и налоговой структуры к улучшению финансовых показателей:
+• Как приоритезировать возможные рынки и построить финансово-операционную модель, которая помогает, а не тормозит
+• Ключевые метрики масштабируемости
+• Финансовый контроль и бэк-офисные процессы, когда компания растет в 2-3 раза за год
+• Как подготовить компанию к выходу на международные рынки: чеклист для CEO, COO и CFO</span></li>
+            </ul>
           </div>
         </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger" type="button">
-            Менторинг и консультирование
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        
+        <!-- HR Category -->
+        <div class="card-glass accordion-item fade-in-up" style="transition-delay: 0.2s;">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <div class="accordion-trigger-content">
+              <span class="accordion-icon">👥</span>
+              <div>
+                <h3 class="accordion-title">HR инструменты</h3>
+                <p class="accordion-count">16 тем</p>
+              </div>
+            </div>
+            <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
           </button>
           <div class="accordion-content">
-            <div class="accordion-inner">Член Клуба Менторов Дмитрия Волошина. Индивидуальная работа с CEO и CFO по вопросам стратегии, операций и международного развития.</div>
+            <ul class="topics-list">
+              <li><span class="bullet">●</span><span class="text">Менторинг как инструмент трансформации</span></li>
+              <li><span class="bullet">●</span><span class="text">Долгосрочная мотивация, в т.ч. в малом бизнесе: опционные программы, что выбрать и как внедрить без ошибок</span></li>
+              <li><span class="bullet">●</span><span class="text">Выстраивание системы внутреннего наставничества и обмена опытом как инструмент развития и удержания сотрудников</span></li>
+              <li><span class="bullet">●</span><span class="text">Сотрудники как амбассадоры HR бренда: базовые принципы развития HR бренда не требующие дополнительного бюджета</span></li>
+              <li><span class="bullet">●</span><span class="text">Тренд на создание Alumni сообществ для усиления HR бренда с минимальными затратами</span></li>
+              <li><span class="bullet">●</span><span class="text">Как корпоративная культура влияет на операционную эффективность</span></li>
+              <li><span class="bullet">●</span><span class="text">Работа с командой: выстраивание командного и бизнес-ориентированного клиентоцентричного подхода в бэкофисных функциях</span></li>
+              <li><span class="bullet">●</span><span class="text">Устранение и предотвращение внутренних и кросс-функциональных конфликтов</span></li>
+              <li><span class="bullet">●</span><span class="text">Практическое влияние системы мотивации на финансовое здоровье компании: материальные и нематериальные стимулы - что работает на рост, а что разрушает здоровый бизнес</span></li>
+              <li><span class="bullet">●</span><span class="text">Практикум по оптимизации систем мотивации - как улучшить вовлеченность сотрудников с минимальными затратами</span></li>
+              <li><span class="bullet">●</span><span class="text">Подводные камни внедрения долгосрочных программ мотивации и как их обойти</span></li>
+              <li><span class="bullet">●</span><span class="text">«Бизнес растёт там, где людям хорошо»:
+• какие простые и бюджетные инструменты реально работают в малом бизнесе
+• как повысить мотивацию без «денег и котиков»
+• как командная культура помогает бизнесу расти без трения</span></li>
+              <li><span class="bullet">●</span><span class="text">«Счастливые сотрудники - успешный бизнес»:
+• Как формировать культуру, в которой сотрудники чувствуют себя ценными
+• Какие практики помогают удерживать талантливых специалистов
+• Как командная культура влияет на финансовые показатели</span></li>
+              <li><span class="bullet">●</span><span class="text">«Секреты эффективных команд»:
+• как построить командную культуру, способствующую росту бизнеса
+• какие инструменты помогут поддерживать высокий уровень вовлеченности
+• как минимизировать издержки и предотвратить выгорание сотрудников</span></li>
+              <li><span class="bullet">●</span><span class="text">«Командная культура как драйвер роста»:
+• практические инструменты для формирования позитивной командной культуры
+• методы мотивации и вовлечения сотрудников
+• реальные кейсы из своего опыта работы с бизнесами разного масштаба</span></li>
+              <li><span class="bullet">●</span><span class="text">«Мотивация, которая не опустошит бюджет»:
+• как маленькие компании могут прокачивать мотивацию и вовлечённость команды без лишних трат
+• какие инструменты можно внедрить хоть завтра
+• бесплатно или почти бесплатно
+• как построить культуру, которая удерживает людей лучше, чем деньги</span></li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Startups Category -->
+        <div class="card-glass accordion-item fade-in-up" style="transition-delay: 0.3s;">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <div class="accordion-trigger-content">
+              <span class="accordion-icon">🚀</span>
+              <div>
+                <h3 class="accordion-title">Для стартапов и акселераторов</h3>
+                <p class="accordion-count">9 тем</p>
+              </div>
+            </div>
+            <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <ul class="topics-list">
+              <li><span class="bullet">●</span><span class="text">От хаоса к системе: как стартапу выстроить процессы без бюрократии</span></li>
+              <li><span class="bullet">●</span><span class="text">Финансовая осознанность фаундера: управленческий учёт без скучных таблиц</span></li>
+              <li><span class="bullet">●</span><span class="text">Операционная масштабируемость: как расти в 3 раза, не утратив управляемость</span></li>
+              <li><span class="bullet">●</span><span class="text">Менторинг и внутренняя экспертиза: как использовать опыт команды вместо внешних консультантов</span></li>
+              <li><span class="bullet">●</span><span class="text">Деньги без потерь: финансовые ошибки стартапов и как их избежать</span></li>
+              <li><span class="bullet">●</span><span class="text">Команда как актив: культура и мотивация без бюджета</span></li>
+              <li><span class="bullet">●</span><span class="text">От идеи до прибыльности: стратегия выхода на безубыточность</span></li>
+              <li><span class="bullet">●</span><span class="text">Как составить финансовую модель стартапа: простая логика, метрики и сценарии</span></li>
+              <li><span class="bullet">●</span><span class="text">Как подготовить питчдек, который понимают инвесторы</span></li>
+            </ul>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="contact" class="section-padding contact-section">
+  <!-- Publications Section -->
+  <section id="publications" class="publications section-padding">
+    <div style="max-width: 72rem; margin: 0 auto;">
       <div class="section-header fade-in-up">
-        <h2 class="section-title">Связаться с <span class="gradient-text">Юлией</span></h2>
-        <div class="section-divider"></div>
-        <p class="section-desc">Готова обсудить выступление на вашем мероприятии</p>
+        <h2 class="section-title">Публикации и <span class="gradient-text">выступления</span></h2>
+        <div class="divider-gold" style="margin-bottom: 1.5rem;"></div>
+        <p class="section-description">Авторские статьи, экспертные комментарии и участие в профессиональных дискуссиях</p>
       </div>
-      <div class="contact-grid">
-        <div class="contact-card card-glass fade-in-up">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      
+      <div class="publications-grid">
+        <a href="https://drive.google.com/file/d/138kcY86X0g32qaQayDWveuYSLMSYIUdy/view" target="_blank" rel="noopener noreferrer" class="card-glass publication-card fade-in-up">
+          <div class="publication-meta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v4"></path>
+              <path d="M16 2v4"></path>
+              <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+              <path d="M3 10h18"></path>
+            </svg>
+            <span>11.12.2025</span>
+            <span style="color: var(--primary);">•</span>
+            <span class="publication-source">HR-Tech Club</span>
           </div>
-          <p class="contact-label">Email</p>
-          <a href="mailto:jg@comentee.ru" class="contact-value contact-link">jg@comentee.ru</a>
-        </div>
-        <div class="contact-card card-glass fade-in-up">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          <h3 class="publication-title">Наставничество как инструмент роста, удержания и развития экспертизы внутри компании</h3>
+          <p class="publication-description">Обсудили, как менторинг превращается в инструмент роста бизнеса: сокращает адаптацию, повышает мотивацию опытных сотрудников и делает знания внутри компании управляемыми.</p>
+          <span class="publication-link">
+            Читать
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" x2="21" y1="14" y2="3"></line>
+            </svg>
+          </span>
+        </a>
+        
+        <a href="https://agroexpert.press/innovation/ekspert-rasskazala-kak-selhozpredpriyatiyam-stat-uspeshnymi/" target="_blank" rel="noopener noreferrer" class="card-glass publication-card fade-in-up" style="transition-delay: 0.1s;">
+          <div class="publication-meta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v4"></path>
+              <path d="M16 2v4"></path>
+              <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+              <path d="M3 10h18"></path>
+            </svg>
+            <span>17.10.2025</span>
+            <span style="color: var(--primary);">•</span>
+            <span class="publication-source">Агроэксперт</span>
           </div>
-          <p class="contact-label">Telegram</p>
-          <a href="https://t.me/JuliaGr0" target="_blank" rel="noopener noreferrer" class="contact-value contact-link">@JuliaGr0</a>
-        </div>
-        <div class="contact-card card-glass fade-in-up">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          <h3 class="publication-title">Операционная эффективность в агросекторе</h3>
+          <p class="publication-description">Поговорили про то, что обычно в агросекторе все думают про риски логистики, поставок или валютных курсов, но часто потеря эффективности идет через несогласованные процессы.</p>
+          <span class="publication-link">
+            Читать
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" x2="21" y1="14" y2="3"></line>
+            </svg>
+          </span>
+        </a>
+        
+        <a href="https://promentoring.mave.digital/ep-61" target="_blank" rel="noopener noreferrer" class="card-glass publication-card fade-in-up" style="transition-delay: 0.2s;">
+          <div class="publication-meta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v4"></path>
+              <path d="M16 2v4"></path>
+              <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+              <path d="M3 10h18"></path>
+            </svg>
+            <span>24.03.2025</span>
+            <span style="color: var(--primary);">•</span>
+            <span class="publication-source">ProMentoring Podcast</span>
           </div>
-          <p class="contact-label">LinkedIn</p>
-          <a href="https://linkedin.com/in/julia-grosheva" target="_blank" rel="noopener noreferrer" class="contact-value contact-link">julia-grosheva</a>
-        </div>
+          <h3 class="publication-title">Как создать корпоративную культуру в компании</h3>
+          <p class="publication-description">Обсудили зачем предпринимателю развивать корпоративную культуру — и почему это мощный инструмент для ускорения бизнеса.</p>
+          <span class="publication-link">
+            Читать
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" x2="21" y1="14" y2="3"></line>
+            </svg>
+          </span>
+        </a>
+        
+        <a href="https://pro.rbc.ru/demo/67d801d69a79477e2627ea11" target="_blank" rel="noopener noreferrer" class="card-glass publication-card fade-in-up" style="transition-delay: 0.3s;">
+          <div class="publication-meta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v4"></path>
+              <path d="M16 2v4"></path>
+              <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+              <path d="M3 10h18"></path>
+            </svg>
+            <span>20.03.2025</span>
+            <span style="color: var(--primary);">•</span>
+            <span class="publication-source">РБК PRO</span>
+          </div>
+          <h3 class="publication-title">Управленческий учет и дашборды: за какими метриками следить руководителю</h3>
+          <p class="publication-description">Разобрали, какие дашборды помогают держать руку на пульсе, когда от скорости и точности принятия решений зависит судьба бизнеса.</p>
+          <span class="publication-link">
+            Читать
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" x2="21" y1="14" y2="3"></line>
+            </svg>
+          </span>
+        </a>
+        
+        <a href="https://pro.rbc.ru/demo/676409289a794784cea026d9" target="_blank" rel="noopener noreferrer" class="card-glass publication-card fade-in-up" style="transition-delay: 0.4s;">
+          <div class="publication-meta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v4"></path>
+              <path d="M16 2v4"></path>
+              <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+              <path d="M3 10h18"></path>
+            </svg>
+            <span>25.12.2024</span>
+            <span style="color: var(--primary);">•</span>
+            <span class="publication-source">РБК PRO</span>
+          </div>
+          <h3 class="publication-title">Возьму в долю: как выбрать опционную программу для мотивации сотрудников</h3>
+          <p class="publication-description">Рассмотрели 5 опционных моделей: их плюсы, минусы и риски — с примером внедрения оптимальной модели мотивации.</p>
+          <span class="publication-link">
+            Читать
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" x2="21" y1="14" y2="3"></line>
+            </svg>
+          </span>
+        </a>
+        
+        <a href="https://pro.rbc.ru/demo/675975f09a7947f2c9d33fe0" target="_blank" rel="noopener noreferrer" class="card-glass publication-card fade-in-up" style="transition-delay: 0.5s;">
+          <div class="publication-meta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v4"></path>
+              <path d="M16 2v4"></path>
+              <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+              <path d="M3 10h18"></path>
+            </svg>
+            <span>13.12.2024</span>
+            <span style="color: var(--primary);">•</span>
+            <span class="publication-source">РБК PRO</span>
+          </div>
+          <h3 class="publication-title">Впечатляющая статистика сарафанного радио: как оно усиливает рекрутинг</h3>
+          <p class="publication-description">77% работников делятся мнениями о компании. На них ориентируется 90% кандидатов. Разобрали, что делает сарафанное радио ключевым инструментом найма.</p>
+          <span class="publication-link">
+            Читать
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" x2="21" y1="14" y2="3"></line>
+            </svg>
+          </span>
+        </a>
+        
+        <a href="https://companies.rbc.ru/news/s51QBldFYf/mentoring-kak-instrument-transformatsii-chto-vdohnovlyaet-pomogat-drugim/" target="_blank" rel="noopener noreferrer" class="card-glass publication-card fade-in-up" style="transition-delay: 0.6s;">
+          <div class="publication-meta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v4"></path>
+              <path d="M16 2v4"></path>
+              <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+              <path d="M3 10h18"></path>
+            </svg>
+            <span>11.11.2024</span>
+            <span style="color: var(--primary);">•</span>
+            <span class="publication-source">РБК</span>
+          </div>
+          <h3 class="publication-title">Менторинг как инструмент трансформации: что вдохновляет помогать другим</h3>
+          <p class="publication-description">Чем бизнес-менторинг отличается от наставничества в корпоративной среде и как найти баланс между карьерой и помощью другим.</p>
+          <span class="publication-link">
+            Читать
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" x2="21" y1="14" y2="3"></line>
+            </svg>
+          </span>
+        </a>
+        
+        <a href="https://alexkolokolov.com/ru/blog/dashbord-po-marketingu-i-finansam" target="_blank" rel="noopener noreferrer" class="card-glass publication-card fade-in-up" style="transition-delay: 0.7s;">
+          <div class="publication-meta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v4"></path>
+              <path d="M16 2v4"></path>
+              <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+              <path d="M3 10h18"></path>
+            </svg>
+            <span>13.04.2022</span>
+            <span style="color: var(--primary);">•</span>
+            <span class="publication-source">Институт Бизнес Аналитики</span>
+          </div>
+          <h3 class="publication-title">Как не слить инвестиции на маркетинг: кейс компании Voximplant</h3>
+          <p class="publication-description">Статья о том, как внедрили систему маркетинговых дашбордов для выявления неэффективных расходов и повышения ROI.</p>
+          <span class="publication-link">
+            Читать
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" x2="21" y1="14" y2="3"></line>
+            </svg>
+          </span>
+        </a>
       </div>
-    </section>
-  </main>
+      
+      <div class="publications-footer fade-in-up">
+        <a href="https://julia-grosheva.ru/#_lp_block_354928709" target="_blank" rel="noopener noreferrer">
+          <button class="btn btn-outline btn-lg">
+            Все публикации на сайте
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" x2="21" y1="14" y2="3"></line>
+            </svg>
+          </button>
+        </a>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    <div class="footer-content">
+  <!-- Contact Section -->
+  <section id="contact" class="section-padding">
+    <div class="contact-content">
+      <div class="section-header fade-in-up">
+        <h2 class="section-title">Пригласить <span class="gradient-text">выступить</span></h2>
+        <div class="divider-gold" style="margin-bottom: 1.5rem;"></div>
+        <p class="section-description">Готова выступить на вашей конференции, в подкасте, бизнес-клубе или корпоративном мероприятии</p>
+      </div>
+      
+      <div class="card-glass glow-gold contact-card fade-in-up">
+        <div class="contact-grid">
+          <div>
+            <h3 class="contact-title">Контакты</h3>
+            <div class="contact-links">
+              <a href="mailto:jg@comentee.ru" class="contact-link">
+                <div class="contact-link-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="contact-link-label">Email</p>
+                  <p class="contact-link-value">jg@comentee.ru</p>
+                </div>
+              </a>
+              
+              <a href="https://t.me/JuliaGr0" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <div class="contact-link-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m22 2-7 20-4-9-9-4Z"></path>
+                    <path d="M22 2 11 13"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="contact-link-label">Telegram</p>
+                  <p class="contact-link-value">@JuliaGr0</p>
+                </div>
+              </a>
+              
+              <a href="https://linkedin.com/in/julia-grosheva" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <div class="contact-link-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect width="4" height="12" x="2" y="9"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <p class="contact-link-label">LinkedIn</p>
+                  <p class="contact-link-value">julia-grosheva</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          
+          <div style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 class="formats-title">Форматы выступлений</h3>
+              <ul class="formats-list">
+                <li><span class="check">✓</span> Конференции и форумы</li>
+                <li><span class="check">✓</span> Подкасты и интервью</li>
+                <li><span class="check">✓</span> Бизнес-клубы и закрытые встречи</li>
+                <li><span class="check">✓</span> Корпоративные мероприятия</li>
+                <li><span class="check">✓</span> Практикумы и воркшопы</li>
+                <li><span class="check">✓</span> Онлайн и офлайн форматы</li>
+              </ul>
+            </div>
+            
+            <div class="contact-website">
+              <a href="https://julia-grosheva.ru" target="_blank" rel="noopener noreferrer">
+                <button class="btn btn-outline">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                    <path d="M2 12h20"></path>
+                  </svg>
+                  Сайт-визитка
+                </button>
+              </a>
+              <a href="https://jvgro.ru" target="_blank" rel="noopener noreferrer">
+                <button class="btn btn-outline">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                    <path d="M2 12h20"></path>
+                  </svg>
+                  Все услуги
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <p class="contact-footer fade-in-up">
+        Москва, Россия • Готова к выступлениям онлайн по всему миру
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
       <div class="footer-brand">
         <p class="footer-name">Юлия Грошева</p>
         <p class="footer-tagline">Стратегический и операционный менторинг</p>
       </div>
-      <div class="footer-social">
-        <a href="mailto:jg@comentee.ru" class="social-link" aria-label="Email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      
+      <div class="footer-socials">
+        <a href="mailto:jg@comentee.ru" class="footer-social" aria-label="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
         </a>
-        <a href="https://t.me/JuliaGr0" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        <a href="https://t.me/JuliaGr0" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Telegram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m22 2-7 20-4-9-9-4Z"></path>
+            <path d="M22 2 11 13"></path>
+          </svg>
         </a>
-        <a href="https://linkedin.com/in/julia-grosheva" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        <a href="https://linkedin.com/in/julia-grosheva" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect width="4" height="12" x="2" y="9"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
         </a>
       </div>
-      <p class="footer-copyright">© 2025 Все права защищены</p>
+      
+      <p class="footer-copyright">© 2026 Все права защищены</p>
     </div>
   </footer>
 
   <script>
-    (function() {
-      var triggers = document.querySelectorAll('.accordion-trigger');
-      triggers.forEach(function(trigger) {
-        trigger.addEventListener('click', function() {
-          var item = this.parentElement;
-          var isOpen = item.classList.contains('open');
-          document.querySelectorAll('.accordion-item').forEach(function(i) {
-            i.classList.remove('open');
-          });
-          if (!isOpen) {
-            item.classList.add('open');
-          }
-        });
-      });
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
 
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.1 });
+    // Smooth scroll to section
+    function scrollToSection(selector) {
+      const element = document.querySelector(selector);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
 
-      document.querySelectorAll('.fade-in-up').forEach(function(el) {
-        observer.observe(el);
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const nav = document.getElementById('mobile-nav');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      
+      if (nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        menuIcon.style.display = 'block';
+        closeIcon.style.display = 'none';
+      } else {
+        nav.classList.add('open');
+        menuIcon.style.display = 'none';
+        closeIcon.style.display = 'block';
+      }
+    }
+
+    function closeMobileMenu() {
+      const nav = document.getElementById('mobile-nav');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      nav.classList.remove('open');
+      menuIcon.style.display = 'block';
+      closeIcon.style.display = 'none';
+    }
+
+    // Accordion toggle
+    function toggleAccordion(trigger) {
+      const item = trigger.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+      
+      // Close all accordion items
+      document.querySelectorAll('.accordion-item').forEach(function(el) {
+        el.classList.remove('open');
       });
-    })();
+      
+      // Open clicked item if it was closed
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    }
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-up').forEach(function(el) {
+      observer.observe(el);
+    });
   </script>
+
 </body>
 </html>
