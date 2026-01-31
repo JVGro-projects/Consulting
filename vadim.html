@@ -1,272 +1,550 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Вадим Грошев – Налоговый консультант</title>
-  <meta name="description" content="Помогаю предпринимателям видеть реальную прибыль, навести порядок в учете и снизить налоговые риски" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вадим Грошев — Налоговый консультант</title>
+  <meta name="description" content="Помогаю предпринимателям видеть реальную прибыль, навести порядок в учете и снизить налоговые риски.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+      border-color: hsl(233 33% 20%);
+    }
+    :root {
+      --background: 226 37% 9%;
+      --foreground: 220 33% 96%;
+      --card: 233 33% 14%;
+      --card-foreground: 220 33% 96%;
+      --primary: 210 100% 65%;
+      --primary-foreground: 0 0% 0%;
+      --secondary: 232 38% 16%;
+      --secondary-foreground: 220 33% 96%;
+      --muted: 233 33% 14%;
+      --muted-foreground: 214 12% 65%;
+      --border: 233 33% 20%;
+      --footer: 228 43% 7%;
+      --gradient-start: 232 38% 16%;
+      --gradient-end: 232 37% 12%;
+      --radius: 1rem;
+    }
+    html {
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      margin: 0;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      min-height: 100vh;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    h1, h2, h3, p {
+      margin: 0;
+    }
+    /* Section Container */
+    .section-container {
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 5rem 1.5rem;
+    }
+    /* Card Gradient */
+    .card-gradient {
+      background: linear-gradient(180deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+    }
+    /* Background utilities */
+    .bg-background { background-color: hsl(var(--background)); }
+    .bg-card { background-color: hsl(var(--card)); }
+    .bg-footer { background-color: hsl(var(--footer)); }
+    /* Text utilities */
+    .text-foreground { color: hsl(var(--foreground)); }
+    .text-primary { color: hsl(var(--primary)); }
+    .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+    /* Border */
+    .border-border { border-color: hsl(var(--border)); }
+    .border-t { border-top-width: 1px; }
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+    }
+    .fade-in-up-delay-1 { animation: fadeInUp 0.8s ease 0.1s forwards; opacity: 0; }
+    .fade-in-up-delay-2 { animation: fadeInUp 0.8s ease 0.2s forwards; opacity: 0; }
+    .fade-in-up-delay-3 { animation: fadeInUp 0.8s ease 0.3s forwards; opacity: 0; }
+    /* Typography */
+    .text-xs { font-size: 0.75rem; line-height: 1rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .text-base { font-size: 1rem; line-height: 1.5rem; }
+    .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+    .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+    .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+    .text-5xl { font-size: 3rem; line-height: 1; }
+    .font-medium { font-weight: 500; }
+    .font-semibold { font-weight: 600; }
+    .font-bold { font-weight: 700; }
+    .tracking-tight { letter-spacing: -0.025em; }
+    .leading-tight { line-height: 1.25; }
+    /* Spacing */
+    .mb-1 { margin-bottom: 0.25rem; }
+    .mb-2 { margin-bottom: 0.5rem; }
+    .mb-3 { margin-bottom: 0.75rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mb-8 { margin-bottom: 2rem; }
+    .mb-10 { margin-bottom: 2.5rem; }
+    .mt-1 { margin-top: 0.25rem; }
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-8 { margin-top: 2rem; }
+    .mr-2 { margin-right: 0.5rem; }
+    .pt-4 { padding-top: 1rem; }
+    .pt-8 { padding-top: 2rem; }
+    .pt-32 { padding-top: 8rem; }
+    .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+    .p-4 { padding: 1rem; }
+    .p-6 { padding: 1.5rem; }
+    .p-7 { padding: 1.75rem; }
+    .p-8 { padding: 2rem; }
+    .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .gap-10 { gap: 2.5rem; }
+    .space-y-4 > * + * { margin-top: 1rem; }
+    .space-y-6 > * + * { margin-top: 1.5rem; }
+    /* Layout */
+    .flex { display: flex; }
+    .inline-flex { display: inline-flex; }
+    .grid { display: grid; }
+    .flex-col { flex-direction: column; }
+    .flex-row { flex-direction: row; }
+    .flex-1 { flex: 1 1 0%; }
+    .flex-shrink-0 { flex-shrink: 0; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .min-h-screen { min-height: 100vh; }
+    /* Grid */
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    /* Sizing */
+    .w-4 { width: 1rem; }
+    .w-6 { width: 1.5rem; }
+    .w-32 { width: 8rem; }
+    .w-48 { width: 12rem; }
+    .h-4 { height: 1rem; }
+    .h-6 { height: 1.5rem; }
+    .h-32 { height: 8rem; }
+    .h-48 { height: 12rem; }
+    .min-h-\[200px\] { min-height: 200px; }
+    .max-w-\[600px\] { max-width: 600px; }
+    .max-w-\[720px\] { max-width: 720px; }
+    .max-w-\[1100px\] { max-width: 1100px; }
+    /* Border Radius */
+    .rounded-lg { border-radius: 0.5rem; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-full { border-radius: 9999px; }
+    /* Object */
+    .object-cover { object-fit: cover; }
+    /* Shadow */
+    .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); }
+    .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1); }
+    /* Transitions */
+    .transition-colors { transition-property: color, background-color, border-color; transition-duration: 150ms; }
+    .hover\:text-primary:hover { color: hsl(var(--primary)); }
+    /* Button */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 150ms;
+      cursor: pointer;
+      padding: 0.75rem 2rem;
+    }
+    .btn-primary {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    .btn-primary:hover {
+      background-color: hsl(210 100% 55%);
+    }
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid hsl(var(--border));
+      color: hsl(var(--foreground));
+    }
+    .btn-outline:hover {
+      background-color: hsl(var(--card));
+    }
+    /* SVG Icons */
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+    .icon-lg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    /* Responsive */
+    @media (min-width: 640px) {
+      .sm\:flex-row { flex-direction: row; }
+      .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .sm\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+    @media (min-width: 768px) {
+      .md\:flex-row { flex-direction: row; }
+      .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .md\:w-40 { width: 10rem; }
+      .md\:w-48 { width: 12rem; }
+      .md\:h-40 { height: 10rem; }
+      .md\:text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+      .md\:text-5xl { font-size: 3rem; line-height: 1; }
+      .md\:text-left { text-align: left; }
+    }
+    @media (min-width: 1024px) {
+      .lg\:flex-row { flex-direction: row; }
+      .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .lg\:w-64 { width: 16rem; }
+      .lg\:h-64 { height: 16rem; }
+      .lg\:text-\[52px\] { font-size: 52px; }
+      .lg\:gap-16 { gap: 4rem; }
+      .lg\:mx-0 { margin-left: 0; margin-right: 0; }
+    }
+  </style>
 </head>
 <body>
-  <div id="root">
-    <div class="min-h-screen bg-background">
-      
-      <!-- Hero Section -->
-      <section class="section-container pt-32 text-center fade-in-up">
-        <img src="/assets/vadim-groshev-hero.jpg" alt="Вадим Грошев" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-lg mx-auto mb-6" />
-        <p class="text-primary font-medium mb-4">Вадим Грошев • Налоговый консультант</p>
-        <h1 class="text-4xl md:text-5xl lg:text-[52px] font-semibold tracking-tight mb-6 leading-tight">
-          Финансы и налоги без хаоса
-        </h1>
-        <p class="text-lg text-muted-foreground max-w-[720px] mx-auto mb-8">
-          Помогаю предпринимателям видеть реальную прибыль, навести порядок в учете и снизить налоговые риски – спокойно и по делу.
-        </p>
-        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-base font-medium h-11 px-8 bg-primary text-primary-foreground">
-          Получить консультацию
-        </button>
-      </section>
-
-      <!-- Problems Section -->
-      <section class="section-container fade-in-up">
-        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-8">Почему это важно</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-card p-7 rounded-lg fade-in-up">
-            <h3 class="text-lg font-semibold mb-3">Деньги есть, прибыли нет</h3>
-            <p class="text-muted-foreground">Без понятного учета бизнес зарабатывает «на глаз» и теряет деньги незаметно.</p>
-          </div>
-          <div class="bg-card p-7 rounded-lg fade-in-up" style="animation-delay: 0.1s;">
-            <h3 class="text-lg font-semibold mb-3">Страх налоговой</h3>
-            <p class="text-muted-foreground">Ошибки в документах и сделках – частая причина доначислений и штрафов.</p>
-          </div>
-          <div class="bg-card p-7 rounded-lg fade-in-up" style="animation-delay: 0.2s;">
-            <h3 class="text-lg font-semibold mb-3">Хаос в отчетах</h3>
-            <p class="text-muted-foreground">Цифры есть, но решений на них принять невозможно.</p>
-          </div>
+  <div class="min-h-screen bg-background">
+    <!-- Hero Section -->
+    <section class="section-container pt-32 text-center fade-in-up">
+      <img
+        src="assets/vadim-groshev-hero.jpg"
+        alt="Вадим Грошев"
+        class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-lg mx-auto mb-6"
+      >
+      <p class="text-primary font-medium mb-4">Вадим Грошев • Налоговый консультант</p>
+      <h1 class="text-4xl md:text-5xl lg:text-[52px] font-semibold tracking-tight mb-6 leading-tight">
+        Финансы и налоги без хаоса
+      </h1>
+      <p class="text-lg text-muted-foreground max-w-[720px] mx-auto mb-8">
+        Помогаю предпринимателям видеть реальную прибыль, навести порядок в учете и снизить налоговые риски – спокойно и по делу.
+      </p>
+      <a href="#cta" class="btn btn-primary text-base font-medium">
+        Получить консультацию
+      </a>
+    </section>
+    <!-- Problems Section -->
+    <section class="section-container fade-in-up">
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-8">
+        Почему это важно
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-card p-7 rounded-lg fade-in-up">
+          <h3 class="text-lg font-semibold mb-3">Деньги есть, прибыли нет</h3>
+          <p class="text-muted-foreground">Без понятного учета бизнес зарабатывает «на глаз» и теряет деньги незаметно.</p>
         </div>
-      </section>
-
-      <!-- Services Section -->
-      <section class="section-container fade-in-up">
-        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-8">Услуги</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="card-gradient p-8 rounded-xl flex flex-col justify-between min-h-[200px] fade-in-up">
-            <div>
-              <h3 class="text-lg font-semibold mb-3">Наведение порядка в учете</h3>
-              <p class="text-muted-foreground">Восстановление и настройка бухгалтерского и налогового учета под реальный бизнес.</p>
-            </div>
-            <p class="mt-4 font-medium text-primary">от 150 000 ₽</p>
-          </div>
-          <div class="card-gradient p-8 rounded-xl flex flex-col justify-between min-h-[200px] fade-in-up" style="animation-delay: 0.1s;">
-            <div>
-              <h3 class="text-lg font-semibold mb-3">Налоговая диагностика</h3>
-              <p class="text-muted-foreground">Поиск рисков и слабых мест, рекомендации как безопасно работать дальше.</p>
-            </div>
-            <p class="mt-4 font-medium text-primary">от 80 000 ₽</p>
-          </div>
-          <div class="card-gradient p-8 rounded-xl flex flex-col justify-between min-h-[200px] fade-in-up" style="animation-delay: 0.2s;">
-            <div>
-              <h3 class="text-lg font-semibold mb-3">Структурирование сделок</h3>
-              <p class="text-muted-foreground">Проверка договоров и сделок до подписания, без сюрпризов от ФНС.</p>
-            </div>
-            <p class="mt-4 font-medium text-primary">от 30 000 ₽</p>
-          </div>
-          <div class="card-gradient p-8 rounded-xl flex flex-col justify-between min-h-[200px] fade-in-up" style="animation-delay: 0.3s;">
-            <div>
-              <h3 class="text-lg font-semibold mb-3">Сопровождение проверок</h3>
-              <p class="text-muted-foreground">Подготовка и защита интересов бизнеса при камеральных и выездных проверках.</p>
-            </div>
-            <p class="mt-4 font-medium text-primary">от 100 000 ₽</p>
-          </div>
-          <div class="card-gradient p-8 rounded-xl flex flex-col justify-between min-h-[200px] fade-in-up" style="animation-delay: 0.4s;">
-            <div>
-              <h3 class="text-lg font-semibold mb-3">Отчетность для собственника</h3>
-              <p class="text-muted-foreground">Цифры, которые показывают реальную прибыль и помогают принимать решения.</p>
-            </div>
-            <p class="mt-4 font-medium text-primary">от 50 000 ₽</p>
-          </div>
+        <div class="bg-card p-7 rounded-lg fade-in-up" style="animation-delay: 0.1s">
+          <h3 class="text-lg font-semibold mb-3">Страх налоговой</h3>
+          <p class="text-muted-foreground">Ошибки в документах и сделках – частая причина доначислений и штрафов.</p>
         </div>
-      </section>
-
-      <!-- About Section -->
-      <section class="section-container fade-in-up">
-        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-10">Обо мне</h2>
-        <div class="flex flex-col lg:flex-row gap-10 lg:gap-16">
-          <div class="flex-shrink-0">
-            <img src="/assets/vadim-groshev-about.jpg" alt="Вадим Грошев" class="w-48 h-48 lg:w-64 lg:h-64 rounded-2xl object-cover shadow-xl mx-auto lg:mx-0" />
-          </div>
-          <div class="flex-1 space-y-6">
-            <div>
-              <p class="text-foreground text-2xl font-semibold mb-2">Вадим Грошев</p>
-              <p class="text-primary font-medium">Налоговый консультант</p>
-            </div>
-            <div class="space-y-4 text-muted-foreground">
-              <p>Более 22 лет в налогах и финансах. Работал в Связном (12 лет) и STS Logistics – налоговый учет, аудит, методология.</p>
-              <p>С 2023 года веду частную практику: консультирую по сложным вопросам, сопровождаю проверки ФНС, помогаю структурировать сделки.</p>
-            </div>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
-              <div class="bg-card p-4 rounded-lg text-center">
-                <p class="text-xl font-bold text-primary">22+</p>
-                <p class="text-muted-foreground text-xs mt-1">года в финансах</p>
-              </div>
-              <div class="bg-card p-4 rounded-lg text-center">
-                <p class="text-xl font-bold text-primary">12</p>
-                <p class="text-muted-foreground text-xs mt-1">лет в Связном</p>
-              </div>
-              <div class="bg-card p-4 rounded-lg text-center">
-                <p class="text-xl font-bold text-primary">МСБ</p>
-                <p class="text-muted-foreground text-xs mt-1">основной фокус</p>
-              </div>
-              <div class="bg-card p-4 rounded-lg text-center">
-                <p class="text-xl font-bold text-primary">2023</p>
-                <p class="text-muted-foreground text-xs mt-1">частная практика</p>
-              </div>
-            </div>
-          </div>
+        <div class="bg-card p-7 rounded-lg fade-in-up" style="animation-delay: 0.2s">
+          <h3 class="text-lg font-semibold mb-3">Хаос в отчетах</h3>
+          <p class="text-muted-foreground">Цифры есть, но решений на них принять невозможно.</p>
         </div>
-      </section>
-
-      <!-- Experience Section -->
-      <section class="section-container fade-in-up">
-        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-8">Опыт работы</h2>
-        <div class="space-y-6">
-          <div class="bg-card p-6 rounded-lg fade-in-up flex flex-col md:flex-row gap-4">
-            <div class="md:w-48 flex-shrink-0">
-              <p class="text-primary text-sm font-medium">2023 – настоящее время</p>
-            </div>
-            <div class="flex-1">
-              <h3 class="text-lg font-semibold mb-1">Частная практика</h3>
-              <p class="text-muted-foreground text-sm mb-2">Налоговый консультант</p>
-              <p class="text-muted-foreground">Досудебное урегулирование споров с ФНС, оспаривание результатов проверок, консультации по сложным вопросам, структурирование сделок.</p>
-            </div>
+      </div>
+    </section>
+    <!-- Services Section -->
+    <section class="section-container fade-in-up">
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-8">
+        Услуги
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card-gradient p-8 rounded-xl flex flex-col justify-between min-h-[200px] fade-in-up">
+          <div>
+            <h3 class="text-lg font-semibold mb-3">Наведение порядка в учете</h3>
+            <p class="text-muted-foreground">Восстановление и настройка бухгалтерского и налогового учета под реальный бизнес.</p>
           </div>
-          <div class="bg-card p-6 rounded-lg fade-in-up flex flex-col md:flex-row gap-4" style="animation-delay: 0.1s;">
-            <div class="md:w-48 flex-shrink-0">
-              <p class="text-primary text-sm font-medium">2022 – 2023</p>
-            </div>
-            <div class="flex-1">
-              <h3 class="text-lg font-semibold mb-1">Комус</h3>
-              <p class="text-muted-foreground text-sm mb-2">Налоговый консультант</p>
-              <p class="text-muted-foreground">Консультации по хозяйственно-правовым вопросам, анализ сделок, разработка учетной политики группы компаний.</p>
-            </div>
+          <p class="mt-4 font-medium text-primary">от 150 000 ₽</p>
+        </div>
+        <div class="card-gradient p-8 rounded-xl flex flex-col justify-between min-h-[200px] fade-in-up" style="animation-delay: 0.1s">
+          <div>
+            <h3 class="text-lg font-semibold mb-3">Налоговая диагностика</h3>
+            <p class="text-muted-foreground">Поиск рисков и слабых мест, рекомендации как безопасно работать дальше.</p>
           </div>
-          <div class="bg-card p-6 rounded-lg fade-in-up flex flex-col md:flex-row gap-4" style="animation-delay: 0.2s;">
-            <div class="md:w-48 flex-shrink-0">
-              <p class="text-primary text-sm font-medium">2010 – 2022</p>
-            </div>
-            <div class="flex-1">
-              <h3 class="text-lg font-semibold mb-1">Связной</h3>
-              <p class="text-muted-foreground text-sm mb-2">Налоговый консультант</p>
-              <p class="text-muted-foreground">Аудит отчетности группы компаний, анализ налоговых последствий проектов, участие в реорганизации Холдинга, разработка регламентов учета.</p>
-            </div>
+          <p class="mt-4 font-medium text-primary">от 80 000 ₽</p>
+        </div>
+        <div class="card-gradient p-8 rounded-xl flex flex-col justify-between min-h-[200px] fade-in-up" style="animation-delay: 0.2s">
+          <div>
+            <h3 class="text-lg font-semibold mb-3">Структурирование сделок</h3>
+            <p class="text-muted-foreground">Проверка договоров и сделок до подписания, без сюрпризов от ФНС.</p>
           </div>
-          <div class="bg-card p-6 rounded-lg fade-in-up flex flex-col md:flex-row gap-4" style="animation-delay: 0.3s;">
-            <div class="md:w-48 flex-shrink-0">
-              <p class="text-primary text-sm font-medium">2008 – 2010</p>
+          <p class="mt-4 font-medium text-primary">от 30 000 ₽</p>
+        </div>
+        <div class="card-gradient p-8 rounded-xl flex flex-col justify-between min-h-[200px] fade-in-up" style="animation-delay: 0.3s">
+          <div>
+            <h3 class="text-lg font-semibold mb-3">Сопровождение проверок</h3>
+            <p class="text-muted-foreground">Подготовка и защита интересов бизнеса при камеральных и выездных проверках.</p>
+          </div>
+          <p class="mt-4 font-medium text-primary">от 100 000 ₽</p>
+        </div>
+        <div class="card-gradient p-8 rounded-xl flex flex-col justify-between min-h-[200px] fade-in-up" style="animation-delay: 0.4s">
+          <div>
+            <h3 class="text-lg font-semibold mb-3">Отчетность для собственника</h3>
+            <p class="text-muted-foreground">Цифры, которые показывают реальную прибыль и помогают принимать решения.</p>
+          </div>
+          <p class="mt-4 font-medium text-primary">от 50 000 ₽</p>
+        </div>
+      </div>
+    </section>
+    <!-- About Section -->
+    <section class="section-container fade-in-up">
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-10">
+        Обо мне
+      </h2>
+      <div class="flex flex-col lg:flex-row gap-10 lg:gap-16">
+        <div class="flex-shrink-0">
+          <img
+            src="assets/vadim-groshev-about.jpg"
+            alt="Вадим Грошев"
+            class="w-48 h-48 lg:w-64 lg:h-64 rounded-2xl object-cover shadow-xl mx-auto lg:mx-0"
+          >
+        </div>
+        <div class="flex-1 space-y-6">
+          <div>
+            <p class="text-foreground text-2xl font-semibold mb-2">Вадим Грошев</p>
+            <p class="text-primary font-medium">Налоговый консультант</p>
+          </div>
+          <div class="space-y-4 text-muted-foreground">
+            <p>Более 22 лет в налогах и финансах. Работал в Связном (12 лет) и STS Logistics – налоговый учет, аудит, методология.</p>
+            <p>С 2023 года веду частную практику: консультирую по сложным вопросам, сопровождаю проверки ФНС, помогаю структурировать сделки.</p>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
+            <div class="bg-card p-4 rounded-lg text-center">
+              <p class="text-xl font-bold text-primary">22+</p>
+              <p class="text-muted-foreground text-xs mt-1">года в финансах</p>
             </div>
-            <div class="flex-1">
-              <h3 class="text-lg font-semibold mb-1">СТС Логистикс</h3>
-              <p class="text-muted-foreground text-sm mb-2">Внутренний аудитор</p>
-              <p class="text-muted-foreground">Аудиторские проверки компаний Холдинга, проведение тренингов, разработка учетной политики, финансовый анализ.</p>
+            <div class="bg-card p-4 rounded-lg text-center">
+              <p class="text-xl font-bold text-primary">12</p>
+              <p class="text-muted-foreground text-xs mt-1">лет в Связном</p>
+            </div>
+            <div class="bg-card p-4 rounded-lg text-center">
+              <p class="text-xl font-bold text-primary">МСБ</p>
+              <p class="text-muted-foreground text-xs mt-1">основной фокус</p>
+            </div>
+            <div class="bg-card p-4 rounded-lg text-center">
+              <p class="text-xl font-bold text-primary">2023</p>
+              <p class="text-muted-foreground text-xs mt-1">частная практика</p>
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- Cases Section -->
-      <section class="section-container fade-in-up">
-        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-8">Кейсы</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-card p-7 rounded-lg fade-in-up">
-            <h3 class="text-lg font-semibold mb-4">Хаос в учете</h3>
-            <p class="text-muted-foreground mb-2"><span class="font-medium text-foreground">Было:</span> собственник не понимал прибыль.</p>
-            <p class="text-muted-foreground"><span class="font-medium text-foreground">Стало:</span> понятная отчетность, контроль денег.</p>
+      </div>
+    </section>
+    <!-- Experience Section -->
+    <section class="section-container fade-in-up">
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-8">
+        Опыт работы
+      </h2>
+      <div class="space-y-6">
+        <div class="bg-card p-6 rounded-lg fade-in-up flex flex-col md:flex-row gap-4">
+          <div class="md:w-48 flex-shrink-0">
+            <p class="text-primary text-sm font-medium">2023 – настоящее время</p>
           </div>
-          <div class="bg-card p-7 rounded-lg fade-in-up" style="animation-delay: 0.1s;">
-            <h3 class="text-lg font-semibold mb-4">Риск доначислений</h3>
-            <p class="text-muted-foreground mb-2"><span class="font-medium text-foreground">Было:</span> сомнительные сделки.</p>
-            <p class="text-muted-foreground"><span class="font-medium text-foreground">Стало:</span> безопасная структура, спокойствие.</p>
-          </div>
-          <div class="bg-card p-7 rounded-lg fade-in-up" style="animation-delay: 0.2s;">
-            <h3 class="text-lg font-semibold mb-4">Проверка ФНС</h3>
-            <p class="text-muted-foreground mb-2"><span class="font-medium text-foreground">Было:</span> страх и хаос.</p>
-            <p class="text-muted-foreground"><span class="font-medium text-foreground">Стало:</span> проверка без критичных потерь.</p>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold mb-1">Частная практика</h3>
+            <p class="text-muted-foreground text-sm mb-2">Налоговый консультант</p>
+            <p class="text-muted-foreground">Досудебное урегулирование споров с ФНС, оспаривание результатов проверок, консультации по сложным вопросам, структурирование сделок.</p>
           </div>
         </div>
-      </section>
-
-      <!-- Contacts Section -->
-      <section class="section-container fade-in-up">
-        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-8">Контакты</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="bg-card p-6 rounded-lg fade-in-up">
-            <svg class="w-6 h-6 text-primary mb-4"><!-- Send icon --></svg>
-            <p class="text-muted-foreground text-sm mb-1">Telegram</p>
-            <a href="https://t.me/VadGr0" target="_blank" rel="noopener noreferrer" class="text-foreground font-medium hover:text-primary transition-colors">@VadGr0</a>
-            <p class="text-primary text-xs mt-2">предпочитаемый способ связи</p>
+        <div class="bg-card p-6 rounded-lg fade-in-up flex flex-col md:flex-row gap-4" style="animation-delay: 0.1s">
+          <div class="md:w-48 flex-shrink-0">
+            <p class="text-primary text-sm font-medium">2022 – 2023</p>
           </div>
-          <div class="bg-card p-6 rounded-lg fade-in-up" style="animation-delay: 0.1s;">
-            <svg class="w-6 h-6 text-primary mb-4"><!-- Phone icon --></svg>
-            <p class="text-muted-foreground text-sm mb-1">Телефон</p>
-            <a href="tel:+79263583823" class="text-foreground font-medium hover:text-primary transition-colors">+7 (926) 358-38-23</a>
-          </div>
-          <div class="bg-card p-6 rounded-lg fade-in-up" style="animation-delay: 0.2s;">
-            <svg class="w-6 h-6 text-primary mb-4"><!-- Mail icon --></svg>
-            <p class="text-muted-foreground text-sm mb-1">Email</p>
-            <a href="mailto:vadimgr.gr@yandex.ru" class="text-foreground font-medium hover:text-primary transition-colors">vadimgr.gr@yandex.ru</a>
-          </div>
-          <div class="bg-card p-6 rounded-lg fade-in-up" style="animation-delay: 0.3s;">
-            <svg class="w-6 h-6 text-primary mb-4"><!-- MapPin icon --></svg>
-            <p class="text-muted-foreground text-sm mb-1">Локация</p>
-            <p class="text-foreground font-medium">Москва</p>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold mb-1">Комус</h3>
+            <p class="text-muted-foreground text-sm mb-2">Налоговый консультант</p>
+            <p class="text-muted-foreground">Консультации по хозяйственно-правовым вопросам, анализ сделок, разработка учетной политики группы компаний.</p>
           </div>
         </div>
-      </section>
-
-      <!-- CTA Section -->
-      <section id="cta" class="section-container text-center fade-in-up">
-        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Готовы навести порядок?</h2>
-        <p class="text-lg text-muted-foreground max-w-[600px] mx-auto mb-8">Оставьте заявку – разберем вашу ситуацию и подскажем оптимальный формат работы.</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://t.me/VadGr0" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-base font-medium h-11 px-8 bg-primary text-primary-foreground">
-            <svg class="w-4 h-4 mr-2"><!-- Send icon --></svg>
-            Написать в Telegram
-          </a>
-          <a href="mailto:vadimgr.gr@yandex.ru" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-base font-medium h-11 px-8 border border-input bg-background">
-            Отправить Email
-          </a>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer class="bg-footer py-12">
-        <div class="max-w-[1100px] mx-auto px-6">
-          <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-center md:text-left">
-              <p class="text-foreground font-medium mb-1">Вадим Грошев</p>
-              <p class="text-muted-foreground text-sm">Налоговый консультант • Москва</p>
-            </div>
-            <div class="flex items-center gap-6">
-              <a href="https://t.me/VadGr0" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-                <svg class="w-4 h-4"><!-- Send icon --></svg>
-                <span class="text-sm">Telegram</span>
-              </a>
-              <a href="mailto:vadimgr.gr@yandex.ru" class="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-                <svg class="w-4 h-4"><!-- Mail icon --></svg>
-                <span class="text-sm">Email</span>
-              </a>
-              <a href="tel:+79263583823" class="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-                <svg class="w-4 h-4"><!-- Phone icon --></svg>
-                <span class="text-sm">Телефон</span>
-              </a>
-            </div>
+        <div class="bg-card p-6 rounded-lg fade-in-up flex flex-col md:flex-row gap-4" style="animation-delay: 0.2s">
+          <div class="md:w-48 flex-shrink-0">
+            <p class="text-primary text-sm font-medium">2010 – 2022</p>
           </div>
-          <div class="border-t border-border mt-8 pt-8 text-center">
-            <p class="text-muted-foreground text-sm">© 2026 Вадим Грошев. Консультации для малого и среднего бизнеса.</p>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold mb-1">Связной</h3>
+            <p class="text-muted-foreground text-sm mb-2">Налоговый консультант</p>
+            <p class="text-muted-foreground">Аудит отчетности группы компаний, анализ налоговых последствий проектов, участие в реорганизации Холдинга, разработка регламентов учета.</p>
           </div>
         </div>
-      </footer>
-
-    </div>
+        <div class="bg-card p-6 rounded-lg fade-in-up flex flex-col md:flex-row gap-4" style="animation-delay: 0.3s">
+          <div class="md:w-48 flex-shrink-0">
+            <p class="text-primary text-sm font-medium">2008 – 2010</p>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold mb-1">СТС Логистикс</h3>
+            <p class="text-muted-foreground text-sm mb-2">Внутренний аудитор</p>
+            <p class="text-muted-foreground">Аудиторские проверки компаний Холдинга, проведение тренингов, разработка учетной политики, финансовый анализ.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Cases Section -->
+    <section class="section-container fade-in-up">
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-8">
+        Кейсы
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-card p-6 rounded-lg fade-in-up">
+          <p class="text-primary text-sm font-medium mb-2">Торговая компания</p>
+          <h3 class="text-lg font-semibold mb-3">Снижение налоговой нагрузки на 18%</h3>
+          <p class="text-muted-foreground">Провел аудит учетной политики и оптимизировал структуру расходов. Результат – легальная экономия более 2 млн ₽ в год.</p>
+        </div>
+        <div class="bg-card p-6 rounded-lg fade-in-up" style="animation-delay: 0.1s">
+          <p class="text-primary text-sm font-medium mb-2">IT-компания</p>
+          <h3 class="text-lg font-semibold mb-3">Успешное прохождение выездной проверки</h3>
+          <p class="text-muted-foreground">Подготовил документы и представлял интересы клиента. Доначисления снижены с 12 млн до 800 тыс. ₽.</p>
+        </div>
+        <div class="bg-card p-6 rounded-lg fade-in-up" style="animation-delay: 0.2s">
+          <p class="text-primary text-sm font-medium mb-2">Производство</p>
+          <h3 class="text-lg font-semibold mb-3">Восстановление учета за 3 года</h3>
+          <p class="text-muted-foreground">Полностью восстановил бухгалтерский и налоговый учет, внедрил регламенты для предотвращения ошибок.</p>
+        </div>
+        <div class="bg-card p-6 rounded-lg fade-in-up" style="animation-delay: 0.3s">
+          <p class="text-primary text-sm font-medium mb-2">Ритейл</p>
+          <h3 class="text-lg font-semibold mb-3">Структурирование сделки M&A</h3>
+          <p class="text-muted-foreground">Разработал налогово-эффективную структуру сделки по покупке бизнеса, минимизировав риски для покупателя.</p>
+        </div>
+      </div>
+    </section>
+    <!-- Contacts Section -->
+    <section class="section-container fade-in-up">
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-8">
+        Контакты
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-card p-6 rounded-lg fade-in-up">
+          <svg class="icon icon-lg text-primary mb-4" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          <p class="text-muted-foreground text-sm mb-1">Telegram</p>
+          <a href="https://t.me/VadGr0" target="_blank" rel="noopener noreferrer" class="text-foreground font-medium hover:text-primary transition-colors">@VadGr0</a>
+          <p class="text-primary text-xs mt-2">предпочитаемый способ связи</p>
+        </div>
+        <div class="bg-card p-6 rounded-lg fade-in-up" style="animation-delay: 0.1s">
+          <svg class="icon icon-lg text-primary mb-4" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <p class="text-muted-foreground text-sm mb-1">Телефон</p>
+          <a href="tel:+79263583823" class="text-foreground font-medium hover:text-primary transition-colors">+7 (926) 358-38-23</a>
+        </div>
+        <div class="bg-card p-6 rounded-lg fade-in-up" style="animation-delay: 0.2s">
+          <svg class="icon icon-lg text-primary mb-4" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <p class="text-muted-foreground text-sm mb-1">Email</p>
+          <a href="mailto:vadimgr.gr@yandex.ru" class="text-foreground font-medium hover:text-primary transition-colors">vadimgr.gr@yandex.ru</a>
+        </div>
+        <div class="bg-card p-6 rounded-lg fade-in-up" style="animation-delay: 0.3s">
+          <svg class="icon icon-lg text-primary mb-4" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          <p class="text-muted-foreground text-sm mb-1">Локация</p>
+          <p class="text-foreground font-medium">Москва</p>
+        </div>
+      </div>
+    </section>
+    <!-- CTA Section -->
+    <section id="cta" class="section-container text-center fade-in-up">
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-4">
+        Готовы навести порядок?
+      </h2>
+      <p class="text-lg text-muted-foreground max-w-[600px] mx-auto mb-8">
+        Оставьте заявку – разберем вашу ситуацию и подскажем оптимальный формат работы.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://t.me/VadGr0" target="_blank" rel="noopener noreferrer" class="btn btn-primary text-base font-medium">
+          <svg class="icon" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          Написать в Telegram
+        </a>
+        <a href="mailto:vadimgr.gr@yandex.ru" class="btn btn-outline text-base font-medium">
+          Отправить Email
+        </a>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-footer py-12">
+      <div class="max-w-[1100px] mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="text-center md:text-left">
+            <p class="text-foreground font-medium mb-1">Вадим Грошев</p>
+            <p class="text-muted-foreground text-sm">Налоговый консультант • Москва</p>
+          </div>
+          <div class="flex items-center gap-6">
+            <a href="https://t.me/VadGr0" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+              <svg class="icon" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+              <span class="text-sm">Telegram</span>
+            </a>
+            <a href="mailto:vadimgr.gr@yandex.ru" class="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+              <svg class="icon" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span class="text-sm">Email</span>
+            </a>
+            <a href="tel:+79263583823" class="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span class="text-sm">Телефон</span>
+            </a>
+          </div>
+        </div>
+        <div class="border-t border-border mt-8 pt-8 text-center">
+          <p class="text-muted-foreground text-sm">© 2025 Вадим Грошев. Консультации для малого и среднего бизнеса.</p>
+        </div>
+      </div>
+    </footer>
   </div>
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
