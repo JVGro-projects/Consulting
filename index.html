@@ -46,13 +46,24 @@
     .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
 
     .gradient-text {
-      background: none !important;
+  background: linear-gradient(135deg, hsl(215, 100%, 55%) 0%, hsl(205, 100%, 65%) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+ .header .logo {
+  color: #ffffff;
+}
+
+.header .logo .gradient-text {
+  background: none;
   -webkit-background-clip: initial;
   background-clip: initial;
   -webkit-text-fill-color: #ffffff;
   color: #ffffff;
-}
-
+}   
+    
     .header .gradient-text {
   background: none;
   -webkit-text-fill-color: #ffffff;
@@ -1127,105 +1138,124 @@
           <p class="section-desc">Экспертиза в финансах, HR и операционном управлении для устойчивого роста вашего бизнеса</p>
         </div>
         
-        <div class="services-grid">
-          <div class="glass-card service-card hover-lift">
-            <div class="service-icon">
-              <img src="./assets/icon-mentoring.jpg" alt="Стратегический менторинг">
-            </div>
-            <h3 class="service-title">Стратегический менторинг</h3>
-            <p class="service-desc">Персональная работа с владельцами и топ-менеджерами по развитию бизнеса</p>
-            <ul class="service-features">
-              <li class="service-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Выход на международные рынки</span>
-              </li>
-              <li class="service-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Операционная эффективность</span>
-              </li>
-              <li class="service-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Масштабирование бизнеса</span>
-              </li>
-              <li class="service-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Антикризисное управление</span>
-              </li>
-            </ul>
-            <div class="service-pricing">
-              <div class="service-price gradient-text">от 35 000 ₽</div>
-              <div class="service-price-note">за сессию</div>
-              <div class="service-discount">Скидки до 30% при долгосрочном контракте</div>
-            </div>
-          </div>
-          
-          <div class="glass-card service-card hover-lift">
-            <div class="service-icon">
-              <img src="./assets/icon-finance.jpg" alt="Финансы и налоги">
-            </div>
-            <h3 class="service-title">Финансы и налоги</h3>
-            <p class="service-desc">Порядок в учёте, налоговая безопасность и понятная отчётность</p>
-            <ul class="service-features">
-              <li class="service-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Бухгалтерское сопровождение</span>
-              </li>
-              <li class="service-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Налоговые консультации</span>
-              </li>
-              <li class="service-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Управленческая отчётность</span>
-              </li>
-              <li class="service-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Сопровождение проверок</span>
-              </li>
-            </ul>
-            <div class="service-pricing">
-              <div class="service-price gradient-text">от 15 000 ₽</div>
-              <div class="service-price-note">в месяц</div>
-            </div>
-          </div>
-          
-          <div class="glass-card service-card hover-lift">
-            <div class="service-icon">
-              <img src="./assets/icon-hr.jpg" alt="HR и мотивация">
-            </div>
-            <h3 class="service-title">HR и мотивация</h3>
-            <p class="service-desc">Построение эффективных команд и систем вознаграждения</p>
-            <ul class="service-features">
-              <li class="service-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Разработка систем мотивации</span>
-              </li>
-              <li class="service-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Опционные программы</span>
-              </li>
-              <li class="service-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Найм топ-менеджеров</span>
-              </li>
-              <li class="service-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Индивидуальные планы развития</span>
-              </li>
-            </ul>
-            <div class="service-pricing">
-              <div class="service-price gradient-text">от 50 000 ₽</div>
-              <div class="service-price-note">за проект</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="special-offer">
-          <div class="special-offer-bg"></div>
-          <div class="special-offer-border"></div>
-          <div class="glow-bg" style="top: 0; right: 0; width: 128px; height: 128px; opacity: 0.2; background: hsl(215, 100%, 55%); filter: blur(48px);"></div>
-          <div class="glow-bg" style="bottom: 0; left: 0; width: 96px; height: 96px; opacity: 0.15; background: hsl(215, 100%, 55%); filter: blur(32px);"></div>
-          
+ <div class="services-grid">
+
+  <!-- CARD 1 -->
+  <div class="glass-card service-card hover-lift">
+    <div class="service-top">
+      <div class="service-icon">
+        <img src="./assets/icon-mentoring.jpg" alt="Стратегический менторинг">
+      </div>
+
+      <div class="service-head">
+        <h3 class="service-title">Стратегический менторинг</h3>
+        <p class="service-desc">
+          Персональная работа с владельцами и топ-менеджерами по развитию бизнеса
+        </p>
+      </div>
+
+      <ul class="service-features">
+        <li class="service-feature">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+          <span>Выход на международные рынки</span>
+        </li>
+        <li class="service-feature">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+          <span>Операционная эффективность</span>
+        </li>
+        <li class="service-feature">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+          <span>Масштабирование бизнеса</span>
+        </li>
+        <li class="service-feature">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+          <span>Антикризисное управление</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="service-pricing">
+      <div class="service-price gradient-text">от 35 000 ₽</div>
+      <div class="service-price-note">за сессию</div>
+      <div class="service-discount">Скидки до 30% при долгосрочном контракте</div>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="glass-card service-card hover-lift">
+    <div class="service-top">
+      <div class="service-icon">
+        <img src="./assets/icon-finance.jpg" alt="Финансы и налоги">
+      </div>
+
+      <div class="service-head">
+        <h3 class="service-title">Финансы и налоги</h3>
+        <p class="service-desc">
+          Порядок в учёте, налоговая безопасность и понятная отчётность
+        </p>
+      </div>
+
+      <ul class="service-features">
+        <li class="service-feature">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+          <span>Бухгалтерское сопровождение</span>
+        </li>
+        <li class="service-feature">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+          <span>Налоговые консультации</span>
+        </li>
+        <li class="service-feature">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+          <span>Управленческая отчётность</span>
+        </li>
+        <li class="service-feature">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+          <span>Сопровождение проверок</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="service-pricing">
+      <div class="service-price gradient-text">от 15 000 ₽</div>
+      <div class="service-price-note">в месяц</div>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="glass-card service-card hover-lift">
+    <div class="service-top">
+      <div class="service-icon">
+        <img src="./assets/icon-hr.jpg" alt="HR и мотивация">
+      </div>
+
+      <div class="service-head">
+        <h3 class="service-title">HR и мотивация</h3>
+        <p class="service-desc">
+          Построение эффективных команд и систем вознаграждения
+        </p>
+      </div>
+
+      <ul class="service-features">
+  <li class="service-feature">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20 6 9 17l-5-5"></path>
+    </svg>
+    <span>Опционные программы</span>
+  </li>
+
+  <li class="service-feature">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20 6 9 17l-5-5"></path>
+    </svg>
+    <span>Найм топ-менеджеров</span>
+  </li>
+</ul>
+
+<div class="special-offer">
+  <div class="special-offer-bg"></div>
+  <div class="special-offer-border"></div>
+  <div class="glow-bg"></div>
+      
           <div class="special-offer-inner">
             <div class="special-offer-icon">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
