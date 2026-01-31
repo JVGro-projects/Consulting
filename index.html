@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JVGro Consulting — Стратегический менторинг и бизнес-консалтинг</title>
-  <meta name="description" content="Стратегический менторинг, финансовый консалтинг, HR и мотивация. Помогаем предпринимателям выйти на новый уровень эффективности и прибыли.">
-  <meta name="author" content="JVGro Consulting">
-  <meta name="keywords" content="бизнес консалтинг, менторинг, стратегия, финансы, HR, мотивация, налоги">
-  <meta property="og:title" content="JVGro Consulting — Стратегический менторинг и бизнес-консалтинг">
-  <meta property="og:description" content="Стратегический менторинг, финансовый консалтинг, HR и мотивация. Помогаем предпринимателям выйти на новый уровень.">
+  <title>JVGro Consulting — Стратегический и операционный консалтинг</title>
+  <meta name="description" content="Стратегический и операционный консалтинг для бизнеса. Помогаем предпринимателям выйти на новый уровень эффективности и прибыли.">
+  <meta property="og:title" content="JVGro Consulting — Стратегический и операционный консалтинг">
+  <meta property="og:description" content="Стратегический и операционный консалтинг для бизнеса. Помогаем предпринимателям выйти на новый уровень.">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: hsl(220,50%,6%);
@@ -23,7 +22,6 @@
       --accent: hsl(220,45%,18%);
       --card: hsl(220,45%,11%);
       --border: hsl(220,40%,20%);
-      --destructive: hsl(0,84%,60%);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -31,544 +29,597 @@
     h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; height: auto; display: block; }
-    .container { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+    @media (min-width: 640px) { .container { padding: 0 1.5rem; } }
     .gradient-text { background: linear-gradient(135deg, hsl(215,100%,55%), hsl(205,100%,65%)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .glass-card { background: linear-gradient(145deg, hsla(220,50%,12%,0.9), hsla(220,50%,8%,0.95)); backdrop-filter: blur(16px); border: 1px solid hsla(215,100%,55%,0.1); border-radius: 1rem; padding: 1.5rem; }
+    .glass-card { background: linear-gradient(145deg, hsla(220,50%,12%,0.9), hsla(220,50%,8%,0.95)); backdrop-filter: blur(16px); border: 1px solid hsla(215,100%,55%,0.1); border-radius: 1rem; }
     .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 600; border-radius: 0.5rem; border: none; cursor: pointer; transition: all 0.2s; }
     .btn-primary { background: var(--primary); color: var(--primary-fg); }
-    .btn-primary:hover { background: hsl(215,100%,50%); }
+    .btn-primary:hover { opacity: 0.9; }
     .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--fg); }
     .btn-outline:hover { background: var(--accent); }
     .btn-lg { padding: 1rem 2rem; font-size: 1.125rem; }
-    .glow { box-shadow: 0 0 30px hsla(215,100%,55%,0.3); }
-    .badge { display: inline-block; padding: 0.5rem 1rem; font-size: 0.875rem; font-weight: 500; border-radius: 9999px; }
-    .badge-primary { background: hsla(215,100%,55%,0.1); color: var(--primary); border: 1px solid hsla(215,100%,55%,0.2); }
-    .badge-red { background: hsla(0,84%,60%,0.1); color: var(--destructive); border: 1px solid hsla(0,84%,60%,0.2); }
-    .icon-box { width: 3rem; height: 3rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
-    .icon-box-primary { background: hsla(215,100%,55%,0.1); }
-    .icon-box-red { background: hsla(0,84%,60%,0.1); }
-    .section { position: relative; padding: 5rem 0; overflow: hidden; }
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    .section-title { font-size: clamp(1.75rem, 5vw, 3rem); margin-bottom: 1rem; }
-    .section-desc { color: var(--muted); max-width: 42rem; margin: 0 auto; font-size: 1.125rem; }
-    .grid-2 { display: grid; gap: 1.5rem; }
-    .grid-3 { display: grid; gap: 1.5rem; }
-    .grid-4 { display: grid; gap: 1.5rem; }
-    @media (min-width: 768px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: repeat(3, 1fr); } }
-    @media (min-width: 1024px) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
-    .card-title { font-family: 'Inter', sans-serif; font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .card-text { color: var(--muted); font-size: 1rem; }
+    .glow { box-shadow: 0 0 30px hsla(215,100%,55%,0.3), 0 0 60px hsla(215,100%,55%,0.1); }
+    .badge { display: inline-block; padding: 0.5rem 1rem; font-size: 0.875rem; font-weight: 500; border-radius: 9999px; background: hsla(215,100%,55%,0.1); color: var(--primary); border: 1px solid hsla(215,100%,55%,0.2); }
     .hover-lift { transition: transform 0.3s, box-shadow 0.3s; }
-    .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 8px 40px hsla(220,50%,3%,0.6); }
+    .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 8px 40px hsla(220,50%,3%,0.6), 0 0 40px hsla(215,100%,55%,0.15); }
+    .section { position: relative; padding: 5rem 0; overflow: hidden; }
+    @media (min-width: 768px) { .section { padding: 7rem 0; } }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    @media (min-width: 768px) { .section-header { margin-bottom: 4rem; } }
+    .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+    @media (min-width: 768px) { .section-title { font-size: 2.5rem; } }
+    @media (min-width: 1024px) { .section-title { font-size: 3rem; } }
+    .section-desc { color: var(--muted); max-width: 640px; margin: 0 auto; font-size: 1.125rem; }
 
     /* Header */
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: hsla(220,50%,6%,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid hsla(215,100%,55%,0.1); }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: hsla(220,50%,6%,0.8); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
     .header-inner { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
-    @media (min-width: 768px) { .header-inner { height: 5rem; } }
-    .logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; }
-    @media (min-width: 768px) { .logo { font-size: 1.5rem; } }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; }
     nav { display: none; align-items: center; gap: 2rem; }
-    .nav-link { color: var(--muted); font-weight: 500; transition: color 0.2s; }
-    .nav-link:hover { color: var(--fg); }
-    @media (min-width: 768px) { nav { display: flex; } .mobile-btn { display: none; } }
-    .mobile-btn { background: none; border: none; color: var(--fg); cursor: pointer; padding: 0.5rem; }
-    .mobile-nav { display: none; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem; }
-    .mobile-nav.open { display: block; }
-    .mobile-nav a { display: block; padding: 0.75rem 0; color: var(--fg); font-weight: 500; }
-    .mobile-nav .experts-section { border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 0.5rem; }
-    .mobile-nav .experts-label { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.5rem; }
-    .mobile-nav .expert-item { display: block; padding: 0.5rem 0; }
-    .mobile-nav .expert-name { font-weight: 500; color: var(--fg); }
-    .mobile-nav .expert-role { font-size: 0.875rem; color: var(--muted); }
-    @media (min-width: 768px) { .mobile-nav { display: none !important; } }
+    @media (min-width: 768px) { nav { display: flex; } }
+    nav a { color: var(--muted); transition: color 0.2s; }
+    nav a:hover { color: var(--fg); }
+    .header-cta { display: none; }
+    @media (min-width: 768px) { .header-cta { display: block; } }
+    .mobile-btn { display: flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; background: transparent; border: none; color: var(--fg); cursor: pointer; }
+    @media (min-width: 768px) { .mobile-btn { display: none; } }
+    .mobile-menu { display: none; position: fixed; top: 4.5rem; left: 0; right: 0; bottom: 0; background: var(--bg); padding: 1.5rem; z-index: 40; }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; padding: 1rem 0; font-size: 1.125rem; color: var(--fg); border-bottom: 1px solid var(--border); }
+    .mobile-experts { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+    .mobile-experts-title { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .mobile-experts a { padding: 0.5rem 0; border-bottom: none; color: var(--primary); }
 
     /* Experts Dropdown */
     .experts-dropdown { position: relative; }
-    .experts-btn { display: flex; align-items: center; gap: 0.25rem; color: var(--muted); font-weight: 500; background: none; border: none; cursor: pointer; font-size: 1rem; font-family: inherit; transition: color 0.2s; }
+    .experts-btn { display: flex; align-items: center; gap: 0.25rem; background: transparent; border: none; color: var(--muted); font-size: 1rem; cursor: pointer; transition: color 0.2s; }
     .experts-btn:hover { color: var(--fg); }
-    .experts-btn svg { transition: transform 0.2s; }
-    .experts-btn.open svg { transform: rotate(180deg); }
-    .experts-menu { position: absolute; top: 100%; right: 0; margin-top: 0.5rem; width: 16rem; background: linear-gradient(145deg, hsla(220,50%,12%,0.95), hsla(220,50%,8%,0.98)); backdrop-filter: blur(16px); border: 1px solid hsla(215,100%,55%,0.1); border-radius: 0.5rem; overflow: hidden; box-shadow: 0 10px 40px hsla(220,50%,3%,0.5); opacity: 0; visibility: hidden; transform: translateY(8px); transition: all 0.2s; }
-    .experts-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
-    .experts-menu a { display: block; padding: 0.75rem 1rem; transition: background 0.2s; }
+    .experts-menu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 0.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.5rem; min-width: 180px; box-shadow: 0 8px 30px hsla(220,50%,3%,0.5); }
+    .experts-menu.open { display: block; }
+    .experts-menu a { display: block; padding: 0.75rem 1rem; border-radius: 0.375rem; color: var(--fg); transition: background 0.2s; }
     .experts-menu a:hover { background: var(--accent); }
-    .experts-menu .expert-name { font-weight: 500; color: var(--fg); }
-    .experts-menu .expert-role { font-size: 0.875rem; color: var(--muted); }
 
     /* Hero */
-    .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding-top: 5rem; }
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 6rem 0 4rem; overflow: hidden; }
     .hero-bg { position: absolute; inset: 0; z-index: 0; }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
-    .hero-overlay { position: absolute; inset: 0; background: hsla(220,50%,6%,0.5); }
-    .hero-content { position: relative; z-index: 10; text-align: center; max-width: 56rem; margin: 0 auto; padding: 3rem 0; }
-    .hero-title { font-size: clamp(2rem, 6vw, 4.5rem); margin-bottom: 1.5rem; }
-    .hero-desc { font-size: 1.25rem; color: var(--muted); max-width: 40rem; margin: 0 auto 2rem; }
-    .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 3rem; }
-    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 30rem; margin: 0 auto; }
-    .stat { text-align: center; }
-    .stat-icon { color: var(--primary); margin-bottom: 0.5rem; }
-    .stat-value { font-size: 1.75rem; font-weight: 700; }
-    .stat-label { font-size: 0.875rem; color: var(--muted); }
-    .scroll-ind { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); }
-    .scroll-mouse { width: 1.5rem; height: 2.5rem; border: 2px solid hsla(215,20%,65%,0.3); border-radius: 9999px; display: flex; justify-content: center; padding-top: 0.25rem; }
-    .scroll-dot { width: 0.375rem; height: 0.75rem; background: var(--primary); border-radius: 9999px; animation: bounce 1.5s infinite; }
-    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, hsla(220,50%,6%,0.95), hsla(220,50%,6%,0.7)); }
+    .hero-content { position: relative; z-index: 10; max-width: 800px; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; }
+    @media (min-width: 768px) { .hero h1 { font-size: 3.5rem; } }
+    @media (min-width: 1024px) { .hero h1 { font-size: 4rem; } }
+    .hero p { font-size: 1.25rem; color: var(--muted); margin-bottom: 2rem; max-width: 600px; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .hero-glow { position: absolute; top: 20%; right: 10%; width: 500px; height: 500px; background: radial-gradient(ellipse at center, hsla(215,100%,55%,0.15), transparent 70%); z-index: 5; }
+
+    /* Problems */
+    .problems-grid { display: grid; gap: 1.5rem; }
+    @media (min-width: 768px) { .problems-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .problems-grid { grid-template-columns: repeat(3, 1fr); } }
+    .problem-card { padding: 1.5rem; }
+    .problem-icon { width: 3rem; height: 3rem; border-radius: 0.75rem; background: hsla(215,100%,55%,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: var(--primary); }
+    .problem-card h3 { font-family: 'Inter', sans-serif; font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .problem-card p { color: var(--muted); font-size: 0.9375rem; }
 
     /* Services */
-    .service-card { display: flex; flex-direction: column; }
-    .service-icon { width: 4rem; height: 4rem; border-radius: 0.75rem; overflow: hidden; margin-bottom: 1.5rem; }
-    .service-icon img { width: 100%; height: 100%; object-fit: cover; }
-    .service-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .service-features { list-style: none; margin: 1rem 0; flex-grow: 1; }
-    .service-features li { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem; }
-    .check { color: var(--primary); flex-shrink: 0; }
-    .price-box { border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem; }
-    .price { font-size: 1.5rem; font-weight: 700; }
-    .price-note { font-size: 0.875rem; color: var(--muted); }
-    .discount { color: var(--primary); font-size: 0.875rem; font-weight: 500; margin-top: 0.25rem; }
+    .services-grid { display: grid; gap: 1.5rem; margin-bottom: 3rem; }
+    @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+    .service-card { padding: 1.5rem; display: flex; flex-direction: column; }
+    @media (min-width: 768px) { .service-card { padding: 2rem; } }
+    .service-icon { width: 4rem; height: 4rem; border-radius: 0.75rem; background: hsla(215,100%,55%,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: var(--primary); }
+    .service-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
+    @media (min-width: 768px) { .service-card h3 { font-size: 1.5rem; } }
+    .service-card > p { color: var(--muted); margin-bottom: 1.5rem; }
+    .service-features { list-style: none; margin-bottom: 1.5rem; flex-grow: 1; }
+    .service-features li { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .service-features svg { flex-shrink: 0; margin-top: 0.25rem; color: var(--primary); }
+    .service-price { border-top: 1px solid var(--border); padding-top: 1.5rem; }
+    .service-price-value { font-size: 1.5rem; font-weight: 700; }
+    .service-price-note { font-size: 0.875rem; color: var(--muted); }
+    .service-discount { font-size: 0.875rem; color: var(--primary); font-weight: 500; margin-top: 0.5rem; }
 
     /* Special Offer */
-    .offer { position: relative; border: 2px solid hsla(215,100%,55%,0.3); border-radius: 1rem; padding: 1.5rem; margin: 3rem 0; background: linear-gradient(135deg, hsla(215,100%,55%,0.15), hsla(215,100%,55%,0.05)); overflow: hidden; }
-    @media (min-width: 768px) { .offer { padding: 2.5rem; } }
-    .offer::before { content: ''; position: absolute; top: 0; right: 0; width: 8rem; height: 8rem; background: hsla(215,100%,55%,0.2); border-radius: 50%; filter: blur(3rem); }
-    .offer::after { content: ''; position: absolute; bottom: 0; left: 0; width: 6rem; height: 6rem; background: hsla(215,100%,55%,0.15); border-radius: 50%; filter: blur(2rem); }
-    .offer-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; }
-    @media (min-width: 1024px) { .offer-content { flex-direction: row; text-align: left; } }
-    .offer-icon { width: 5rem; height: 5rem; border-radius: 1rem; background: hsla(215,100%,55%,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: pulse-icon 2s infinite; }
-    @keyframes pulse-icon { 0%,100% { opacity: 1; } 50% { opacity: 0.7; } }
-    .offer-icon svg { color: var(--primary); }
-    .offer-text { flex-grow: 1; }
-    .offer-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: hsla(215,100%,55%,0.2); color: var(--primary); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.75rem; }
-    .pulse-dot { width: 0.5rem; height: 0.5rem; background: var(--primary); border-radius: 50%; animation: pulse 1.5s infinite; }
-    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
-    .offer-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-    @media (min-width: 768px) { .offer-title { font-size: 1.875rem; } }
-    .offer-desc { color: var(--muted); font-size: 1.125rem; margin-bottom: 1rem; max-width: 40rem; }
-    .offer-features { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-    @media (min-width: 1024px) { .offer-features { justify-content: flex-start; } }
-    .offer-feat { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
-    .offer-feat svg { color: var(--primary); }
+    .special-offer { position: relative; border-radius: 1rem; overflow: hidden; margin-bottom: 3rem; }
+    .special-offer-bg { position: absolute; inset: 0; background: linear-gradient(90deg, hsla(215,100%,55%,0.2), hsla(215,100%,55%,0.1), hsla(215,100%,55%,0.2)); }
+    .special-offer-border { position: absolute; inset: 0; border: 2px solid hsla(215,100%,55%,0.3); border-radius: 1rem; }
+    .special-offer-content { position: relative; padding: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+    @media (min-width: 768px) { .special-offer-content { padding: 2.5rem; } }
+    @media (min-width: 1024px) { .special-offer-content { flex-direction: row; gap: 2.5rem; } }
+    .special-offer-icon { width: 5rem; height: 5rem; border-radius: 1rem; background: hsla(215,100%,55%,0.2); display: flex; align-items: center; justify-content: center; color: var(--primary); flex-shrink: 0; }
+    @media (min-width: 768px) { .special-offer-icon { width: 6rem; height: 6rem; } }
+    .special-offer-text { flex-grow: 1; text-align: center; }
+    @media (min-width: 1024px) { .special-offer-text { text-align: left; } }
+    .special-offer-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.75rem; border-radius: 9999px; background: hsla(215,100%,55%,0.2); color: var(--primary); font-size: 0.875rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .special-offer-badge span { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--primary); }
+    .special-offer-text h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    @media (min-width: 768px) { .special-offer-text h3 { font-size: 1.875rem; } }
+    .special-offer-text > p { color: var(--muted); font-size: 1.125rem; margin-bottom: 1rem; }
+    .special-offer-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    @media (min-width: 1024px) { .special-offer-features { justify-content: flex-start; } }
+    .special-offer-features > div { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
+    .special-offer-features svg { color: var(--primary); }
 
     /* Additional Services */
-    .add-services { margin-top: 3rem; }
-    .add-services h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; }
-    @media (min-width: 768px) { .add-services h3 { font-size: 1.5rem; } }
-    .add-svc { padding: 1rem; border-radius: 0.75rem; background: hsla(220,45%,18%,0.5); transition: background 0.2s; display: block; }
-    .add-svc:hover { background: var(--accent); }
-    .add-svc h4 { font-weight: 600; margin-bottom: 0.5rem; }
-    .add-svc p { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.5rem; }
-    .add-svc .add-price { color: var(--primary); font-weight: 500; }
+    .additional-services { padding: 1.5rem; }
+    @media (min-width: 768px) { .additional-services { padding: 2rem; } }
+    .additional-services h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; }
+    @media (min-width: 768px) { .additional-services h3 { font-size: 1.5rem; } }
+    .additional-services-grid { display: grid; gap: 1.5rem; }
+    @media (min-width: 768px) { .additional-services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .additional-services-grid { grid-template-columns: repeat(4, 1fr); } }
+    .additional-item { padding: 1rem; border-radius: 0.75rem; background: hsla(220,45%,18%,0.5); transition: background 0.2s; display: block; }
+    .additional-item:hover { background: var(--accent); }
+    .additional-item h4 { font-family: 'Inter', sans-serif; font-weight: 600; margin-bottom: 0.5rem; }
+    .additional-item p { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .additional-item .price { color: var(--primary); font-weight: 500; }
 
     /* Benefits */
-    .benefit-bonus { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; padding: 0.5rem 1rem; border-radius: 9999px; background: hsla(220,45%,18%,0.5); border: 1px solid var(--border); font-weight: 500; }
-    .benefit-bonus svg { color: var(--primary); }
+    .benefits-grid { display: grid; gap: 1.5rem; }
+    @media (min-width: 768px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .benefits-grid { grid-template-columns: repeat(3, 1fr); } }
+    .benefit-card { padding: 1.5rem; }
+    .benefit-icon { width: 3rem; height: 3rem; border-radius: 0.5rem; background: hsla(215,100%,55%,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: var(--primary); transition: background 0.2s; }
+    .benefit-card:hover .benefit-icon { background: hsla(215,100%,55%,0.2); }
+    .benefit-card h3 { font-family: 'Inter', sans-serif; font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .benefit-card p { color: var(--muted); }
+    .benefits-pool { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 9999px; background: hsla(220,45%,18%,0.5); border: 1px solid var(--border); margin-top: 1.5rem; }
+    .benefits-pool svg { color: var(--primary); }
+    .benefits-pool span { font-weight: 500; }
 
-    /* Contacts */
-    .contact-wrap { max-width: 42rem; margin: 0 auto; }
-    .contact-header { text-align: center; margin-bottom: 2rem; }
-    .contact-emoji { width: 4rem; height: 4rem; background: hsla(215,100%,55%,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.75rem; }
-    .contact-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .contact-subtitle { color: var(--muted); }
-    .contact-btns { display: grid; gap: 1rem; }
-    @media (min-width: 640px) { .contact-btns { grid-template-columns: repeat(2, 1fr); } }
-    .contact-btn { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; border-radius: 0.75rem; background: hsla(220,45%,18%,0.5); transition: background 0.2s; }
-    .contact-btn:hover { background: var(--accent); }
-    .contact-btn-icon { width: 3.5rem; height: 3.5rem; border-radius: 0.5rem; background: hsla(215,100%,55%,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .contact-btn-icon svg { color: var(--primary); }
-    .contact-label { font-size: 0.875rem; color: var(--muted); }
-    .contact-value { font-size: 1.125rem; font-weight: 600; }
-    .contact-info { margin-top: 2rem; padding: 1rem; border-radius: 0.75rem; background: hsla(215,100%,55%,0.05); border: 1px solid hsla(215,100%,55%,0.2); text-align: center; font-size: 0.875rem; color: var(--muted); }
+    /* Contact */
+    .contact-section { background: linear-gradient(180deg, transparent, hsla(220,45%,8%,0.5)); }
+    .contact-grid { display: grid; gap: 3rem; }
+    @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+    .contact-info h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+    @media (min-width: 768px) { .contact-info h2 { font-size: 2.5rem; } }
+    .contact-info > p { color: var(--muted); font-size: 1.125rem; margin-bottom: 2rem; }
+    .contact-channels { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-channel { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 0.75rem; background: hsla(220,45%,18%,0.5); transition: background 0.2s; }
+    .contact-channel:hover { background: var(--accent); }
+    .contact-channel-icon { width: 2.5rem; height: 2.5rem; border-radius: 0.5rem; background: hsla(215,100%,55%,0.1); display: flex; align-items: center; justify-content: center; color: var(--primary); }
+    .contact-channel-text h4 { font-family: 'Inter', sans-serif; font-weight: 600; }
+    .contact-channel-text p { font-size: 0.875rem; color: var(--muted); }
+    .contact-form-card { padding: 1.5rem; }
+    @media (min-width: 768px) { .contact-form-card { padding: 2rem; } }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .form-group input, .form-group textarea { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; background: hsl(220,40%,14%); border: 1px solid var(--border); border-radius: 0.5rem; color: var(--fg); transition: border-color 0.2s; }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted); }
 
     /* Referral */
-    .referral { padding: 4rem 0; }
-    .referral-card { position: relative; overflow: hidden; }
-    .referral-content { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; position: relative; z-index: 10; }
-    @media (min-width: 768px) { .referral-content { flex-direction: row; } }
-    .referral-icon { width: 5rem; height: 5rem; border-radius: 1rem; background: hsla(215,100%,55%,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .referral-icon svg { color: var(--primary); }
-    .referral-text { text-align: center; flex-grow: 1; }
-    @media (min-width: 768px) { .referral-text { text-align: left; } }
-    .referral-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .referral-desc { color: var(--muted); font-size: 1.125rem; }
-    .referral-link { display: flex; align-items: center; gap: 0.5rem; color: var(--primary); font-weight: 600; white-space: nowrap; transition: color 0.2s; }
-    .referral-link:hover { color: hsl(215,100%,65%); }
+    .referral-card { padding: 2rem; text-align: center; position: relative; overflow: hidden; }
+    @media (min-width: 768px) { .referral-card { padding: 3rem; } }
+    .referral-card h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
+    @media (min-width: 768px) { .referral-card h2 { font-size: 2rem; } }
+    .referral-card > p { color: var(--muted); font-size: 1.125rem; margin-bottom: 1.5rem; }
+    .referral-bonus { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 0.75rem; background: hsla(215,100%,55%,0.1); border: 1px solid hsla(215,100%,55%,0.2); margin-bottom: 1.5rem; }
+    .referral-bonus span { font-size: 1.5rem; font-weight: 700; }
 
     /* Footer */
-    footer { background: var(--bg); border-top: 1px solid hsla(215,100%,55%,0.1); padding: 3rem 0; position: relative; }
-    .footer-glow { position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, hsla(215,100%,55%,0.5), transparent); }
-    .footer-grid { display: grid; gap: 2rem; margin-bottom: 2rem; }
-    @media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
-    .footer-brand p { color: var(--muted); max-width: 20rem; margin: 1rem 0; }
-    .footer-social { display: flex; gap: 0.75rem; }
-    .social-link { width: 2.5rem; height: 2.5rem; border-radius: 0.5rem; background: var(--accent); display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
-    .social-link:hover { background: hsla(220,45%,25%,1); }
-    .social-link svg { color: var(--fg); }
+    footer { position: relative; background: var(--bg); border-top: 1px solid hsla(215,100%,55%,0.1); padding: 3rem 0; }
+    @media (min-width: 768px) { footer { padding: 4rem 0; } }
+    footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, hsla(215,100%,55%,0.5), transparent); }
+    .footer-grid { display: grid; gap: 2rem; margin-bottom: 3rem; }
+    @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; } }
+    @media (min-width: 1024px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+    .footer-brand p { color: var(--muted); max-width: 400px; margin-bottom: 1.5rem; }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a { width: 2.5rem; height: 2.5rem; border-radius: 0.5rem; background: var(--accent); display: flex; align-items: center; justify-content: center; color: var(--fg); transition: background 0.2s; }
+    .footer-social a:hover { background: hsla(220,45%,18%,0.8); }
     .footer-links h4 { font-family: 'Inter', sans-serif; font-weight: 600; margin-bottom: 1rem; }
     .footer-links ul { list-style: none; }
-    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links li { margin-bottom: 0.75rem; }
     .footer-links a { color: var(--muted); transition: color 0.2s; }
     .footer-links a:hover { color: var(--fg); }
-    .footer-exec { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border); font-size: 0.875rem; color: var(--muted); }
-    .footer-exec svg { color: var(--primary); flex-shrink: 0; margin-top: 0.125rem; }
-    .footer-bottom { border-top: 1px solid var(--border); padding-top: 2rem; display: flex; flex-direction: column; gap: 0.5rem; text-align: center; font-size: 0.875rem; color: var(--muted); }
-    @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; } }
+    .footer-pool { display: flex; align-items: flex-start; gap: 0.5rem; padding-top: 0.75rem; margin-top: 0.75rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.875rem; }
+    .footer-pool svg { flex-shrink: 0; margin-top: 0.125rem; color: var(--primary); }
+    .footer-bottom { display: flex; flex-direction: column; gap: 1rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.875rem; }
+    @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; } }
+
+    .text-center { text-align: center; }
+    .glow-bg { position: absolute; border-radius: 50%; pointer-events: none; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container header-inner">
-      <a href="#" class="logo"><span class="gradient-text">JVGro</span> Consulting</a>
-      <nav>
-        <a href="#services" class="nav-link">Услуги</a>
-        <a href="#benefits" class="nav-link">Преимущества</a>
-        <a href="#contacts" class="nav-link">Контакты</a>
-        
-        <!-- Experts Dropdown -->
-        <div class="experts-dropdown">
-          <button class="experts-btn" id="expertsBtn" onclick="toggleExperts()">
-            Эксперты
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="experts-menu" id="expertsMenu">
-            <a href="https://julia-grosheva.ru" target="_blank" rel="noopener noreferrer">
-              <div class="expert-name">Юлия Грошева</div>
-              <div class="expert-role">Стратегический менторинг</div>
-            </a>
-            <a href="https://jvgro.ru/vadim/" target="_blank" rel="noopener noreferrer">
-              <div class="expert-name">Вадим Грошев</div>
-              <div class="expert-role">Налоговый консультант</div>
-            </a>
+
+<!-- Header -->
+<header>
+  <div class="container header-inner">
+    <a href="#" class="logo"><span class="gradient-text">JVGro</span> Consulting</a>
+    <nav>
+      <a href="#problems">Проблемы</a>
+      <a href="#services">Услуги</a>
+      <a href="#benefits">Почему мы</a>
+      <a href="#contacts">Контакты</a>
+      <div class="experts-dropdown">
+        <button class="experts-btn" onclick="toggleExperts()">
+          Эксперты
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="experts-menu" id="expertsMenu">
+          <a href="https://julia-grosheva.ru" target="_blank" rel="noopener noreferrer">Юлия Грошева</a>
+          <a href="https://jvgro.ru/vadim/" target="_blank" rel="noopener noreferrer">Вадим Грошев</a>
+        </div>
+      </div>
+    </nav>
+    <a href="#contacts" class="btn btn-primary header-cta">Обсудить проект</a>
+    <button class="mobile-btn" onclick="toggleMobileMenu()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#problems" onclick="toggleMobileMenu()">Проблемы</a>
+  <a href="#services" onclick="toggleMobileMenu()">Услуги</a>
+  <a href="#benefits" onclick="toggleMobileMenu()">Почему мы</a>
+  <a href="#contacts" onclick="toggleMobileMenu()">Контакты</a>
+  <div class="mobile-experts">
+    <div class="mobile-experts-title">Эксперты</div>
+    <a href="https://julia-grosheva.ru" target="_blank" rel="noopener noreferrer">Юлия Грошева</a>
+    <a href="https://jvgro.ru/vadim/" target="_blank" rel="noopener noreferrer">Вадим Грошев</a>
+  </div>
+  <div style="margin-top: 1.5rem;">
+    <a href="#contacts" class="btn btn-primary" style="width: 100%;" onclick="toggleMobileMenu()">Обсудить проект</a>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="assets/hero-abstract.jpg" alt="Background">
+  </div>
+  <div class="hero-glow"></div>
+  <div class="container hero-content">
+    <span class="badge" style="margin-bottom: 1.5rem;">Стратегический консалтинг</span>
+    <h1>Выводим бизнес на <span class="gradient-text">новый уровень</span></h1>
+    <p>Практический опыт управления компаниями от стартапа до IPO. Помогаем владельцам и топ-менеджерам принимать взвешенные решения и достигать амбициозных целей.</p>
+    <div class="hero-btns">
+      <a href="#contacts" class="btn btn-primary btn-lg glow">
+        Обсудить проект
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+      <a href="#services" class="btn btn-outline btn-lg">Узнать больше</a>
+    </div>
+  </div>
+</section>
+
+<!-- Problems -->
+<section id="problems" class="section">
+  <div class="glow-bg" style="top: 20%; right: -100px; width: 400px; height: 400px; background: radial-gradient(ellipse at center, hsla(215,100%,55%,0.1), transparent 70%);"></div>
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Знакомо?</span>
+      <h2 class="section-title">С чем сталкиваются владельцы бизнеса</h2>
+      <p class="section-desc">Эти проблемы знакомы многим предпринимателям. Хорошая новость — все они решаемы</p>
+    </div>
+    <div class="problems-grid">
+      <div class="problem-card glass-card hover-lift">
+        <div class="problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20V10M18 20V4"></path></svg>
+        </div>
+        <h3>Бизнес не растёт</h3>
+        <p>Выручка стоит на месте, а конкуренты обгоняют. Непонятно, где точки роста</p>
+      </div>
+      <div class="problem-card glass-card hover-lift">
+        <div class="problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" x2="9.01" y1="9" y2="9"></line><line x1="15" x2="15.01" y1="9" y2="9"></line></svg>
+        </div>
+        <h3>Команда демотивирована</h3>
+        <p>Ключевые сотрудники уходят, новых сложно найти. Нет системы мотивации</p>
+      </div>
+      <div class="problem-card glass-card hover-lift">
+        <div class="problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        </div>
+        <h3>Нет прозрачности</h3>
+        <p>Финансы — чёрный ящик. Непонятно, сколько реально зарабатываете и на чём теряете</p>
+      </div>
+      <div class="problem-card glass-card hover-lift">
+        <div class="problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path></svg>
+        </div>
+        <h3>Налоговые риски</h3>
+        <p>Страх проверок, неоптимальная структура, переплаты в бюджет</p>
+      </div>
+      <div class="problem-card glass-card hover-lift">
+        <div class="problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <h3>Операционка съедает</h3>
+        <p>Вы — главный исполнитель, а не владелец. Нет времени на стратегию и развитие</p>
+      </div>
+      <div class="problem-card glass-card hover-lift">
+        <div class="problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </div>
+        <h3>Сложно масштабировать</h3>
+        <p>Процессы не выстроены, всё держится на ручном управлении</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="section">
+  <div class="glow-bg" style="bottom: 0; left: -100px; width: 500px; height: 400px; background: radial-gradient(ellipse at bottom left, hsla(215,100%,55%,0.15), transparent 70%);"></div>
+  <div class="glow-bg" style="top: 33%; right: -100px; width: 400px; height: 300px; background: radial-gradient(ellipse at right, hsla(210,100%,60%,0.1), transparent 70%);"></div>
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Наши услуги</span>
+      <h2 class="section-title">Комплексный подход к развитию</h2>
+      <p class="section-desc">Экспертиза в финансах, HR и операционном управлении для устойчивого роста вашего бизнеса</p>
+    </div>
+    <div class="services-grid">
+      <!-- Mentoring -->
+      <div class="service-card glass-card hover-lift">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+        </div>
+        <h3>Стратегический менторинг</h3>
+        <p>Персональная работа с владельцами и топ-менеджерами по развитию бизнеса</p>
+        <ul class="service-features">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Выход на международные рынки</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Операционная эффективность</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Масштабирование бизнеса</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Антикризисное управление</span></li>
+        </ul>
+        <div class="service-price">
+          <div class="service-price-value gradient-text">от 35 000 ₽</div>
+          <div class="service-price-note">за сессию</div>
+          <div class="service-discount">Скидки до 30% при долгосрочном контракте</div>
+        </div>
+      </div>
+      <!-- Finance -->
+      <div class="service-card glass-card hover-lift">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        </div>
+        <h3>Финансы и налоги</h3>
+        <p>Порядок в учёте, налоговая безопасность и понятная отчётность</p>
+        <ul class="service-features">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Бухгалтерское сопровождение</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Налоговые консультации</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Управленческая отчётность</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Сопровождение проверок</span></li>
+        </ul>
+        <div class="service-price">
+          <div class="service-price-value gradient-text">от 15 000 ₽</div>
+          <div class="service-price-note">в месяц</div>
+        </div>
+      </div>
+      <!-- HR -->
+      <div class="service-card glass-card hover-lift">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <h3>HR и мотивация</h3>
+        <p>Построение эффективных команд и систем вознаграждения</p>
+        <ul class="service-features">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Разработка систем мотивации</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Опционные программы</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Найм топ-менеджеров</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Индивидуальные планы развития</span></li>
+        </ul>
+        <div class="service-price">
+          <div class="service-price-value gradient-text">от 50 000 ₽</div>
+          <div class="service-price-note">за проект</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Special Offer -->
+    <div class="special-offer">
+      <div class="special-offer-bg"></div>
+      <div class="special-offer-border"></div>
+      <div class="special-offer-content">
+        <div class="special-offer-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </div>
+        <div class="special-offer-text">
+          <div class="special-offer-badge"><span></span>СПЕЦПРЕДЛОЖЕНИЕ</div>
+          <h3>Оптимизация финслужбы на 30% за 3 месяца</h3>
+          <p>Комплексный аудит и перестройка финансовых процессов вашей компании с измеримым результатом</p>
+          <div class="special-offer-features">
+            <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path></svg><span>Гарантия результата</span></div>
+            <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Фиксированный срок</span></div>
           </div>
         </div>
-        
-        <a href="#contacts" class="btn btn-primary">Оставить заявку</a>
-      </nav>
-      <button class="mobile-btn" id="mobileBtn" onclick="toggleMobileMenu()">
-        <svg id="menuIcon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
-        <svg id="closeIcon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
-      </button>
+        <a href="#contacts" class="btn btn-primary btn-lg glow">
+          Узнать подробнее
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
     </div>
-    <div id="mobileNav" class="mobile-nav">
-      <div class="container">
-        <a href="#services" onclick="closeMobileMenu()">Услуги</a>
-        <a href="#benefits" onclick="closeMobileMenu()">Преимущества</a>
-        <a href="#contacts" onclick="closeMobileMenu()">Контакты</a>
-        <div class="experts-section">
-          <div class="experts-label">Эксперты</div>
-          <a href="https://julia-grosheva.ru" target="_blank" rel="noopener noreferrer" class="expert-item">
-            <div class="expert-name">Юлия Грошева</div>
-            <div class="expert-role">Стратегический менторинг</div>
+
+    <!-- Additional Services -->
+    <div class="additional-services glass-card">
+      <h3>Дополнительные услуги</h3>
+      <div class="additional-services-grid">
+        <div class="additional-item">
+          <h4>Независимый директор</h4>
+          <p>Участие в совете директоров, независимая экспертиза решений и контроль</p>
+          <span class="price">от 50 000 ₽/мес</span>
+        </div>
+        <div class="additional-item">
+          <h4>Риск-аудит контрактов</h4>
+          <p>Анализ договоров на юридические и финансовые риски перед подписанием</p>
+          <span class="price">от 15 000 ₽</span>
+        </div>
+        <div class="additional-item">
+          <h4>Проектный консалтинг</h4>
+          <p>Оценка рисков, аудит процессов, рекомендации по оптимизации</p>
+          <span class="price">по договорённости</span>
+        </div>
+        <a href="https://jvgro.ru/presskit" target="_blank" rel="noopener noreferrer" class="additional-item">
+          <h4>Лекции и семинары</h4>
+          <p>Выступления на корпоративных мероприятиях и конференциях</p>
+          <span class="price">от 50 000 ₽/час</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 3rem;">
+      <a href="#contacts" class="btn btn-primary btn-lg">
+        Обсудить задачу
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section id="benefits" class="section">
+  <div class="glow-bg" style="top: 0; left: 25%; width: 600px; height: 400px; background: radial-gradient(ellipse at top, hsla(215,100%,55%,0.15), transparent 70%);"></div>
+  <div class="glow-bg" style="bottom: 0; right: 0; width: 500px; height: 300px; background: radial-gradient(ellipse at bottom right, hsla(210,100%,60%,0.1), transparent 70%);"></div>
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Почему мы</span>
+      <h2 class="section-title">Ваш надёжный партнёр</h2>
+      <p class="section-desc">Мы не просто консультируем — мы становимся частью вашей команды и работаем на результат</p>
+      <div class="benefits-pool">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <span>+ пул проверенных исполнителей под любые задачи и бюджет</span>
+      </div>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card glass-card hover-lift">
+        <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div>
+        <h3>Практический опыт</h3>
+        <p>Не теория из учебников, а реальные кейсы из руководства крупными компаниями</p>
+      </div>
+      <div class="benefit-card glass-card hover-lift">
+        <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg></div>
+        <h3>Индивидуальный подход</h3>
+        <p>Каждая рекомендация адаптирована под специфику именно вашего бизнеса</p>
+      </div>
+      <div class="benefit-card glass-card hover-lift">
+        <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+        <h3>Быстрый результат</h3>
+        <p>Первые улучшения уже после первой сессии. Конкретные действия, а не общие советы</p>
+      </div>
+      <div class="benefit-card glass-card hover-lift">
+        <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg></div>
+        <h3>Технологичный подход</h3>
+        <p>Благодаря опыту в IT автоматизируем рутину, внедряем современные инструменты и ускоряем процессы</p>
+      </div>
+      <div class="benefit-card glass-card hover-lift">
+        <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg></div>
+        <h3>Международный опыт</h3>
+        <p>Сопровождение выхода на зарубежные рынки, работа с иностранными инвесторами</p>
+      </div>
+      <div class="benefit-card glass-card hover-lift">
+        <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+        <h3>Конфиденциальность</h3>
+        <p>Строгое соблюдение NDA и бизнес-этики. Ваши данные в безопасности</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contacts" class="section contact-section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="badge" style="margin-bottom: 1rem;">Контакты</span>
+        <h2>Давайте обсудим вашу задачу</h2>
+        <p>Расскажите о своём бизнесе — мы предложим решение и оценим, чем можем быть полезны</p>
+        <div class="contact-channels">
+          <a href="https://t.me/JuliaGr0" target="_blank" rel="noopener noreferrer" class="contact-channel">
+            <div class="contact-channel-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></div>
+            <div class="contact-channel-text"><h4>Telegram</h4><p>@JuliaGr0</p></div>
           </a>
-          <a href="https://jvgro.ru/vadim/" target="_blank" rel="noopener noreferrer" class="expert-item">
-            <div class="expert-name">Вадим Грошев</div>
-            <div class="expert-role">Налоговый консультант</div>
+          <a href="mailto:jvgrosheva@ya.ru" class="contact-channel">
+            <div class="contact-channel-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></div>
+            <div class="contact-channel-text"><h4>Email</h4><p>jvgrosheva@ya.ru</p></div>
           </a>
         </div>
-        <a href="#contacts" class="btn btn-primary" style="margin-top:1rem;width:100%;justify-content:center;" onclick="closeMobileMenu()">Оставить заявку</a>
+      </div>
+      <div class="contact-form-card glass-card">
+        <form onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.');">
+          <div class="form-group"><label for="name">Ваше имя</label><input type="text" id="name" placeholder="Как к вам обращаться?" required></div>
+          <div class="form-group"><label for="contact">Телефон или Telegram</label><input type="text" id="contact" placeholder="+7 (___) ___-__-__ или @username" required></div>
+          <div class="form-group"><label for="message">Кратко о задаче</label><textarea id="message" placeholder="Расскажите, с чем нужна помощь"></textarea></div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Отправить<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button>
+        </form>
       </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-bg">
-        <img src="assets/hero-abstract.jpg" alt="">
-        <div class="hero-overlay"></div>
-      </div>
-      <div class="container hero-content">
-        <span class="badge badge-primary">Бизнес-консалтинг нового уровня</span>
-        <h1 class="hero-title">Выведем ваш бизнес на <span class="gradient-text">новый уровень</span></h1>
-        <p class="hero-desc">Стратегический менторинг, финансовый консалтинг и операционная трансформация. Помогаем предпринимателям видеть реальную картину и принимать правильные решения.</p>
-        <div class="hero-btns">
-          <a href="#contacts" class="btn btn-primary btn-lg glow">Получить консультацию <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-          <a href="#services" class="btn btn-outline btn-lg">Узнать об услугах</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <svg class="stat-icon" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-            <div class="stat-value">15+</div>
-            <div class="stat-label">лет опыта</div>
-          </div>
-          <div class="stat">
-            <svg class="stat-icon" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
-            <div class="stat-value">200+</div>
-            <div class="stat-label">проектов</div>
-          </div>
-          <div class="stat">
-            <svg class="stat-icon" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <div class="stat-value">50+</div>
-            <div class="stat-label">клиентов</div>
-          </div>
+<!-- Referral -->
+<section class="section">
+  <div class="container">
+    <div class="referral-card glass-card">
+      <span class="badge" style="margin-bottom: 1rem;">Партнёрская программа</span>
+      <h2>Рекомендуйте нас — получайте бонус</h2>
+      <p>Знаете предпринимателя, которому нужна помощь? Порекомендуйте нас и получите вознаграждение</p>
+      <div class="referral-bonus"><span class="gradient-text">10%</span><span> от первого контракта</span></div>
+      <a href="#contacts" class="btn btn-primary btn-lg">Узнать подробности<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom: 1rem;"><span class="gradient-text">JVGro</span> Consulting</div>
+        <p>Стратегический и операционный консалтинг для бизнеса. Помогаем предпринимателям выйти на новый уровень эффективности и прибыли.</p>
+        <div class="footer-social">
+          <a href="https://t.me/JuliaGr0" target="_blank" rel="noopener noreferrer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a>
+          <a href="mailto:jvgrosheva@ya.ru"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></a>
         </div>
       </div>
-      <div class="scroll-ind"><div class="scroll-mouse"><div class="scroll-dot"></div></div></div>
-    </section>
-
-    <!-- Problems Section -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="badge badge-red">Знакомые проблемы?</span>
-          <h2 class="section-title">Почему бизнес не растёт</h2>
-          <p class="section-desc">Многие предприниматели сталкиваются с этими проблемами, но не знают с чего начать их решение</p>
-        </div>
-        <div class="grid-4">
-          <div class="glass-card hover-lift">
-            <div class="icon-box icon-box-red"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div>
-            <h3 class="card-title">Деньги есть, прибыли нет</h3>
-            <p class="card-text">Без понятного учёта бизнес зарабатывает «на глаз» и теряет деньги незаметно.</p>
-          </div>
-          <div class="glass-card hover-lift">
-            <div class="icon-box icon-box-red"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div>
-            <h3 class="card-title">Страх налоговой</h3>
-            <p class="card-text">Ошибки в документах и сделках — частая причина доначислений и штрафов.</p>
-          </div>
-          <div class="glass-card hover-lift">
-            <div class="icon-box icon-box-red"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-            <h3 class="card-title">Хаос в отчётах</h3>
-            <p class="card-text">Цифры есть, но решений на них принять невозможно. Нет прозрачности.</p>
-          </div>
-          <div class="glass-card hover-lift">
-            <div class="icon-box icon-box-red"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-            <h3 class="card-title">Команда не растёт</h3>
-            <p class="card-text">Нет чёткой системы мотивации, развития лидеров и удержания ключевых сотрудников.</p>
-          </div>
-        </div>
+      <div class="footer-links">
+        <h4>Услуги</h4>
+        <ul>
+          <li><a href="#services">Стратегический менторинг</a></li>
+          <li><a href="#services">Финансы и налоги</a></li>
+          <li><a href="#services">HR и мотивация</a></li>
+          <li><a href="#services">Независимый директор</a></li>
+        </ul>
       </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="badge badge-primary">Наши услуги</span>
-          <h2 class="section-title">Комплексный подход к развитию</h2>
-          <p class="section-desc">Экспертиза в финансах, HR и операционном управлении для устойчивого роста вашего бизнеса</p>
+      <div class="footer-links">
+        <h4>Эксперты</h4>
+        <ul>
+          <li><a href="https://julia-grosheva.ru" target="_blank" rel="noopener noreferrer">Юлия Грошева</a></li>
+          <li><a href="https://jvgro.ru/vadim/" target="_blank" rel="noopener noreferrer">Вадим Грошев</a></li>
+        </ul>
+        <div class="footer-pool">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Пул проверенных исполнителей под любой бюджет</span>
         </div>
-        <div class="grid-3">
-          <div class="glass-card service-card hover-lift">
-            <div class="service-icon"><img src="assets/icon-mentoring.jpg" alt="Менторинг"></div>
-            <h3 class="service-title">Стратегический менторинг</h3>
-            <p class="card-text">Персональная работа с владельцами и топ-менеджерами по развитию бизнеса</p>
-            <ul class="service-features">
-              <li><svg class="check" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Выход на международные рынки</li>
-              <li><svg class="check" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Операционная эффективность</li>
-              <li><svg class="check" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Масштабирование бизнеса</li>
-              <li><svg class="check" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Антикризисное управление</li>
-            </ul>
-            <div class="price-box">
-              <div class="price gradient-text">от 35 000 ₽</div>
-              <div class="price-note">за сессию</div>
-              <div class="discount">Скидки до 30% при долгосрочном контракте</div>
-            </div>
-          </div>
-          <div class="glass-card service-card hover-lift">
-            <div class="service-icon"><img src="assets/icon-finance.jpg" alt="Финансы"></div>
-            <h3 class="service-title">Финансы и налоги</h3>
-            <p class="card-text">Порядок в учёте, налоговая безопасность и понятная отчётность</p>
-            <ul class="service-features">
-              <li><svg class="check" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Бухгалтерское сопровождение</li>
-              <li><svg class="check" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Налоговые консультации</li>
-              <li><svg class="check" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Управленческая отчётность</li>
-              <li><svg class="check" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Сопровождение проверок</li>
-            </ul>
-            <div class="price-box">
-              <div class="price gradient-text">от 15 000 ₽</div>
-              <div class="price-note">в месяц</div>
-            </div>
-          </div>
-          <div class="glass-card service-card hover-lift">
-            <div class="service-icon"><img src="assets/icon-hr.jpg" alt="HR"></div>
-            <h3 class="service-title">HR и мотивация</h3>
-            <p class="card-text">Построение эффективных команд и систем вознаграждения</p>
-            <ul class="service-features">
-              <li><svg class="check" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Разработка систем мотивации</li>
-              <li><svg class="check" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Опционные программы</li>
-              <li><svg class="check" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Найм топ-менеджеров</li>
-              <li><svg class="check" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Индивидуальные планы развития</li>
-            </ul>
-            <div class="price-box">
-              <div class="price gradient-text">от 50 000 ₽</div>
-              <div class="price-note">за проект</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Special Offer -->
-        <div class="offer">
-          <div class="offer-content">
-            <div class="offer-icon"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-            <div class="offer-text">
-              <div class="offer-badge"><span class="pulse-dot"></span>СПЕЦПРЕДЛОЖЕНИЕ</div>
-              <h3 class="offer-title">Оптимизация финслужбы на 30% за 3 месяца</h3>
-              <p class="offer-desc">Комплексный аудит и перестройка финансовых процессов вашей компании с измеримым результатом</p>
-              <div class="offer-features">
-                <div class="offer-feat"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg><span>Гарантия результата</span></div>
-                <div class="offer-feat"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Фиксированный срок</span></div>
-              </div>
-            </div>
-            <a href="#contacts" class="btn btn-primary btn-lg glow">Узнать подробнее <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-          </div>
-        </div>
-
-        <!-- Additional Services -->
-        <div class="glass-card add-services">
-          <h3>Дополнительные услуги</h3>
-          <div class="grid-4">
-            <div class="add-svc"><h4>Независимый директор</h4><p>Участие в совете директоров, независимая экспертиза решений и контроль</p><div class="add-price">от 50 000 ₽/мес</div></div>
-            <div class="add-svc"><h4>Риск-аудит контрактов</h4><p>Анализ договоров на юридические и финансовые риски перед подписанием</p><div class="add-price">от 15 000 ₽</div></div>
-            <div class="add-svc"><h4>Проектный консалтинг</h4><p>Оценка рисков, аудит процессов, рекомендации по оптимизации</p><div class="add-price">по договорённости</div></div>
-            <a href="https://jvgro.ru/presskit" target="_blank" rel="noopener noreferrer" class="add-svc"><h4>Лекции и семинары</h4><p>Выступления на корпоративных мероприятиях и конференциях</p><div class="add-price">от 50 000 ₽/час</div></a>
-          </div>
-        </div>
-
-        <div style="text-align:center;margin-top:3rem;">
-          <a href="#contacts" class="btn btn-primary btn-lg">Обсудить задачу <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="benefits" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="badge badge-primary">Почему мы</span>
-          <h2 class="section-title">Ваш надёжный партнёр</h2>
-          <p class="section-desc">Мы не просто консультируем — мы становимся частью вашей команды и работаем на результат</p>
-          <div class="benefit-bonus"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>+ пул проверенных исполнителей под любые задачи и бюджет</div>
-        </div>
-        <div class="grid-3">
-          <div class="glass-card hover-lift"><div class="icon-box icon-box-primary"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><h3 class="card-title">Практический опыт</h3><p class="card-text">Не теория из учебников, а реальные кейсы из руководства крупными компаниями</p></div>
-          <div class="glass-card hover-lift"><div class="icon-box icon-box-primary"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3 class="card-title">Индивидуальный подход</h3><p class="card-text">Каждая рекомендация адаптирована под специфику именно вашего бизнеса</p></div>
-          <div class="glass-card hover-lift"><div class="icon-box icon-box-primary"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h3 class="card-title">Быстрый результат</h3><p class="card-text">Первые улучшения уже после первой сессии. Конкретные действия, а не общие советы</p></div>
-          <div class="glass-card hover-lift"><div class="icon-box icon-box-primary"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div><h3 class="card-title">Технологичный подход</h3><p class="card-text">Благодаря опыту в IT автоматизируем рутину, внедряем современные инструменты</p></div>
-          <div class="glass-card hover-lift"><div class="icon-box icon-box-primary"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div><h3 class="card-title">Международный опыт</h3><p class="card-text">Сопровождение выхода на зарубежные рынки, работа с иностранными инвесторами</p></div>
-          <div class="glass-card hover-lift"><div class="icon-box icon-box-primary"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3 class="card-title">Конфиденциальность</h3><p class="card-text">Строгое соблюдение NDA и бизнес-этики. Ваши данные в безопасности</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contacts Section -->
-    <section id="contacts" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="badge badge-primary">Начнём знакомство</span>
-          <h2 class="section-title">Бесплатная интро-встреча</h2>
-          <p class="section-desc">Запишитесь на 15-минутную консультацию, чтобы обсудить ваш запрос и оценить ситуацию. Напишите напрямую — это быстрее.</p>
-        </div>
-        <div class="contact-wrap">
-          <div class="glass-card">
-            <div class="contact-header">
-              <div class="contact-emoji">💬</div>
-              <h3 class="contact-title">Напишите нам прямо сейчас</h3>
-              <p class="contact-subtitle">Выберите удобный способ связи</p>
-            </div>
-            <div class="contact-btns">
-              <a href="https://t.me/JuliaGr0" target="_blank" rel="noopener noreferrer" class="contact-btn">
-                <div class="contact-btn-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div>
-                <div><div class="contact-label">Telegram</div><div class="contact-value">@JuliaGr0</div></div>
-              </a>
-              <a href="mailto:jvgrosheva@ya.ru" class="contact-btn">
-                <div class="contact-btn-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
-                <div><div class="contact-label">Email</div><div class="contact-value">jvgrosheva@ya.ru</div></div>
-              </a>
-            </div>
-            <div class="contact-info"><span style="color:var(--primary);font-weight:500;">Что получите на встрече:</span> разбор вашей ситуации, первичные рекомендации и понимание, как мы можем помочь</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Referral Section -->
-    <section class="referral">
-      <div class="container">
-        <div class="glass-card referral-card glow">
-          <div class="referral-content">
-            <div class="referral-icon"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/><path d="M12 12V3"/><path d="m8 7 4-4 4 4"/><path d="M12 12v9"/></svg></div>
-            <div class="referral-text">
-              <h3 class="referral-title">Реферальная программа</h3>
-              <p class="referral-desc">Рекомендуйте нас партнёрам и получайте <span style="color:var(--primary);font-weight:600;">20% от стоимости контракта</span> первого года. Выплаты ежеквартально по факту получения оплат.</p>
-            </div>
-            <a href="#contacts" class="referral-link">Узнать подробнее <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-glow"></div>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#" class="logo"><span class="gradient-text">JVGro</span> Consulting</a>
-          <p>Стратегический и операционный консалтинг для бизнеса. Помогаем предпринимателям выйти на новый уровень эффективности и прибыли.</p>
-          <div class="footer-social">
-            <a href="https://t.me/JuliaGr0" target="_blank" rel="noopener noreferrer" class="social-link"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
-            <a href="mailto:jvgrosheva@ya.ru" class="social-link"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
-          </div>
-        </div>
-        <div class="footer-links">
-          <h4>Услуги</h4>
-          <ul>
-            <li><a href="#services">Стратегический менторинг</a></li>
-            <li><a href="#services">Финансы и налоги</a></li>
-            <li><a href="#services">HR и мотивация</a></li>
-            <li><a href="#services">Независимый директор</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Эксперты</h4>
-          <ul>
-            <li><a href="https://julia-grosheva.ru" target="_blank" rel="noopener noreferrer">Юлия Грошева</a></li>
-            <li><a href="https://jvgro.ru/vadim/" target="_blank" rel="noopener noreferrer">Вадим Грошев</a></li>
-          </ul>
-          <div class="footer-exec"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Пул проверенных исполнителей под любой бюджет</span></div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 JVGro Consulting. Все права защищены.</p>
-        <p>ИНН: по запросу · Политика конфиденциальности</p>
       </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <p>© 2025 JVGro Consulting. Все права защищены.</p>
+      <p>ИНН: по запросу · Политика конфиденциальности</p>
+    </div>
+  </div>
+</footer>
 
-  <script>
-    // Mobile menu toggle
-    function toggleMobileMenu() {
-      const nav = document.getElementById('mobileNav');
-      const menuIcon = document.getElementById('menuIcon');
-      const closeIcon = document.getElementById('closeIcon');
-      const isOpen = nav.classList.toggle('open');
-      menuIcon.style.display = isOpen ? 'none' : 'block';
-      closeIcon.style.display = isOpen ? 'block' : 'none';
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function toggleExperts() {
+    document.getElementById('expertsMenu').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    var dropdown = document.querySelector('.experts-dropdown');
+    var menu = document.getElementById('expertsMenu');
+    if (dropdown && !dropdown.contains(e.target)) {
+      menu.classList.remove('open');
     }
-    function closeMobileMenu() {
-      const nav = document.getElementById('mobileNav');
-      const menuIcon = document.getElementById('menuIcon');
-      const closeIcon = document.getElementById('closeIcon');
-      nav.classList.remove('open');
-      menuIcon.style.display = 'block';
-      closeIcon.style.display = 'none';
-    }
+  });
+</script>
 
-    // Experts dropdown toggle
-    function toggleExperts() {
-      const btn = document.getElementById('expertsBtn');
-      const menu = document.getElementById('expertsMenu');
-      const isOpen = menu.classList.toggle('open');
-      btn.classList.toggle('open', isOpen);
-    }
-
-    // Close experts dropdown when clicking outside
-    document.addEventListener('click', function(e) {
-      const dropdown = document.querySelector('.experts-dropdown');
-      if (dropdown && !dropdown.contains(e.target)) {
-        document.getElementById('expertsMenu').classList.remove('open');
-        document.getElementById('expertsBtn').classList.remove('open');
-      }
-    });
-  </script>
 </body>
 </html>
