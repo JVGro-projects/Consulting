@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JVGro Consulting — Стратегический менторинг и бизнес-консалтинг</title>
   <meta name="description" content="Стратегический менторинг, финансовый консалтинг, HR и мотивация. Помогаем предпринимателям выйти на новый уровень эффективности и прибыли.">
+  <meta name="author" content="JVGro Consulting">
+  <meta name="keywords" content="бизнес консалтинг, менторинг, стратегия, финансы, HR, мотивация, налоги">
+  <meta property="og:title" content="JVGro Consulting — Стратегический менторинг и бизнес-консалтинг">
+  <meta property="og:description" content="Стратегический менторинг, финансовый консалтинг, HR и мотивация. Помогаем предпринимателям выйти на новый уровень.">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -55,12 +60,13 @@
     .card-text { color: var(--muted); font-size: 1rem; }
     .hover-lift { transition: transform 0.3s, box-shadow 0.3s; }
     .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 8px 40px hsla(220,50%,3%,0.6); }
-    .glow-bg { position: absolute; pointer-events: none; border-radius: 50%; filter: blur(80px); }
 
     /* Header */
     header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: hsla(220,50%,6%,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid hsla(215,100%,55%,0.1); }
     .header-inner { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
-    .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; }
+    @media (min-width: 768px) { .header-inner { height: 5rem; } }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; }
+    @media (min-width: 768px) { .logo { font-size: 1.5rem; } }
     nav { display: none; align-items: center; gap: 2rem; }
     .nav-link { color: var(--muted); font-weight: 500; transition: color 0.2s; }
     .nav-link:hover { color: var(--fg); }
@@ -69,7 +75,25 @@
     .mobile-nav { display: none; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem; }
     .mobile-nav.open { display: block; }
     .mobile-nav a { display: block; padding: 0.75rem 0; color: var(--fg); font-weight: 500; }
+    .mobile-nav .experts-section { border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 0.5rem; }
+    .mobile-nav .experts-label { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .mobile-nav .expert-item { display: block; padding: 0.5rem 0; }
+    .mobile-nav .expert-name { font-weight: 500; color: var(--fg); }
+    .mobile-nav .expert-role { font-size: 0.875rem; color: var(--muted); }
     @media (min-width: 768px) { .mobile-nav { display: none !important; } }
+
+    /* Experts Dropdown */
+    .experts-dropdown { position: relative; }
+    .experts-btn { display: flex; align-items: center; gap: 0.25rem; color: var(--muted); font-weight: 500; background: none; border: none; cursor: pointer; font-size: 1rem; font-family: inherit; transition: color 0.2s; }
+    .experts-btn:hover { color: var(--fg); }
+    .experts-btn svg { transition: transform 0.2s; }
+    .experts-btn.open svg { transform: rotate(180deg); }
+    .experts-menu { position: absolute; top: 100%; right: 0; margin-top: 0.5rem; width: 16rem; background: linear-gradient(145deg, hsla(220,50%,12%,0.95), hsla(220,50%,8%,0.98)); backdrop-filter: blur(16px); border: 1px solid hsla(215,100%,55%,0.1); border-radius: 0.5rem; overflow: hidden; box-shadow: 0 10px 40px hsla(220,50%,3%,0.5); opacity: 0; visibility: hidden; transform: translateY(8px); transition: all 0.2s; }
+    .experts-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .experts-menu a { display: block; padding: 0.75rem 1rem; transition: background 0.2s; }
+    .experts-menu a:hover { background: var(--accent); }
+    .experts-menu .expert-name { font-weight: 500; color: var(--fg); }
+    .experts-menu .expert-role { font-size: 0.875rem; color: var(--muted); }
 
     /* Hero */
     .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding-top: 5rem; }
@@ -104,18 +128,22 @@
     .discount { color: var(--primary); font-size: 0.875rem; font-weight: 500; margin-top: 0.25rem; }
 
     /* Special Offer */
-    .offer { position: relative; border: 2px solid hsla(215,100%,55%,0.3); border-radius: 1rem; padding: 2rem; margin: 3rem 0; background: linear-gradient(135deg, hsla(215,100%,55%,0.15), hsla(215,100%,55%,0.05)); }
-    .offer-content { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; }
+    .offer { position: relative; border: 2px solid hsla(215,100%,55%,0.3); border-radius: 1rem; padding: 1.5rem; margin: 3rem 0; background: linear-gradient(135deg, hsla(215,100%,55%,0.15), hsla(215,100%,55%,0.05)); overflow: hidden; }
+    @media (min-width: 768px) { .offer { padding: 2.5rem; } }
+    .offer::before { content: ''; position: absolute; top: 0; right: 0; width: 8rem; height: 8rem; background: hsla(215,100%,55%,0.2); border-radius: 50%; filter: blur(3rem); }
+    .offer::after { content: ''; position: absolute; bottom: 0; left: 0; width: 6rem; height: 6rem; background: hsla(215,100%,55%,0.15); border-radius: 50%; filter: blur(2rem); }
+    .offer-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; }
     @media (min-width: 1024px) { .offer-content { flex-direction: row; text-align: left; } }
-    .offer-icon { width: 5rem; height: 5rem; border-radius: 1rem; background: hsla(215,100%,55%,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .offer-icon { width: 5rem; height: 5rem; border-radius: 1rem; background: hsla(215,100%,55%,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: pulse-icon 2s infinite; }
+    @keyframes pulse-icon { 0%,100% { opacity: 1; } 50% { opacity: 0.7; } }
     .offer-icon svg { color: var(--primary); }
     .offer-text { flex-grow: 1; }
-    .offer-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: hsla(215,100%,55%,0.2); color: var(--primary); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .offer-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: hsla(215,100%,55%,0.2); color: var(--primary); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.75rem; }
     .pulse-dot { width: 0.5rem; height: 0.5rem; background: var(--primary); border-radius: 50%; animation: pulse 1.5s infinite; }
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
     .offer-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-    @media (min-width: 768px) { .offer-title { font-size: 1.75rem; } }
-    .offer-desc { color: var(--muted); font-size: 1.125rem; margin-bottom: 1rem; }
+    @media (min-width: 768px) { .offer-title { font-size: 1.875rem; } }
+    .offer-desc { color: var(--muted); font-size: 1.125rem; margin-bottom: 1rem; max-width: 40rem; }
     .offer-features { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
     @media (min-width: 1024px) { .offer-features { justify-content: flex-start; } }
     .offer-feat { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
@@ -124,7 +152,8 @@
     /* Additional Services */
     .add-services { margin-top: 3rem; }
     .add-services h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; }
-    .add-svc { padding: 1rem; border-radius: 0.75rem; background: hsla(220,45%,18%,0.5); transition: background 0.2s; }
+    @media (min-width: 768px) { .add-services h3 { font-size: 1.5rem; } }
+    .add-svc { padding: 1rem; border-radius: 0.75rem; background: hsla(220,45%,18%,0.5); transition: background 0.2s; display: block; }
     .add-svc:hover { background: var(--accent); }
     .add-svc h4 { font-weight: 600; margin-bottom: 0.5rem; }
     .add-svc p { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.5rem; }
@@ -144,7 +173,7 @@
     @media (min-width: 640px) { .contact-btns { grid-template-columns: repeat(2, 1fr); } }
     .contact-btn { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; border-radius: 0.75rem; background: hsla(220,45%,18%,0.5); transition: background 0.2s; }
     .contact-btn:hover { background: var(--accent); }
-    .contact-btn-icon { width: 3.5rem; height: 3.5rem; border-radius: 0.5rem; background: hsla(215,100%,55%,0.1); display: flex; align-items: center; justify-content: center; }
+    .contact-btn-icon { width: 3.5rem; height: 3.5rem; border-radius: 0.5rem; background: hsla(215,100%,55%,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .contact-btn-icon svg { color: var(--primary); }
     .contact-label { font-size: 0.875rem; color: var(--muted); }
     .contact-value { font-size: 1.125rem; font-weight: 600; }
@@ -161,7 +190,8 @@
     @media (min-width: 768px) { .referral-text { text-align: left; } }
     .referral-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
     .referral-desc { color: var(--muted); font-size: 1.125rem; }
-    .referral-link { display: flex; align-items: center; gap: 0.5rem; color: var(--primary); font-weight: 600; white-space: nowrap; }
+    .referral-link { display: flex; align-items: center; gap: 0.5rem; color: var(--primary); font-weight: 600; white-space: nowrap; transition: color 0.2s; }
+    .referral-link:hover { color: hsl(215,100%,65%); }
 
     /* Footer */
     footer { background: var(--bg); border-top: 1px solid hsla(215,100%,55%,0.1); padding: 3rem 0; position: relative; }
@@ -171,7 +201,7 @@
     .footer-brand p { color: var(--muted); max-width: 20rem; margin: 1rem 0; }
     .footer-social { display: flex; gap: 0.75rem; }
     .social-link { width: 2.5rem; height: 2.5rem; border-radius: 0.5rem; background: var(--accent); display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
-    .social-link:hover { background: hsla(220,45%,22%,1); }
+    .social-link:hover { background: hsla(220,45%,25%,1); }
     .social-link svg { color: var(--fg); }
     .footer-links h4 { font-family: 'Inter', sans-serif; font-weight: 600; margin-bottom: 1rem; }
     .footer-links ul { list-style: none; }
@@ -182,8 +212,6 @@
     .footer-exec svg { color: var(--primary); flex-shrink: 0; margin-top: 0.125rem; }
     .footer-bottom { border-top: 1px solid var(--border); padding-top: 2rem; display: flex; flex-direction: column; gap: 0.5rem; text-align: center; font-size: 0.875rem; color: var(--muted); }
     @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; } }
-
-    .hidden { display: none; }
   </style>
 </head>
 <body>
@@ -194,23 +222,55 @@
         <a href="#services" class="nav-link">Услуги</a>
         <a href="#benefits" class="nav-link">Преимущества</a>
         <a href="#contacts" class="nav-link">Контакты</a>
+        
+        <!-- Experts Dropdown -->
+        <div class="experts-dropdown">
+          <button class="experts-btn" id="expertsBtn" onclick="toggleExperts()">
+            Эксперты
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="experts-menu" id="expertsMenu">
+            <a href="https://julia-grosheva.ru" target="_blank" rel="noopener noreferrer">
+              <div class="expert-name">Юлия Грошева</div>
+              <div class="expert-role">Стратегический менторинг</div>
+            </a>
+            <a href="https://jvgro.ru/vadim/" target="_blank" rel="noopener noreferrer">
+              <div class="expert-name">Вадим Грошев</div>
+              <div class="expert-role">Налоговый консультант</div>
+            </a>
+          </div>
+        </div>
+        
         <a href="#contacts" class="btn btn-primary">Оставить заявку</a>
       </nav>
-      <button class="mobile-btn" onclick="document.getElementById('mobileNav').classList.toggle('open')">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+      <button class="mobile-btn" id="mobileBtn" onclick="toggleMobileMenu()">
+        <svg id="menuIcon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+        <svg id="closeIcon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
       </button>
     </div>
     <div id="mobileNav" class="mobile-nav">
       <div class="container">
-        <a href="#services" onclick="document.getElementById('mobileNav').classList.remove('open')">Услуги</a>
-        <a href="#benefits" onclick="document.getElementById('mobileNav').classList.remove('open')">Преимущества</a>
-        <a href="#contacts" onclick="document.getElementById('mobileNav').classList.remove('open')">Контакты</a>
-        <a href="#contacts" class="btn btn-primary" style="margin-top:1rem;width:100%;justify-content:center;" onclick="document.getElementById('mobileNav').classList.remove('open')">Оставить заявку</a>
+        <a href="#services" onclick="closeMobileMenu()">Услуги</a>
+        <a href="#benefits" onclick="closeMobileMenu()">Преимущества</a>
+        <a href="#contacts" onclick="closeMobileMenu()">Контакты</a>
+        <div class="experts-section">
+          <div class="experts-label">Эксперты</div>
+          <a href="https://julia-grosheva.ru" target="_blank" rel="noopener noreferrer" class="expert-item">
+            <div class="expert-name">Юлия Грошева</div>
+            <div class="expert-role">Стратегический менторинг</div>
+          </a>
+          <a href="https://jvgro.ru/vadim/" target="_blank" rel="noopener noreferrer" class="expert-item">
+            <div class="expert-name">Вадим Грошев</div>
+            <div class="expert-role">Налоговый консультант</div>
+          </a>
+        </div>
+        <a href="#contacts" class="btn btn-primary" style="margin-top:1rem;width:100%;justify-content:center;" onclick="closeMobileMenu()">Оставить заявку</a>
       </div>
     </div>
   </header>
 
   <main>
+    <!-- Hero Section -->
     <section class="hero">
       <div class="hero-bg">
         <img src="assets/hero-abstract.jpg" alt="">
@@ -245,6 +305,7 @@
       <div class="scroll-ind"><div class="scroll-mouse"><div class="scroll-dot"></div></div></div>
     </section>
 
+    <!-- Problems Section -->
     <section class="section">
       <div class="container">
         <div class="section-header">
@@ -277,6 +338,7 @@
       </div>
     </section>
 
+    <!-- Services Section -->
     <section id="services" class="section">
       <div class="container">
         <div class="section-header">
@@ -333,6 +395,7 @@
           </div>
         </div>
 
+        <!-- Special Offer -->
         <div class="offer">
           <div class="offer-content">
             <div class="offer-icon"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
@@ -349,6 +412,7 @@
           </div>
         </div>
 
+        <!-- Additional Services -->
         <div class="glass-card add-services">
           <h3>Дополнительные услуги</h3>
           <div class="grid-4">
@@ -365,6 +429,7 @@
       </div>
     </section>
 
+    <!-- Benefits Section -->
     <section id="benefits" class="section">
       <div class="container">
         <div class="section-header">
@@ -384,6 +449,7 @@
       </div>
     </section>
 
+    <!-- Contacts Section -->
     <section id="contacts" class="section">
       <div class="container">
         <div class="section-header">
@@ -414,6 +480,7 @@
       </div>
     </section>
 
+    <!-- Referral Section -->
     <section class="referral">
       <div class="container">
         <div class="glass-card referral-card glow">
@@ -457,4 +524,51 @@
             <li><a href="https://julia-grosheva.ru" target="_blank" rel="noopener noreferrer">Юлия Грошева</a></li>
             <li><a href="https://jvgro.ru/vadim/" target="_blank" rel="noopener noreferrer">Вадим Грошев</a></li>
           </ul>
-          <div class="footer-exec"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Пул
+          <div class="footer-exec"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Пул проверенных исполнителей под любой бюджет</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 JVGro Consulting. Все права защищены.</p>
+        <p>ИНН: по запросу · Политика конфиденциальности</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const nav = document.getElementById('mobileNav');
+      const menuIcon = document.getElementById('menuIcon');
+      const closeIcon = document.getElementById('closeIcon');
+      const isOpen = nav.classList.toggle('open');
+      menuIcon.style.display = isOpen ? 'none' : 'block';
+      closeIcon.style.display = isOpen ? 'block' : 'none';
+    }
+    function closeMobileMenu() {
+      const nav = document.getElementById('mobileNav');
+      const menuIcon = document.getElementById('menuIcon');
+      const closeIcon = document.getElementById('closeIcon');
+      nav.classList.remove('open');
+      menuIcon.style.display = 'block';
+      closeIcon.style.display = 'none';
+    }
+
+    // Experts dropdown toggle
+    function toggleExperts() {
+      const btn = document.getElementById('expertsBtn');
+      const menu = document.getElementById('expertsMenu');
+      const isOpen = menu.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+    }
+
+    // Close experts dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      const dropdown = document.querySelector('.experts-dropdown');
+      if (dropdown && !dropdown.contains(e.target)) {
+        document.getElementById('expertsMenu').classList.remove('open');
+        document.getElementById('expertsBtn').classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
