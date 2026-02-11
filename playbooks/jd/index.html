@@ -1,1 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Регламент — Разработка должностной инструкции с использованием ИИ</title>
+<meta name="description" content="Порядок разработки должностной инструкции с использованием ИИ как инструмента структурирования, анализа и усиления управленческих функций." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f7f8fa;--fg:#1e2a3a;
+  --primary:hsl(215,60%,32%);--primary-fg:#f0f4f9;
+  --secondary:#e8ecf1;--secondary-fg:#1e2a3a;
+  --muted:#f0f2f5;--muted-fg:hsl(215,12%,50%);
+  --accent:hsl(35,85%,55%);
+  --border:#dce1e8;
+  --card:rgba(255,255,255,.8);
+  --highlight-bg:hsl(215,60%,96%);--highlight-border:hsl(215,60%,32%);
+  --step-bg:hsl(215,60%,32%);--step-fg:#f0f4f9;
+  --doc-max:860px;
+  --font-heading:'Merriweather',Georgia,serif;
+  --font-body:'Source Sans 3','Segoe UI',sans-serif;
+  --dark-bg:hsl(220,30%,10%);--footer-bg:hsl(220,25%,12%);
+  --footer-text:hsl(210,15%,65%);--footer-border:hsl(215,20%,18%);
+  --footer-border2:hsl(215,20%,16%);--footer-icon:hsl(210,15%,55%);
+  --footer-muted:hsl(210,12%,40%);
+  --link-blue:hsl(215,80%,55%);--link-blue-hover:hsl(215,80%,48%);
+  --link-blue-light:hsl(215,80%,60%);
+}
+body{font-family:var(--font-body);background:var(--bg);color:var(--fg);line-height:1.7;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--font-heading)}
+a{color:inherit;text-decoration:none}
+
+.top-bar{background:var(--dark-bg);border-bottom:1px solid hsl(215,30%,20%)}
+.top-bar-inner{max-width:1140px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.top-logo{color:#fff;font-family:var(--font-heading);font-size:1.125rem;font-weight:700;letter-spacing:-.02em;white-space:nowrap;transition:opacity .2s}
+.top-logo:hover{opacity:.8}
+.top-logo span{font-style:italic}
+.top-desc{color:hsl(210,20%,75%);font-size:.875rem;text-align:center;max-width:520px;line-height:1.45}
+.top-btn{background:var(--link-blue);color:#fff;font-size:.875rem;font-weight:500;padding:8px 20px;border-radius:6px;border:none;cursor:pointer;white-space:nowrap;transition:background .2s}
+.top-btn:hover{background:var(--link-blue-hover)}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center}
+.modal-overlay.active{display:flex}
+.modal{background:#fff;border-radius:12px;padding:28px;max-width:420px;width:90%;position:relative}
+.modal h3{font-size:1.125rem;margin-bottom:4px}
+.modal .sub{font-size:.875rem;color:var(--muted-fg);margin-bottom:16px}
+.modal-close{position:absolute;top:12px;right:12px;background:none;border:none;cursor:pointer;padding:4px}
+.modal-close svg{width:20px;height:20px;color:var(--muted-fg)}
+.contact-card{display:flex;align-items:center;gap:16px;padding:14px;border:1px solid var(--border);border-radius:10px;transition:background .15s;margin-bottom:10px}
+.contact-card:hover{background:var(--muted)}
+.contact-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-icon.tg{background:hsl(200,80%,50%,.1)}
+.contact-icon.tg svg{color:hsl(200,80%,50%)}
+.contact-icon.em{background:hsl(35,85%,55%,.1)}
+.contact-icon.em svg{color:var(--accent)}
+.contact-card p{margin:0}.contact-card .name{font-weight:500}.contact-card .handle{font-size:.875rem;color:var(--muted-fg)}
+
+.hero{background:var(--primary);color:var(--primary-fg);padding:56px 24px 80px}
+.hero-inner{max-width:var(--doc-max);margin:0 auto}
+.hero-tag{font-size:.8rem;text-transform:uppercase;letter-spacing:.15em;opacity:.7;margin-bottom:12px}
+.hero h1{font-size:clamp(1.5rem,4vw,2.25rem);font-weight:700;line-height:1.25;max-width:640px}
+.hero .hero-sub{margin-top:16px;font-size:clamp(.875rem,2vw,1rem);opacity:.8;max-width:560px;line-height:1.6}
+
+.doc{max-width:var(--doc-max);margin:0 auto;padding:0 24px 80px}
+.doc p{color:rgba(30,42,58,.85);line-height:1.7}
+
+.sec-head{display:flex;align-items:center;gap:12px;margin:48px 0 16px;scroll-margin-top:96px}
+.sec-head .badge{width:36px;height:36px;border-radius:50%;background:var(--step-bg);color:var(--step-fg);display:flex;align-items:center;justify-content:center;font-size:.875rem;font-weight:700;flex-shrink:0}
+.sec-head h2{font-size:clamp(1.125rem,3vw,1.5rem);font-weight:700}
+h3.sub{font-size:1.1rem;font-weight:600;margin:24px 0 12px}
+
+.blist{list-style:none;padding:0;margin:12px 0}
+.blist li{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;color:rgba(30,42,58,.85)}
+.blist li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:10px}
+.nlist{list-style:none;padding:0;margin:12px 0;counter-reset:nl}
+.nlist li{display:flex;align-items:flex-start;gap:12px;margin-bottom:8px;color:rgba(30,42,58,.85);counter-increment:nl}
+.nlist li::before{content:counter(nl);width:24px;height:24px;border-radius:50%;background:var(--secondary);color:var(--secondary-fg);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:600;flex-shrink:0;margin-top:2px}
+
+.ai-prompt{background:var(--highlight-bg);border-left:4px solid var(--highlight-border);border-radius:0 8px 8px 0;padding:16px 20px;margin:16px 0;font-style:italic;color:rgba(30,42,58,.9);position:relative}
+.ai-prompt .copy-btn{position:absolute;top:10px;right:10px;background:none;border:none;cursor:pointer;padding:6px;border-radius:4px;opacity:0;transition:opacity .2s}
+.ai-prompt:hover .copy-btn{opacity:1}
+.ai-prompt .copy-btn:hover{background:hsl(215,60%,32%,.1)}
+.ai-prompt .copy-btn svg{width:16px;height:16px;color:var(--muted-fg)}
+.ai-prompt .copy-btn.copied svg{color:#16a34a}
+
+.toc{display:none;position:fixed;left:16px;top:50%;transform:translateY(-50%);width:220px;z-index:50}
+.toc-inner{background:var(--card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:8px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.toc-title{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted-fg);margin-bottom:12px}
+.toc a{display:block;font-size:.75rem;padding:4px 8px;border-radius:4px;color:var(--muted-fg);transition:all .15s;margin-bottom:2px}
+.toc a:hover{color:var(--fg);background:var(--muted)}
+.toc a.active{background:var(--primary);color:var(--primary-fg);font-weight:500}
+@media(min-width:1280px){.toc{display:block}}
+
+.scroll-top{display:none;position:fixed;bottom:24px;right:24px;z-index:50;width:40px;height:40px;border-radius:50%;background:var(--primary);color:var(--primary-fg);border:none;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15);align-items:center;justify-content:center;transition:opacity .2s}
+.scroll-top:hover{opacity:.9}
+.scroll-top.visible{display:flex}
+
+.site-footer{background:var(--footer-bg);color:var(--footer-text);border-top:1px solid var(--footer-border)}
+.footer-grid{max-width:1140px;margin:0 auto;padding:48px 24px;display:grid;grid-template-columns:1fr;gap:40px}
+@media(min-width:768px){.footer-grid{grid-template-columns:1fr 1fr 1fr}}
+.footer-logo{font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:#fff;transition:color .2s}
+.footer-logo:hover{color:var(--link-blue-light)}
+.footer-logo span{font-style:italic}
+.footer-desc{margin-top:16px;font-size:.875rem;line-height:1.6;max-width:280px}
+.footer-social{display:flex;gap:8px;margin-top:20px}
+.footer-social a{width:36px;height:36px;border-radius:50%;border:1px solid hsl(215,20%,25%);display:flex;align-items:center;justify-content:center;transition:background .15s}
+.footer-social a:hover{background:rgba(255,255,255,.05)}
+.footer-social svg{width:16px;height:16px;color:var(--footer-icon)}
+.footer-col h4{color:#fff;font-family:var(--font-heading);font-weight:600;margin-bottom:16px}
+.footer-col ul{list-style:none;padding:0}
+.footer-col li{margin-bottom:10px;font-size:.875rem}
+.footer-col a:hover{color:#fff}
+.footer-experts-note{display:flex;align-items:flex-start;gap:8px;margin-top:20px;font-size:.875rem}
+.footer-experts-note svg{width:16px;height:16px;flex-shrink:0;margin-top:3px;color:hsl(210,15%,50%)}
+.footer-bottom{border-top:1px solid var(--footer-border2);max-width:1140px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.75rem;color:var(--footer-muted)}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <a href="https://jvgro.ru/" target="_blank" rel="noopener noreferrer" class="top-logo">JVGro <span>Consulting</span></a>
+    <p class="top-desc">Экспертная валидация документа с&nbsp;ментором: оценим полноту, KPI, границы ответственности и&nbsp;управляемость документа.</p>
+    <button class="top-btn" onclick="document.getElementById('contactModal').classList.add('active')">Обсудить результат</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="contactModal" onclick="if(event.target===this)this.classList.remove('active')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('contactModal').classList.remove('active')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h3>Свяжитесь с нами</h3>
+    <p class="sub">Выберите удобный способ связи для обсуждения результата</p>
+    <a href="https://t.me/JuliaGr0" target="_blank" rel="noopener noreferrer" class="contact-card">
+      <div class="contact-icon tg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+      <div><p class="name">Telegram</p><p class="handle">@JuliaGr0</p></div>
+    </a>
+    <a href="mailto:jg@comentee.ru" class="contact-card">
+      <div class="contact-icon em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+      <div><p class="name">Email</p><p class="handle">jg@comentee.ru</p></div>
+    </a>
+  </div>
+</div>
+
+<nav class="toc" id="toc">
+  <div class="toc-inner">
+    <p class="toc-title">Содержание</p>
+    <a href="#s1" data-sec="s1">1. Цель документа</a>
+    <a href="#s2" data-sec="s2">2. Общие принципы работы</a>
+    <a href="#s3" data-sec="s3">3. Этап 1. Подготовка исходных материалов</a>
+    <a href="#s4" data-sec="s4">4. Этап 2. Описание контекста компании</a>
+    <a href="#s5" data-sec="s5">5. Этап 3. Описание фактического функционала</a>
+    <a href="#s6" data-sec="s6">6. Этап 4. Уточняющие вопросы от ИИ</a>
+    <a href="#s7" data-sec="s7">7. Этап 5. Сборка должностной инструкции</a>
+    <a href="#s8" data-sec="s8">8. Этап 6. Сопоставление с документами</a>
+    <a href="#s9" data-sec="s9">9. Этап 7. Усиление по лучшим практикам</a>
+    <a href="#s10" data-sec="s10">10. Дополнительные проверки</a>
+    <a href="#s11" data-sec="s11">11. Критерии качества</a>
+    <a href="#s12" data-sec="s12">12. Итог</a>
+  </div>
+</nav>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-tag">Регламент</p>
+    <h1>Разработка должностной инструкции с&nbsp;использованием ИИ</h1>
+    <p class="hero-sub">Порядок разработки должностной инструкции с использованием ИИ как инструмента структурирования, анализа и усиления управленческих функций.</p>
+  </div>
+</header>
+
+<main class="doc">
+
+  <div class="sec-head" id="s1"><span class="badge">1</span><h2>Цель документа</h2></div>
+  <p>Настоящий регламент описывает порядок разработки должностной инструкции с использованием ИИ как инструмента структурирования, анализа и усиления управленческих функций.</p>
+  <p style="margin-top:12px">Цель процесса:</p>
+  <ul class="blist">
+    <li>зафиксировать реальный функционал сотрудника,</li>
+    <li>формализовать зоны ответственности,</li>
+    <li>определить KPI и полномочия,</li>
+    <li>выявить пробелы и точки усиления,</li>
+    <li>привести роль в соответствие с целями компании.</li>
+  </ul>
+
+  <div class="sec-head" id="s2"><span class="badge">2</span><h2>Общие принципы работы</h2></div>
+  <ol class="nlist">
+    <li>Сначала фиксируется модель «как есть».</li>
+    <li>Затем проводится структурирование и формализация.</li>
+    <li>После этого выполняется оптимизация по лучшим практикам.</li>
+    <li>ИИ не заменяет управленческое решение, а помогает его структурировать.</li>
+    <li>Никакие улучшения не добавляются без явного согласования.</li>
+  </ol>
+
+  <div class="sec-head" id="s3"><span class="badge">3</span><h2>Этап 1. Подготовка исходных материалов</h2></div>
+  <p>Перед началом работы необходимо загрузить в ИИ все доступные материалы.</p>
+  <h3 class="sub">3.1. Материалы по компании</h3>
+  <ul class="blist">
+    <li>Ссылка на сайт компании</li>
+    <li>Описание продуктов / услуг</li>
+    <li>Организационная структура</li>
+    <li>Стратегия или цели на год</li>
+    <li>Публичные материалы (презентации, интервью, статьи)</li>
+  </ul>
+  <h3 class="sub">3.2. Материалы по должности</h3>
+  <ul class="blist">
+    <li>Предыдущие версии должностной инструкции</li>
+    <li>Регламенты и внутренние положения</li>
+    <li>Документы с KPI</li>
+    <li>Матрицы ответственности</li>
+    <li>Описание процессов</li>
+    <li>Примеры отчетов</li>
+    <li>Технические задания по роли</li>
+  </ul>
+  <p style="margin-top:16px">После загрузки необходимо дать ИИ задачу:</p>
+  <div class="ai-prompt">
+    <div class="prompt-text">Проанализируй материалы, опиши текущую формальную модель роли, выдели пробелы и противоречия.</div>
+    <button class="copy-btn" onclick="copyPrompt(this)" title="Копировать"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
+  </div>
+
+  <div class="sec-head" id="s4"><span class="badge">4</span><h2>Этап 2. Описание контекста компании</h2></div>
+  <p>Необходимо надиктовать:</p>
+  <ul class="blist">
+    <li>сферу деятельности,</li>
+    <li>масштаб бизнеса,</li>
+    <li>структуру управления,</li>
+    <li>степень формализации процессов,</li>
+    <li>ключевые цели компании,</li>
+    <li>основные управленческие боли.</li>
+  </ul>
+  <p style="margin-top:16px">После этого дать ИИ задачу:</p>
+  <div class="ai-prompt">
+    <div class="prompt-text">Подтверди понимание контекста и задай уточняющие вопросы, если информации недостаточно.</div>
+    <button class="copy-btn" onclick="copyPrompt(this)" title="Копировать"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
+  </div>
+
+  <div class="sec-head" id="s5"><span class="badge">5</span><h2>Этап 3. Описание фактического функционала («как есть»)</h2></div>
+  <p>Сотрудник описывает в свободной форме:</p>
+  <ul class="blist">
+    <li>за что он отвечает,</li>
+    <li>какие решения принимает,</li>
+    <li>какие задачи делает лично,</li>
+    <li>какие задачи делегирует,</li>
+    <li>с кем взаимодействует,</li>
+    <li>какие отчеты формирует,</li>
+    <li>за какие результаты его оценивают,</li>
+    <li>какие сложности возникают.</li>
+  </ul>
+  <div class="ai-prompt">
+    <div class="prompt-text">Важно: описание должно быть живым и неформализованным.</div>
+    <button class="copy-btn" onclick="copyPrompt(this)" title="Копировать"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
+  </div>
+
+  <div class="sec-head" id="s6"><span class="badge">6</span><h2>Этап 4. Уточняющие вопросы от ИИ</h2></div>
+  <p>Необходимо запросить:</p>
+  <div class="ai-prompt">
+    <div class="prompt-text">Задай не менее 20 уточняющих вопросов по следующим блокам:
+– ответственность
+– процессы
+– полномочия
+– взаимодействие
+– KPI
+– риски
+– зоны пересечения ролей</div>
+    <button class="copy-btn" onclick="copyPrompt(this)" title="Копировать"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
+  </div>
+  <p style="margin-top:12px">Ответы даются максимально подробно.</p>
+
+  <div class="sec-head" id="s7"><span class="badge">7</span><h2>Этап 5. Сборка должностной инструкции</h2></div>
+  <p>После завершения уточнений дается задание:</p>
+  <div class="ai-prompt">
+    <div class="prompt-text">Составь должностную инструкцию, используя только обсужденную информацию. Ничего не добавляй от себя.
+
+Рекомендуемая структура:
+1. Общие положения
+2. Цель должности
+3. Зона ответственности
+4. Функциональные обязанности (по блокам)
+5. Полномочия
+6. Показатели эффективности (KPI)
+7. Взаимодействие
+8. Регулярная отчетность
+9. Ответственность</div>
+    <button class="copy-btn" onclick="copyPrompt(this)" title="Копировать"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
+  </div>
+
+  <div class="sec-head" id="s8"><span class="badge">8</span><h2>Этап 6. Сопоставление с существующими документами</h2></div>
+  <p>Необходимо запросить:</p>
+  <div class="ai-prompt">
+    <div class="prompt-text">Сравни новую версию инструкции с загруженными документами. Выдели расхождения, устаревшие положения и зоны без закрепленной ответственности.</div>
+    <button class="copy-btn" onclick="copyPrompt(this)" title="Копировать"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
+  </div>
+
+  <div class="sec-head" id="s9"><span class="badge">9</span><h2>Этап 7. Усиление по лучшим практикам</h2></div>
+  <p>После фиксации версии «как есть» необходимо дать отдельную задачу:</p>
+  <div class="ai-prompt">
+    <div class="prompt-text">Проанализируй инструкцию с точки зрения лучших практик для аналогичной должности в компаниях такого масштаба. Раздели рекомендации на: критично добавить / желательно усилить.</div>
+    <button class="copy-btn" onclick="copyPrompt(this)" title="Копировать"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
+  </div>
+  <p style="margin-top:16px">ИИ должен:</p>
+  <ul class="blist">
+    <li>предложить дополнительные зоны ответственности,</li>
+    <li>усилить KPI,</li>
+    <li>указать возможные риски,</li>
+    <li>предложить формализацию слабых процессов,</li>
+    <li>обосновать каждое предложение.</li>
+  </ul>
+
+  <div class="sec-head" id="s10"><span class="badge">10</span><h2>Дополнительные проверки (по необходимости)</h2></div>
+  <p>Можно дополнительно запросить:</p>
+  <ol class="nlist">
+    <li>Проверку на дублирование ролей</li>
+    <li>Проверку на перегруз функции</li>
+    <li>Перевод инструкции в формат управленческого чек-листа</li>
+    <li>Формирование версии для трудового договора</li>
+    <li>Формирование версии для внутреннего регламента</li>
+  </ol>
+
+  <div class="sec-head" id="s11"><span class="badge">11</span><h2>Критерии качества готовой инструкции</h2></div>
+  <p>Готовый документ считается качественным, если:</p>
+  <ul class="blist">
+    <li>четко определена цель должности,</li>
+    <li>зоны ответственности не размыты,</li>
+    <li>есть измеримые KPI,</li>
+    <li>прописаны полномочия,</li>
+    <li>исключены дублирования,</li>
+    <li>понятны границы принятия решений,</li>
+    <li>определена ответственность за сбои.</li>
+  </ul>
+
+  <div class="sec-head" id="s12"><span class="badge">12</span><h2>Итог</h2></div>
+  <p>Должностная инструкция, разработанная по данному регламенту, является:</p>
+  <ul class="blist">
+    <li>инструментом делегирования,</li>
+    <li>инструментом контроля,</li>
+    <li>основой оценки эффективности,</li>
+    <li>базой для масштабирования бизнеса,</li>
+    <li>защитой от управленческого хаоса.</li>
+  </ul>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <a href="https://jvgro.ru/" target="_blank" rel="noopener noreferrer" class="footer-logo">JVGro <span>Consulting</span></a>
+      <p class="footer-desc">Стратегический и операционный консалтинг для бизнеса. Помогаем предпринимателям выйти на новый уровень эффективности и прибыли.</p>
+      <div class="footer-social">
+        <a href="https://t.me/JuliaGr0" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
+        <a href="mailto:jg@comentee.ru" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Услуги</h4>
+      <ul>
+        <li><a href="https://jvgro.ru/#services" target="_blank" rel="noopener noreferrer">Стратегический менторинг</a></li>
+        <li><a href="https://jvgro.ru/#services" target="_blank" rel="noopener noreferrer">Финансы и налоги</a></li>
+        <li><a href="https://jvgro.ru/#services" target="_blank" rel="noopener noreferrer">HR и мотивация</a></li>
+        <li><a href="https://jvgro.ru/#services" target="_blank" rel="noopener noreferrer">Независимый директор</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Эксперты</h4>
+      <ul>
+        <li><a href="https://jvgro.ru/" target="_blank" rel="noopener noreferrer">Юлия Грошева</a></li>
+        <li><a href="https://jvgro.ru/" target="_blank" rel="noopener noreferrer">Вадим Грошев</a></li>
+      </ul>
+      <div class="footer-experts-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Пул проверенных исполнителей под любой бюджет</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 JVGro Consulting. Все права защищены.</p>
+    <p>ИНН: 501808236517</p>
+  </div>
+</footer>
+
+<script>
+const sections=document.querySelectorAll('.sec-head');
+const tocLinks=document.querySelectorAll('#toc a');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){tocLinks.forEach(a=>a.classList.toggle('active',a.dataset.sec===e.target.id))}});
+},{rootMargin:'-80px 0px -60% 0px'});
+sections.forEach(s=>observer.observe(s));
+
+const scrollBtn=document.getElementById('scrollTop');
+window.addEventListener('scroll',()=>{scrollBtn.classList.toggle('visible',window.scrollY>400)});
+
+function copyPrompt(btn){
+  const text=btn.parentElement.querySelector('.prompt-text').innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.classList.add('copied');
+    btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    setTimeout(()=>{
+      btn.classList.remove('copied');
+      btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>';
+    },1500);
+  });
+}
+
+document.querySelectorAll('#toc a').forEach(a=>{
+  a.addEventListener('click',e=>{e.preventDefault();document.getElementById(a.dataset.sec).scrollIntoView({behavior:'smooth'})});
+});
+</script>
+</body>
+</html>
 
